@@ -26,7 +26,7 @@ from pathlib import Path
 
 import requests
 
-from src import config
+from src import boundary, config
 
 _CHUNK = 1 << 20
 _HTTP_TIMEOUT = 60
@@ -122,7 +122,8 @@ def _bounds_intersect(b: dict, bbox: tuple[float, float, float, float]) -> bool:
 
 
 def _filter(pbf_path: Path, bbox: tuple[float, float, float, float]) -> tuple[list[dict], dict[str, int]]:
-    """Single pyosmium pass over the PBF -- keeps named highway ways inside bbox.
+    """Single pyosmium pass over the PBF -- keeps named highway ways whose
+    centroid lies inside the City of Toronto polygon.
 
     Output shape per way matches Overpass `out center;`:
         {"type": "way", "id": N, "tags": {...},
@@ -131,8 +132,13 @@ def _filter(pbf_path: Path, bbox: tuple[float, float, float, float]) -> tuple[li
     """
     import osmium  # imported lazily so the install can succeed without osmium for tests
 
+    polygons = boundary.load()  # [(bbox, rings), ...]
     elements: list[dict] = []
-    counts = {"ways_seen": 0, "ways_kept": 0, "outside_bbox": 0, "no_name": 0, "wrong_type": 0}
+    counts = {
+        "ways_seen": 0, "ways_kept": 0,
+        "outside_bbox": 0, "outside_city": 0,
+        "no_name": 0, "wrong_type": 0,
+    }
     keep_types = config.OSM_HIGHWAY_TYPES
 
     class Handler(osmium.SimpleHandler):
@@ -162,13 +168,17 @@ def _filter(pbf_path: Path, bbox: tuple[float, float, float, float]) -> tuple[li
             if not _bounds_intersect(b, bbox):
                 counts["outside_bbox"] += 1
                 return
+            clat = (b["minlat"] + b["maxlat"]) / 2
+            clon = (b["minlon"] + b["maxlon"]) / 2
+            if not boundary.is_inside(clat, clon, polygons):
+                counts["outside_city"] += 1
+                return
             elements.append({
                 "type": "way",
                 "id": w.id,
                 "tags": {t.k: t.v for t in tags},
                 "bounds": b,
-                "center": {"lat": (b["minlat"] + b["maxlat"]) / 2,
-                           "lon": (b["minlon"] + b["maxlon"]) / 2},
+                "center": {"lat": clat, "lon": clon},
             })
             counts["ways_kept"] += 1
 

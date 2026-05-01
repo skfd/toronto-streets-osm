@@ -31,7 +31,18 @@ OSM_META_PATH = os.path.join(OSM_DIR, "meta.json")
 OSM_LOCK_PATH = os.path.join(OSM_DIR, "refresh.lock")
 OSM_LOG_PATH = os.path.join(OSM_DIR, "refresh.log")
 
-# Same bbox the sibling project uses; covers City of Toronto.
+# Toronto boundary, derived from the union of the 158 neighbourhood polygons
+# published by the City. Same dataset the sibling tile-builder uses.
+BOUNDARY_URL = (
+    "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/"
+    "fc443770-ef0a-4025-9c2c-2cb558bfab00/resource/"
+    "0719053b-28b7-48ea-b863-068823a93aaa/download/neighbourhoods-4326.geojson"
+)
+BOUNDARY_DIR = os.path.join(DATA_DIR, "boundary")
+BOUNDARY_GEOJSON_PATH = os.path.join(BOUNDARY_DIR, "neighbourhoods-4326.geojson")
+
+# Cheap prefilter: a way's bounding box must intersect this rectangle before
+# the more-expensive point-in-polygon city-boundary check runs.
 TORONTO_BBOX = (43.58, -79.64, 43.86, -79.11)
 
 # OSM highway types kept by the extract: drivable + pedestrian, both with name=*.

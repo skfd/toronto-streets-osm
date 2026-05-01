@@ -1,4 +1,5 @@
 data/tcl/*.geojson
+data/boundary/*.geojson
 data/osm/*.pbf
 data/osm/*.partial
 data/osm/*.json
