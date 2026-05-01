@@ -135,6 +135,32 @@ def cmd_update(args):
     print("=== Compare ===")
     cmd_compare(args)
 
+    print()
+    print("=== Git Commit & Push ===")
+    _autopush_docs()
+
+
+def _autopush_docs():
+    """Stage docs/, commit, and push. Silent no-op when there's nothing to commit."""
+    import subprocess
+    from datetime import date
+
+    today = date.today().isoformat()
+    subprocess.run(["git", "add", "docs/"], check=False)
+    result = subprocess.run(
+        ["git", "commit", "-m", f"data {today}"],
+        capture_output=True, text=True,
+    )
+    if result.returncode == 0:
+        print(result.stdout.strip())
+        push = subprocess.run(["git", "push"], capture_output=True, text=True)
+        if push.returncode == 0:
+            print("Changes pushed.")
+        else:
+            print(f"Push failed: {push.stderr.strip()}")
+    else:
+        print("Nothing to commit.")
+
 
 def cmd_rebuild(args):
     if os.path.exists(config.DB_PATH):
