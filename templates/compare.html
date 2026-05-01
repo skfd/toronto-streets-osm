@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}TCL ↔ OSM comparison — {{ date_friendly }}{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>TCL ↔ OSM streets comparison</h2>
+  <p class="muted">
+    Generated {{ generated }} ·
+    TCL snapshot #{{ data.tcl_snapshot_id }} ({{ data.tcl_snapshot_filename }})
+    · OSM extract {{ data.osm_extract_downloaded or '—' }}
+    <span class="muted">sha256 <code>{{ (data.osm_extract_json_sha256 or '')[:16] }}…</code></span>
+  </p>
+  <p>
+    <span class="muted">TCL streets <strong>{{ data.totals.tcl_streets }}</strong> ·
+      OSM streets <strong>{{ data.totals.osm_streets }}</strong></span>
+    &nbsp;
+    <span class="pill bad">missing {{ data.totals.missing }}</span>
+    <span class="pill warn">extra {{ data.totals.extra }}</span>
+    <span class="pill ok">matched {{ data.totals.matched }}</span>
+  </p>
+</div>
+
+<div class="card">
+  <h3>Missing in OSM ({{ data.totals.missing }})</h3>
+  <p class="muted">TCL has the street, OSM does not.</p>
+  {% if data.missing %}
+  <table>
+    <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
+    <tbody>
+      {% for s in data.missing %}
+      <tr>
+        <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+        <td class="muted">{{ s.feature_desc or '' }}</td>
+        <td class="num">{{ s.tcl_segments }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted">None.</p>{% endif %}
+</div>
+
+<div class="card">
+  <h3>Extra in OSM ({{ data.totals.extra }})</h3>
+  <p class="muted">OSM has the street, TCL does not. Read-only — we never delete from OSM.</p>
+  {% if data.extra %}
+  <table>
+    <thead><tr><th>Street (OSM)</th><th>highway</th><th class="num">OSM ways</th></tr></thead>
+    <tbody>
+      {% for s in data.extra %}
+      <tr>
+        <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+        <td><code>{{ s.highway or '' }}</code></td>
+        <td class="num">{{ s.osm_ways }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted">None.</p>{% endif %}
+</div>
+
+<div class="card">
+  <h3>Matched ({{ data.totals.matched }})</h3>
+  <p class="muted">Both sides have it. Counts are TCL segments and OSM ways for the same street name.</p>
+  {% if data.matched %}
+  <table>
+    <thead><tr><th>Normalized</th><th>TCL raw</th><th>OSM raw</th><th>highway</th><th class="num">TCL</th><th class="num">OSM</th></tr></thead>
+    <tbody>
+      {% for s in data.matched %}
+      <tr>
+        <td><code>{{ s.street_norm }}</code></td>
+        <td>{{ s.tcl_raw }}</td>
+        <td>{{ s.osm_raw }}</td>
+        <td><code>{{ s.highway or '' }}</code></td>
+        <td class="num">{{ s.tcl_segments }}</td>
+        <td class="num">{{ s.osm_ways }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted">None.</p>{% endif %}
+</div>
+{% endblock %}
