@@ -4,9 +4,6 @@ data/osm/*.partial
 data/osm/*.json
 data/osm/*.log
 data/osm/*.lock
-data/streets.db
-data/streets.db-shm
-data/streets.db-wal
 data/compare.json
 __pycache__/
 *.pyc

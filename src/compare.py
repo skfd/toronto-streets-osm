@@ -1,17 +1,16 @@
 """TCL vs OSM streets comparison: bucket every street into missing/extra/matched.
 
-Source side: every active TCL segment (latest non-skipped snapshot) grouped by
-`normalize_street(linear_name_full)` -- count of segments + sample raw name.
+Source side: every TCL feature in the latest GeoJSON file under data/tcl/,
+grouped by `normalize_street(LINEAR_NAME_FULL)` -- count of segments + sample
+raw name + feature class.
 
-OSM side: every named highway way in `data/osm/toronto-streets.json` grouped by
-`normalize_street(name)` -- count of ways + sample raw name.
+OSM side: every named highway way in `data/osm/toronto-streets.json`, grouped
+by `normalize_street(name)` -- count of ways + sample raw name + highway type.
 
-Bucket rules (mirrors t2/streets.py):
+Bucket rules:
     missing: TCL has the street, OSM does not.
     extra:   OSM has the street, TCL does not.
     matched: both sides have it (both raws + both counts shown).
-
-Output: `data/compare.json` plus an HTML report under `docs/reports/`.
 """
 from __future__ import annotations
 
@@ -20,17 +19,31 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 
-from src import config, db as _db, osm_refresh
+from src import config, osm_refresh
 from src.normalize import normalize_street
 
 
+def _latest_tcl_file() -> str | None:
+    if not os.path.isdir(config.TCL_DIR):
+        return None
+    files = sorted(f for f in os.listdir(config.TCL_DIR) if f.endswith(".geojson"))
+    if not files:
+        return None
+    return os.path.join(config.TCL_DIR, files[-1])
+
+
 def _tcl_streets() -> dict[str, dict]:
-    """Active-snapshot streets grouped by normalized name."""
+    path = _latest_tcl_file()
+    if not path:
+        raise FileNotFoundError(
+            "No TCL GeoJSON in data/tcl/. Run `python run.py download` first."
+        )
     counts: dict[str, int] = defaultdict(int)
     raws: dict[str, str] = {}
     feature_descs: dict[str, str] = {}
-    for row in _db.get_active_streets():
-        raw = (row.get("linear_name_full") or "").strip()
+    for feat in _iter_features(path):
+        props = feat.get("properties") or {}
+        raw = (props.get("LINEAR_NAME_FULL") or "").strip()
         if not raw:
             continue
         norm = normalize_street(raw)
@@ -38,16 +51,39 @@ def _tcl_streets() -> dict[str, dict]:
             continue
         counts[norm] += 1
         raws.setdefault(norm, raw)
-        if row.get("feature_code_desc"):
-            feature_descs.setdefault(norm, row["feature_code_desc"])
+        if props.get("FEATURE_CODE_DESC"):
+            feature_descs.setdefault(norm, props["FEATURE_CODE_DESC"])
     return {
         norm: {"raw": raws[norm], "count": n, "feature_desc": feature_descs.get(norm)}
         for norm, n in counts.items()
     }
 
 
+def _iter_features(path: str):
+    """Yield Features from either a single FeatureCollection JSON or NDJSON."""
+    with open(path, "r", encoding="utf-8") as f:
+        try:
+            data = json.load(f)
+            for feat in data.get("features") or []:
+                yield feat
+            return
+        except json.JSONDecodeError:
+            pass
+    import re
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip().rstrip(",")
+            if '"type": "Feature"' not in line:
+                continue
+            line = re.sub(r",\s*]", "]", line)
+            line = re.sub(r",\s*}", "}", line)
+            try:
+                yield json.loads(line)
+            except json.JSONDecodeError:
+                continue
+
+
 def _osm_streets() -> dict[str, dict]:
-    """Named highway ways grouped by normalized name."""
     if not os.path.exists(config.OSM_STREETS_JSON):
         raise FileNotFoundError(
             f"{config.OSM_STREETS_JSON} missing; run `python run.py refresh-osm` first."
@@ -107,15 +143,13 @@ def compute() -> dict:
     extra.sort(key=lambda r: (-r["osm_ways"], r["street_norm"]))
     matched.sort(key=lambda r: (-(r["tcl_segments"] + r["osm_ways"]), r["street_norm"]))
 
-    snaps = _db.get_latest_snapshots(1)
-    snap = snaps[-1] if snaps else None
     osm_meta = osm_refresh.read_meta() or {}
+    tcl_path = _latest_tcl_file()
+    tcl_filename = os.path.basename(tcl_path) if tcl_path else None
 
     return {
         "computed_at": datetime.now(timezone.utc).isoformat(),
-        "tcl_snapshot_id": snap["id"] if snap else None,
-        "tcl_snapshot_filename": snap["filename"] if snap else None,
-        "tcl_snapshot_downloaded": snap["downloaded"] if snap else None,
+        "tcl_filename": tcl_filename,
         "osm_extract_downloaded": osm_meta.get("downloaded_at"),
         "osm_extract_json_sha256": osm_meta.get("json_sha256"),
         "toronto_bbox": list(config.TORONTO_BBOX),

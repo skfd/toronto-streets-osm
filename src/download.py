@@ -1,4 +1,8 @@
-"""Download Toronto Centreline (TCL) GeoJSON from the Open Data portal."""
+"""Download Toronto Centreline (TCL) GeoJSON from the Open Data portal.
+
+HEAD-cache by Last-Modified: if the latest file in data/tcl/ matches the
+remote header, skip the download. --force always re-fetches.
+"""
 
 import os
 from datetime import date, datetime
@@ -6,7 +10,6 @@ from datetime import date, datetime
 import requests
 
 from src import config
-from src.db import get_last_snapshot_headers, init_db
 
 
 def download(force: bool = False):
@@ -31,15 +34,6 @@ def download(force: bool = False):
         print(f"Warning: could not check remote headers: {e}")
         remote = {}
 
-    if not force and remote:
-        init_db()
-        last = get_last_snapshot_headers()
-        if last and (
-            remote.get("Last-Modified") == last.get("remote_last_modified")
-            and remote.get("Content-Length") == last.get("remote_content_length")
-        ):
-            return "SKIPPED", "Remote file has not changed since last download.", None
-
     file_date = date.today()
     if remote.get("Last-Modified"):
         try:
@@ -51,9 +45,8 @@ def download(force: bool = False):
     filename = f"centreline-{file_date.isoformat()}.geojson"
     filepath = os.path.join(config.TCL_DIR, filename)
 
-    if os.path.exists(filepath) and not force:
-        print(f"Already downloaded: {filepath}")
-        return "DOWNLOADED", filepath, remote
+    if not force and os.path.exists(filepath):
+        return "SKIPPED", f"Already have {filepath}.", None
 
     print(f"Downloading to {filepath} ...")
     resp = requests.get(config.TCL_DATASET_URL, stream=True, timeout=300)

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Toronto streets vs OSM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+           margin: 0; padding: 0; color: #1f2937; background: #f9fafb; }
+    header { background: #111827; color: #fff; padding: 1rem 1.5rem; }
+    header strong { font-size: 1.05rem; }
+    main { max-width: 1100px; margin: 1.2rem auto; padding: 0 1.2rem 3rem; }
+    .card { background: #fff; border-radius: 6px; padding: 1rem 1.2rem;
+            margin-bottom: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    h1, h2, h3 { margin: 0 0 .5rem; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.2rem; margin-top: 1.2rem; }
+    p { margin: .35rem 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: .4rem; font-size: .9rem; }
+    th, td { text-align: left; padding: .35rem .6rem; border-bottom: 1px solid #e5e7eb; }
+    th { background: #f3f4f6; font-weight: 600; position: sticky; top: 0; }
+    tr:hover td { background: #fafbfc; }
+    code { background: #f3f4f6; padding: 0 4px; border-radius: 3px;
+           font-size: .85em; color: #374151; }
+    .muted { color: #6b7280; font-size: .9em; }
+    .pill { display: inline-block; padding: 1px 8px; border-radius: 999px;
+            font-size: .8rem; font-weight: 600; margin-right: .3rem; }
+    .pill.ok   { background: #d1fae5; color: #065f46; }
+    .pill.warn { background: #fef3c7; color: #78350f; }
+    .pill.bad  { background: #fee2e2; color: #991b1b; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    details { margin-top: .4rem; }
+    summary { cursor: pointer; padding: .35rem 0; color: #2563eb; font-weight: 600; }
+    summary:hover { text-decoration: underline; }
+    footer { color: #6b7280; font-size: .85rem; padding: 1rem 0; }
+  </style>
+</head>
+<body>
+  <header><strong>toronto-streets-osm</strong></header>
+  <main>
+    <div class="card">
+      <h1>Toronto streets vs OpenStreetMap</h1>
+      <p class="muted">
+        Today's snapshot. The City of Toronto's
+        <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
+        on one side, OSM <code>highway=*</code> ways with <code>name=*</code> on the other,
+        joined by normalized street name. Read-only:
+        <a href="https://github.com/skfd/toronto-streets-osm">source on GitHub</a>.
+      </p>
+      <p class="muted">
+        Computed {{ data.computed_at }} ·
+        TCL <code>{{ data.tcl_filename or '-' }}</code> ·
+        OSM extract {{ data.osm_extract_downloaded or '-' }}
+        <span class="muted">sha256 <code>{{ (data.osm_extract_json_sha256 or '')[:16] }}...</code></span>
+      </p>
+      <p>
+        TCL streets <strong>{{ data.totals.tcl_streets }}</strong> ·
+        OSM streets <strong>{{ data.totals.osm_streets }}</strong>
+        &nbsp;
+        <span class="pill bad">missing {{ data.totals.missing }}</span>
+        <span class="pill warn">extra {{ data.totals.extra }}</span>
+        <span class="pill ok">matched {{ data.totals.matched }}</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Missing in OSM ({{ data.totals.missing }})</h2>
+      <p class="muted">TCL has the street, OSM does not.</p>
+      {% if data.missing %}
+      <table>
+        <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
+        <tbody>
+          {% for s in data.missing %}
+          <tr>
+            <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+            <td class="muted">{{ s.feature_desc or '' }}</td>
+            <td class="num">{{ s.tcl_segments }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}<p class="muted">None.</p>{% endif %}
+    </div>
+
+    <div class="card">
+      <h2>Extra in OSM ({{ data.totals.extra }})</h2>
+      <p class="muted">OSM has the street, TCL does not. Read-only -- we never delete from OSM.</p>
+      {% if data.extra %}
+      <table>
+        <thead><tr><th>Street (OSM)</th><th>highway</th><th class="num">OSM ways</th></tr></thead>
+        <tbody>
+          {% for s in data.extra %}
+          <tr>
+            <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+            <td><code>{{ s.highway or '' }}</code></td>
+            <td class="num">{{ s.osm_ways }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}<p class="muted">None.</p>{% endif %}
+    </div>
+
+    <div class="card">
+      <h2>Matched ({{ data.totals.matched }})</h2>
+      <p class="muted">Both sides have it. Counts are TCL segments and OSM ways for the same street name.</p>
+      {% if data.matched %}
+      <details>
+        <summary>Show all {{ data.totals.matched }} matched streets</summary>
+        <table>
+          <thead><tr><th>Normalized</th><th>TCL raw</th><th>OSM raw</th><th>highway</th><th class="num">TCL</th><th class="num">OSM</th></tr></thead>
+          <tbody>
+            {% for s in data.matched %}
+            <tr>
+              <td><code>{{ s.street_norm }}</code></td>
+              <td>{{ s.tcl_raw }}</td>
+              <td>{{ s.osm_raw }}</td>
+              <td><code>{{ s.highway or '' }}</code></td>
+              <td class="num">{{ s.tcl_segments }}</td>
+              <td class="num">{{ s.osm_ways }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+      {% else %}<p class="muted">None.</p>{% endif %}
+    </div>
+
+    <footer>
+      &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> ·
+      <a href="https://open.toronto.ca/open-data-licence/">Toronto Open Data</a>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,8 +1,0 @@
-{
-  "compare-2026-05-01": {
-    "date": "2026-05-01",
-    "kind": "cmp",
-    "filename": "reports/compare-2026-05-01.html",
-    "summary": "5544 missing in OSM, 5727 extra in OSM, 9117 matched"
-  }
-}
