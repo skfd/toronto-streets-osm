@@ -65,13 +65,14 @@ OSM_HIGHWAY_TYPES = frozenset({
 })
 
 # TCL FEATURE_CODE_DESC values kept on the TCL side of the comparison.
-# Drivable public roads + Laneway. Excludes Trail, Walkway, Busway, Railway,
-# River, Hydro Line, Shoreline, Creek, Ferry. Also excludes ramps (by request,
-# matching the OSM side which excludes *_link). Also surfaced in the report's
-# Filter rules popup -- edit here, popup follows.
+# Drivable public roads + Laneway + expressway/major-arterial ramps. Excludes
+# Trail, Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry.
+# Also surfaced in the report's Filter rules popup -- edit here, popup follows.
+# Note: the OSM side still excludes *_link; ramps surface only as TCL-only
+# entries in the "Missing Major" tab, which is the intent.
 TCL_FEATURE_CODES = frozenset({
     "Local", "Collector", "Major Arterial", "Minor Arterial",
-    "Expressway",
+    "Expressway", "Expressway Ramp", "Major Arterial Ramp",
     "Laneway",
     "Other", "Pending",
 })

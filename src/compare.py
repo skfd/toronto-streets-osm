@@ -41,6 +41,7 @@ def _tcl_streets() -> dict[str, dict]:
     counts: dict[str, int] = defaultdict(int)
     raws: dict[str, str] = {}
     feature_descs: dict[str, str] = {}
+    jurisdictions: dict[str, str] = {}
     keep_codes = config.TCL_FEATURE_CODES
     for feat in _iter_features(path):
         props = feat.get("properties") or {}
@@ -55,8 +56,14 @@ def _tcl_streets() -> dict[str, dict]:
         counts[norm] += 1
         raws.setdefault(norm, raw)
         feature_descs.setdefault(norm, props["FEATURE_CODE_DESC"])
+        jurisdictions.setdefault(norm, props.get("JURISDICTION") or "")
     return {
-        norm: {"raw": raws[norm], "count": n, "feature_desc": feature_descs.get(norm)}
+        norm: {
+            "raw": raws[norm],
+            "count": n,
+            "feature_desc": feature_descs.get(norm),
+            "jurisdiction": jurisdictions.get(norm),
+        }
         for norm, n in counts.items()
     }
 
@@ -120,19 +127,25 @@ def compute() -> dict:
 
     missing_all = [
         {"street_norm": k, "street_raw": v["raw"], "tcl_segments": v["count"],
-         "feature_desc": v.get("feature_desc")}
+         "feature_desc": v.get("feature_desc"),
+         "jurisdiction": v.get("jurisdiction")}
         for k, v in tcl.items() if k not in osm
     ]
-    _MAJOR = {"Expressway", "Major Arterial"}
-    missing_ln = [r for r in missing_all if r["street_raw"].startswith("Ln ")]
-    missing_major = [
-        r for r in missing_all
-        if not r["street_raw"].startswith("Ln ") and r.get("feature_desc") in _MAJOR
-    ]
-    missing = [
-        r for r in missing_all
-        if not r["street_raw"].startswith("Ln ") and r.get("feature_desc") not in _MAJOR
-    ]
+    _MAJOR = {"Expressway", "Expressway Ramp", "Major Arterial", "Major Arterial Ramp"}
+
+    def _bucket(r):
+        if r["street_raw"].startswith("Ln "):
+            return "ln"
+        if r.get("jurisdiction") == "PRIVATE":
+            return "private"
+        if r.get("feature_desc") in _MAJOR:
+            return "major"
+        return "missing"
+
+    missing_ln = [r for r in missing_all if _bucket(r) == "ln"]
+    missing_private = [r for r in missing_all if _bucket(r) == "private"]
+    missing_major = [r for r in missing_all if _bucket(r) == "major"]
+    missing = [r for r in missing_all if _bucket(r) == "missing"]
     extra = [
         {"street_norm": k, "street_raw": v["raw"], "osm_ways": v["count"],
          "highway": v.get("highway")}
@@ -154,6 +167,7 @@ def compute() -> dict:
     missing.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     missing_ln.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     missing_major.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
+    missing_private.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     extra.sort(key=lambda r: (-r["osm_ways"], r["street_norm"]))
     matched.sort(key=lambda r: (-(r["tcl_segments"] + r["osm_ways"]), r["street_norm"]))
 
@@ -173,12 +187,14 @@ def compute() -> dict:
             "missing": len(missing),
             "missing_ln": len(missing_ln),
             "missing_major": len(missing_major),
+            "missing_private": len(missing_private),
             "extra": len(extra),
             "matched": len(matched),
         },
         "missing": missing,
         "missing_ln": missing_ln,
         "missing_major": missing_major,
+        "missing_private": missing_private,
         "extra": extra,
         "matched": matched,
     }
