@@ -169,7 +169,10 @@
           <div class="legend">
             <span class="swatch miss"></span>missing (TCL only)
             <span class="swatch extra"></span>extra (OSM only)
-            <span id="map-status" style="float:right"></span>
+            <span style="float:right">
+              <a id="osm-link" href="#" target="_blank" rel="noopener" style="display:none">Open in OSM &rarr;</a>
+              <span id="map-status"></span>
+            </span>
           </div>
         </div>
       </div>
@@ -194,6 +197,7 @@
       }).addTo(map);
 
       var status = document.getElementById('map-status');
+      var osmLink = document.getElementById('osm-link');
       var current = null;
       var geoms = null;
       var geomPromise = null;
@@ -222,8 +226,12 @@
             return line.map(function (p) { return [p[1], p[0]]; });
           });
           current = L.polyline(latlngs, { color: color, weight: 5, opacity: 0.9 }).addTo(map);
-          map.fitBounds(current.getBounds(), { padding: [40, 40], maxZoom: 17 });
+          var b = current.getBounds();
+          map.fitBounds(b, { padding: [40, 40], maxZoom: 17 });
           status.textContent = norm + ' · ' + lines.length + ' segment' + (lines.length === 1 ? '' : 's');
+          osmLink.href = 'https://www.openstreetmap.org/?bbox=' +
+            b.getWest() + ',' + b.getSouth() + ',' + b.getEast() + ',' + b.getNorth();
+          osmLink.style.display = 'inline';
         }).catch(function () { /* status already set */ });
       }
 
