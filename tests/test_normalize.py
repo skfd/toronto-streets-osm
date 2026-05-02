@@ -50,6 +50,28 @@ def test_tcl_short_suffixes_match_osm_long():
         assert normalize_street(short) == normalize_street(long), f"{short!r} != {long!r}"
 
 
+def test_mc_mac_collapse():
+    """TCL writes 'Mc Gregor', OSM writes 'McGregor' / 'MacGregor'. Collapse to match."""
+    assert normalize_street("Mc Gregor Ave") == "MCGREGOR AVE"
+    assert normalize_street("McGregor Avenue") == "MCGREGOR AVE"
+    assert normalize_street("Mac Gregor Ave") == "MACGREGOR AVE"
+    assert normalize_street("MacGregor Avenue") == "MACGREGOR AVE"
+    assert normalize_street("Mac") == "MAC"
+
+
+def test_saint_collapses_to_st():
+    """TCL writes 'St Leonard', OSM may write 'Saint Leonard' or 'St. Leonard'."""
+    assert normalize_street("St Leonard's Ave") == "ST LEONARDS AVE"
+    assert normalize_street("Saint Leonard's Avenue") == "ST LEONARDS AVE"
+    assert normalize_street("St. Leonard's Avenue") == "ST LEONARDS AVE"
+
+
+def test_apostrophes_stripped():
+    """Both straight ' and curly ’ apostrophes are removed before tokenization."""
+    assert normalize_street("St. Hilda's Avenue") == normalize_street("St. Hilda’s Avenue")
+    assert normalize_street("St Helen's Ave") == normalize_street("St. Helens Avenue")
+
+
 if __name__ == "__main__":
     test_suffix_expansion()
     test_direction_expansion()
@@ -57,4 +79,7 @@ if __name__ == "__main__":
     test_empty_inputs()
     test_no_suffix()
     test_tcl_short_suffixes_match_osm_long()
+    test_mc_mac_collapse()
+    test_saint_collapses_to_st()
+    test_apostrophes_stripped()
     print("ok")
