@@ -67,8 +67,8 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ## Project notes
 
 - Source: Toronto Centreline (TCL) road segments via Toronto Open Data (CKAN). Daily snapshot, SCD2-stored in `data/streets.db`.
-- OSM extract: clones the Geofabrik Ontario PBF, filters to named drivable highway ways (motorway/trunk/primary/secondary/tertiary/residential/unclassified) inside the Toronto polygon, writes `data/osm/toronto-streets.json`.
-- TCL filter: comparison restricts to drivable `FEATURE_CODE_DESC` values (Local, Collector, Major/Minor Arterial, Expressway, all Ramps, Other, Pending). Excludes Trail, Walkway, Laneway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry.
+- OSM extract: clones the Geofabrik Ontario PBF, filters to named highway ways (motorway/trunk/primary/secondary/tertiary/residential/unclassified/service) inside the Toronto polygon, writes `data/osm/toronto-streets.json`. `service` is included so OSM-tagged laneways/alleys can match TCL `Laneway` features.
+- TCL filter: comparison restricts to `FEATURE_CODE_DESC` values (Local, Collector, Major/Minor Arterial, Expressway, all Ramps, Laneway, Other, Pending). Excludes Trail, Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry.
 - Comparison key: `normalize_street(name)` (matches the conflate logic in the sibling `toronto-2-address-import` project — e.g. "Yonge Street" and "Yonge St" both become "YONGE ST").
 - Output: dated static HTML reports under `docs/reports/`, served by GitHub Pages.
 - Read-only data quality. No edits to OSM, ever, from this repo.
