@@ -50,6 +50,16 @@ def test_tcl_short_suffixes_match_osm_long():
         assert normalize_street(short) == normalize_street(long), f"{short!r} != {long!r}"
 
 
+def test_park_collapses_to_pk():
+    """TCL writes 'Bellwoods Pk', OSM writes 'Bellwoods Park'. Collapse to match.
+    Mid-name 'Park' (e.g. 'High Park Ave') is rewritten on both sides symmetrically,
+    so matching is preserved."""
+    assert normalize_street("Bellwoods Pk") == "BELLWOODS PK"
+    assert normalize_street("Bellwoods Park") == "BELLWOODS PK"
+    assert normalize_street("Wychwood Pk") == normalize_street("Wychwood Park")
+    assert normalize_street("High Park Avenue") == normalize_street("High Park Ave") == "HIGH PK AVE"
+
+
 def test_mc_mac_collapse():
     """TCL writes 'Mc Gregor', OSM writes 'McGregor' / 'MacGregor'. Collapse to match."""
     assert normalize_street("Mc Gregor Ave") == "MCGREGOR AVE"
@@ -79,6 +89,7 @@ if __name__ == "__main__":
     test_empty_inputs()
     test_no_suffix()
     test_tcl_short_suffixes_match_osm_long()
+    test_park_collapses_to_pk()
     test_mc_mac_collapse()
     test_saint_collapses_to_st()
     test_apostrophes_stripped()
