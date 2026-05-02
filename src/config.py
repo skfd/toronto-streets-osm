@@ -47,19 +47,20 @@ TORONTO_BBOX = (43.58, -79.64, 43.86, -79.11)
 
 # OSM highway types kept by the extract. Liberal-include policy: any value
 # where OSM could plausibly tag a TCL drivable road by that name. Beyond the
-# obvious drivable classes we also keep pedestrian/footway/path/track (a TCL
+# obvious drivable classes we also keep pedestrian/footway/track (a TCL
 # street can show up under any of these in OSM) and construction/proposed
 # (in-progress roads). Excludes ramps (*_link, by request), rec trails
-# (cycleway), and inherently-undrivable types (steps, busway, bus_stop,
-# bridleway, corridor, platform). name=* still required.
+# (cycleway, path), unclassified (by request), and inherently-undrivable
+# types (steps, busway, bus_stop, bridleway, corridor, platform). name=*
+# still required.
 #
 # Source of truth for the "Filter rules" popup in the rendered report --
 # templates/streets.html reads this set via the `rules` context. Edit here
 # and re-run `python run.py compare` to update the popup.
 OSM_HIGHWAY_TYPES = frozenset({
     "motorway", "trunk", "primary", "secondary", "tertiary",
-    "residential", "unclassified", "service",
-    "living_street", "pedestrian", "footway", "path", "track",
+    "residential", "service",
+    "living_street", "pedestrian", "footway", "track",
     "construction", "proposed",
 })
 
