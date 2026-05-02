@@ -45,16 +45,28 @@ BOUNDARY_GEOJSON_PATH = os.path.join(BOUNDARY_DIR, "neighbourhoods-4326.geojson"
 # the more-expensive point-in-polygon city-boundary check runs.
 TORONTO_BBOX = (43.58, -79.64, 43.86, -79.11)
 
-# OSM highway types kept by the extract: drivable public roads + service (for
-# laneways/alleys, which Toronto OSM tags as highway=service). name=* required.
+# OSM highway types kept by the extract. Liberal-include policy: any value
+# where OSM could plausibly tag a TCL drivable road by that name. Beyond the
+# obvious drivable classes we also keep pedestrian/footway/path/track (a TCL
+# street can show up under any of these in OSM) and construction/proposed
+# (in-progress roads). Excludes ramps (*_link, by request), rec trails
+# (cycleway), and inherently-undrivable types (steps, busway, bus_stop,
+# bridleway, corridor, platform). name=* still required.
+#
+# Source of truth for the "Filter rules" popup in the rendered report --
+# templates/streets.html reads this set via the `rules` context. Edit here
+# and re-run `python run.py compare` to update the popup.
 OSM_HIGHWAY_TYPES = frozenset({
     "motorway", "trunk", "primary", "secondary", "tertiary",
     "residential", "unclassified", "service",
+    "living_street", "pedestrian", "footway", "path", "track",
+    "construction", "proposed",
 })
 
 # TCL FEATURE_CODE_DESC values kept on the TCL side of the comparison.
-# Mirrors OSM_HIGHWAY_TYPES: drivable public roads + Laneway. Excludes Trail,
-# Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry.
+# Drivable public roads + Laneway. Excludes Trail, Walkway, Busway, Railway,
+# River, Hydro Line, Shoreline, Creek, Ferry. Also surfaced in the report's
+# Filter rules popup -- edit here, popup follows.
 TCL_FEATURE_CODES = frozenset({
     "Local", "Collector", "Major Arterial", "Minor Arterial",
     "Expressway", "Expressway Ramp",
