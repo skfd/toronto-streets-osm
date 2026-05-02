@@ -9,7 +9,7 @@ Output:
   data/osm/refresh.log                  stdout+stderr of the last refresh
 
 Each kept way matches:
-    highway in OSM_HIGHWAY_TYPES (drivable + pedestrian, see config)
+    highway in OSM_HIGHWAY_TYPES (drivable public roads, see config)
     AND name is set
     AND the way's bounding box intersects the Toronto bbox
 """

@@ -45,9 +45,19 @@ BOUNDARY_GEOJSON_PATH = os.path.join(BOUNDARY_DIR, "neighbourhoods-4326.geojson"
 # the more-expensive point-in-polygon city-boundary check runs.
 TORONTO_BBOX = (43.58, -79.64, 43.86, -79.11)
 
-# OSM highway types kept by the extract: drivable + pedestrian, both with name=*.
+# OSM highway types kept by the extract: drivable public roads, name=* required.
 OSM_HIGHWAY_TYPES = frozenset({
     "motorway", "trunk", "primary", "secondary", "tertiary",
-    "residential", "unclassified", "service", "living_street",
-    "pedestrian", "footway",
+    "residential", "unclassified",
+})
+
+# TCL FEATURE_CODE_DESC values kept on the TCL side of the comparison.
+# Mirrors OSM_HIGHWAY_TYPES: drivable public roads only -- excludes laneways,
+# trails, walkways, busways, railways, rivers, hydro lines, ferries, etc.
+TCL_FEATURE_CODES = frozenset({
+    "Local", "Collector", "Major Arterial", "Minor Arterial",
+    "Expressway", "Expressway Ramp",
+    "Major Arterial Ramp", "Minor Arterial Ramp",
+    "Collector Ramp", "Other Ramp",
+    "Other", "Pending",
 })

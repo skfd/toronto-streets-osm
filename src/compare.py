@@ -41,8 +41,11 @@ def _tcl_streets() -> dict[str, dict]:
     counts: dict[str, int] = defaultdict(int)
     raws: dict[str, str] = {}
     feature_descs: dict[str, str] = {}
+    keep_codes = config.TCL_FEATURE_CODES
     for feat in _iter_features(path):
         props = feat.get("properties") or {}
+        if props.get("FEATURE_CODE_DESC") not in keep_codes:
+            continue
         raw = (props.get("LINEAR_NAME_FULL") or "").strip()
         if not raw:
             continue
@@ -51,8 +54,7 @@ def _tcl_streets() -> dict[str, dict]:
             continue
         counts[norm] += 1
         raws.setdefault(norm, raw)
-        if props.get("FEATURE_CODE_DESC"):
-            feature_descs.setdefault(norm, props["FEATURE_CODE_DESC"])
+        feature_descs.setdefault(norm, props["FEATURE_CODE_DESC"])
     return {
         norm: {"raw": raws[norm], "count": n, "feature_desc": feature_descs.get(norm)}
         for norm, n in counts.items()
