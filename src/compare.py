@@ -123,8 +123,16 @@ def compute() -> dict:
          "feature_desc": v.get("feature_desc")}
         for k, v in tcl.items() if k not in osm
     ]
-    missing = [r for r in missing_all if not r["street_raw"].startswith("Ln ")]
+    _MAJOR = {"Expressway", "Major Arterial"}
     missing_ln = [r for r in missing_all if r["street_raw"].startswith("Ln ")]
+    missing_major = [
+        r for r in missing_all
+        if not r["street_raw"].startswith("Ln ") and r.get("feature_desc") in _MAJOR
+    ]
+    missing = [
+        r for r in missing_all
+        if not r["street_raw"].startswith("Ln ") and r.get("feature_desc") not in _MAJOR
+    ]
     extra = [
         {"street_norm": k, "street_raw": v["raw"], "osm_ways": v["count"],
          "highway": v.get("highway")}
@@ -145,6 +153,7 @@ def compute() -> dict:
 
     missing.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     missing_ln.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
+    missing_major.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     extra.sort(key=lambda r: (-r["osm_ways"], r["street_norm"]))
     matched.sort(key=lambda r: (-(r["tcl_segments"] + r["osm_ways"]), r["street_norm"]))
 
@@ -163,11 +172,13 @@ def compute() -> dict:
             "osm_streets": len(osm),
             "missing": len(missing),
             "missing_ln": len(missing_ln),
+            "missing_major": len(missing_major),
             "extra": len(extra),
             "matched": len(matched),
         },
         "missing": missing,
         "missing_ln": missing_ln,
+        "missing_major": missing_major,
         "extra": extra,
         "matched": matched,
     }

@@ -230,6 +230,7 @@
     <aside class="list-pane">
       <nav class="tabs">
         <button class="active" data-tab="missing">Missing ({{ data.totals.missing }})</button>
+        <button data-tab="missing-major">Missing Major ({{ data.totals.missing_major }})</button>
         <button data-tab="missing-ln">Missing Ln ({{ data.totals.missing_ln }})</button>
         <button data-tab="extra">Extra ({{ data.totals.extra }})</button>
         <button data-tab="matched">Matched ({{ data.totals.matched }})</button>
@@ -246,6 +247,28 @@
           <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
           <tbody>
             {% for s in data.missing | sort(attribute='street_raw') %}
+            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+              <td class="muted">{{ s.feature_desc or '' }}</td>
+              <td class="num">{{ s.tcl_segments }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}<p class="muted">None.</p>{% endif %}
+      </section>
+
+      <section id="tab-missing-major" class="pane-section">
+        <h2>Missing in OSM &middot; expressways &amp; major arterials</h2>
+        <p class="muted">TCL has it as an expressway or major arterial, OSM does not. Click a row to view it on the map.</p>
+        {% if data.missing_major %}
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
+        </nav>
+        <table id="missing-major-table">
+          <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
+          <tbody>
+            {% for s in data.missing_major | sort(attribute='street_raw') %}
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
               <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
@@ -396,7 +419,7 @@
         row.classList.add('selected');
       }
 
-      ['missing-table', 'missing-ln-table', 'extra-table'].forEach(function (id) {
+      ['missing-table', 'missing-major-table', 'missing-ln-table', 'extra-table'].forEach(function (id) {
         var t = document.getElementById(id);
         if (!t) return;
         t.addEventListener('click', function (ev) {
