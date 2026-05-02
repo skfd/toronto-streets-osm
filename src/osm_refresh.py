@@ -179,6 +179,7 @@ def _filter(pbf_path: Path, bbox: tuple[float, float, float, float]) -> tuple[li
                 "tags": {t.k: t.v for t in tags},
                 "bounds": b,
                 "center": {"lat": clat, "lon": clon},
+                "geometry": [[round(lon, 5), round(lat, 5)] for lat, lon in zip(lats, lons)],
             })
             counts["ways_kept"] += 1
 

@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from src import config
 from src.download import download
 from src import compare as _compare
+from src import geometry as _geometry
 from src.report import render as render_streets
 
 
@@ -43,6 +44,7 @@ def cmd_compare(args):
     t = result["totals"]
     print(f"missing={t['missing']} extra={t['extra']} matched={t['matched']} "
           f"(tcl_streets={t['tcl_streets']} osm_streets={t['osm_streets']})")
+    _geometry.build_sidecar(result)
     render_streets(result)
 
 
