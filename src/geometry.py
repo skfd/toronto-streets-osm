@@ -83,7 +83,11 @@ def _osm_geoms(extra_set: set[str]) -> dict[str, list[list[list[float]]]]:
 
 
 def build_sidecar(compare_data: dict) -> str:
-    missing_set = {row["street_norm"] for row in compare_data.get("missing") or []}
+    missing_set = {
+        row["street_norm"]
+        for key in ("missing", "missing_ln")
+        for row in compare_data.get(key) or []
+    }
     extra_set = {row["street_norm"] for row in compare_data.get("extra") or []}
 
     geoms: dict[str, list[list[list[float]]]] = {}

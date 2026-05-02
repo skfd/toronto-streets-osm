@@ -8,7 +8,7 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin="">
   <style>
-    :root { --tabs-h: 2.75rem; }
+    :root { --tabs-h: 2.75rem; --alpha-h: 2.1rem; }
 
     html, body { height: 100%; margin: 0; padding: 0; }
     body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
@@ -16,12 +16,24 @@
            display: flex; flex-direction: column; overflow: hidden; }
 
     header { flex: none; background: #111827; color: #fff;
-             padding: .8rem 1.2rem;
-             display: flex; justify-content: space-between; align-items: center; }
+             padding: .55rem 1.2rem;
+             display: flex; justify-content: space-between; align-items: center;
+             gap: 1rem; }
+    header .header-left { display: flex; flex-direction: column; gap: .15rem;
+                          min-width: 0; }
+    header .header-title { display: flex; align-items: center; flex-wrap: wrap;
+                           gap: .5rem; }
     header strong { font-size: 1.05rem; }
+    header .header-meta { margin: 0; font-size: .82rem; color: #cbd5e1; }
+    header .header-meta a { color: #cbd5e1; opacity: 1; text-decoration: underline;
+                            text-decoration-color: rgba(255,255,255,.3); }
+    header .header-meta a:hover { text-decoration-color: #cbd5e1; }
+    header .header-meta code { background: rgba(255,255,255,.08); color: #e5e7eb; }
+    header .header-meta strong { font-size: inherit; color: #fff; }
     header a { color: #fff; opacity: .85; text-decoration: none; }
     header a:hover { opacity: 1; text-decoration: underline; }
-    header .header-right { display: flex; align-items: center; gap: 1rem; }
+    header .header-right { display: flex; align-items: center; gap: 1rem;
+                           flex: none; }
 
     .menu { position: relative; }
     .menu-toggle { background: none; border: 1px solid rgba(255,255,255,.3);
@@ -66,12 +78,6 @@
     .modal-body .note { color: #6b7280; font-size: .85em; margin-top: 1rem;
                         padding-top: .6rem; border-top: 1px dashed #e5e7eb; }
 
-    .topbar { flex: none; background: #fff;
-              padding: .7rem 1.2rem;
-              border-bottom: 1px solid #e5e7eb; }
-    .topbar h1 { margin: 0 0 .25rem; font-size: 1.15rem; }
-    .topbar p  { margin: .15rem 0; }
-
     .app { flex: 1; min-height: 0;
            display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
            gap: 1rem; padding: 1rem; }
@@ -95,6 +101,22 @@
     nav.tabs button:hover { background: #f3f4f6; }
     nav.tabs button.active { background: #1f2937; color: #fff; }
 
+    nav.alpha-nav { position: sticky; top: var(--tabs-h); z-index: 2;
+                    height: var(--alpha-h); box-sizing: border-box;
+                    background: #fff; border-bottom: 1px solid #e5e7eb;
+                    padding: .25rem .8rem;
+                    display: flex; flex-wrap: wrap; gap: .1rem;
+                    font-size: .82rem; }
+    nav.alpha-nav button, nav.alpha-nav span.disabled {
+      background: none; border: 0; padding: .15rem .4rem;
+      font: inherit; font-weight: 600;
+      border-radius: 3px; min-width: 1.4rem; text-align: center; }
+    nav.alpha-nav button { color: #2563eb; cursor: pointer; }
+    nav.alpha-nav button:hover { background: #eff6ff; }
+    nav.alpha-nav span.disabled { color: #d1d5db; }
+
+    tbody tr { scroll-margin-top: calc(var(--tabs-h) + var(--alpha-h) + 1.8rem); }
+
     .pane-section { padding: .8rem 1rem 1.2rem; display: none; }
     .pane-section.active { display: block; }
     .pane-section h2 { margin: 0 0 .25rem; font-size: 1.05rem; }
@@ -103,15 +125,10 @@
     table { width: 100%; border-collapse: collapse; font-size: .9rem; }
     th, td { text-align: left; padding: .35rem .6rem; border-bottom: 1px solid #e5e7eb; }
     th { background: #f3f4f6; font-weight: 600;
-         position: sticky; top: var(--tabs-h); z-index: 1; }
+         position: sticky; top: calc(var(--tabs-h) + var(--alpha-h)); z-index: 1; }
     code { background: #f3f4f6; padding: 0 4px; border-radius: 3px;
            font-size: .85em; color: #374151; }
     .muted { color: #6b7280; font-size: .9em; }
-    .pill { display: inline-block; padding: 1px 8px; border-radius: 999px;
-            font-size: .8rem; font-weight: 600; margin-right: .3rem; }
-    .pill.ok   { background: #d1fae5; color: #065f46; }
-    .pill.warn { background: #fef3c7; color: #78350f; }
-    .pill.bad  { background: #fee2e2; color: #991b1b; }
     .num { text-align: right; font-variant-numeric: tabular-nums; }
     a { color: #2563eb; text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -140,7 +157,20 @@
 </head>
 <body>
   <header>
-    <strong>toronto-streets-osm</strong>
+    <div class="header-left">
+      <div class="header-title">
+        <strong>Toronto streets vs OpenStreetMap</strong>
+      </div>
+      <p class="header-meta">
+        <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
+        vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
+        Computed {{ data.computed_at }} ·
+        TCL <code>{{ data.tcl_filename or '-' }}</code> ·
+        OSM extract {{ data.osm_extract_downloaded or '-' }} ·
+        TCL streets <strong>{{ data.totals.tcl_streets }}</strong> ·
+        OSM streets <strong>{{ data.totals.osm_streets }}</strong>
+      </p>
+    </div>
     <span class="header-right">
       <button type="button" class="menu-toggle" id="rules-toggle"
               aria-haspopup="dialog" aria-expanded="false">Filter rules</button>
@@ -196,29 +226,11 @@
     </div>
   </div>
 
-  <div class="topbar">
-    <h1>Toronto streets vs OpenStreetMap</h1>
-    <p class="muted">
-      The City of Toronto's
-      <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
-      vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-      Computed {{ data.computed_at }} ·
-      TCL <code>{{ data.tcl_filename or '-' }}</code> ·
-      OSM extract {{ data.osm_extract_downloaded or '-' }}
-    </p>
-    <p>
-      TCL streets <strong>{{ data.totals.tcl_streets }}</strong> ·
-      OSM streets <strong>{{ data.totals.osm_streets }}</strong> &nbsp;
-      <span class="pill bad">missing {{ data.totals.missing }}</span>
-      <span class="pill warn">extra {{ data.totals.extra }}</span>
-      <span class="pill ok">matched {{ data.totals.matched }}</span>
-    </p>
-  </div>
-
   <div class="app">
     <aside class="list-pane">
       <nav class="tabs">
         <button class="active" data-tab="missing">Missing ({{ data.totals.missing }})</button>
+        <button data-tab="missing-ln">Missing Ln ({{ data.totals.missing_ln }})</button>
         <button data-tab="extra">Extra ({{ data.totals.extra }})</button>
         <button data-tab="matched">Matched ({{ data.totals.matched }})</button>
       </nav>
@@ -227,11 +239,36 @@
         <h2>Missing in OSM</h2>
         <p class="muted">TCL has the street, OSM does not. Click a row to view it on the map.</p>
         {% if data.missing %}
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
+        </nav>
         <table id="missing-table">
           <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
           <tbody>
             {% for s in data.missing | sort(attribute='street_raw') %}
-            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing">
+            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+              <td class="muted">{{ s.feature_desc or '' }}</td>
+              <td class="num">{{ s.tcl_segments }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}<p class="muted">None.</p>{% endif %}
+      </section>
+
+      <section id="tab-missing-ln" class="pane-section">
+        <h2>Missing in OSM &middot; lanes (<code>LN</code> suffix)</h2>
+        <p class="muted">TCL has the lane, OSM does not. Click a row to view it on the map.</p>
+        {% if data.missing_ln %}
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
+        </nav>
+        <table id="missing-ln-table">
+          <thead><tr><th>Lane (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
+          <tbody>
+            {% for s in data.missing_ln | sort(attribute='street_raw') %}
+            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[3:4] | upper }}">
               <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
               <td class="num">{{ s.tcl_segments }}</td>
@@ -246,11 +283,14 @@
         <h2>Extra in OSM</h2>
         <p class="muted">OSM has the street, TCL does not. Read-only -- we never delete from OSM. Click a row to view it on the map.</p>
         {% if data.extra %}
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
+        </nav>
         <table id="extra-table">
           <thead><tr><th>Street (OSM)</th><th>highway</th><th class="num">OSM ways</th></tr></thead>
           <tbody>
             {% for s in data.extra | sort(attribute='street_raw') %}
-            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="extra">
+            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="extra" data-letter="{{ s.street_raw[0:1] | upper }}">
               <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
               <td><code>{{ s.highway or '' }}</code></td>
               <td class="num">{{ s.osm_ways }}</td>
@@ -265,11 +305,14 @@
         <h2>Matched</h2>
         <p class="muted">Both sides have it. Counts are TCL segments and OSM ways for the same street name.</p>
         {% if data.matched %}
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
+        </nav>
         <table>
           <thead><tr><th>Normalized</th><th>TCL raw</th><th>OSM raw</th><th>highway</th><th class="num">TCL</th><th class="num">OSM</th></tr></thead>
           <tbody>
             {% for s in data.matched | sort(attribute='street_norm') %}
-            <tr>
+            <tr data-letter="{{ s.street_norm[0:1] | upper }}">
               <td><code>{{ s.street_norm }}</code></td>
               <td>{{ s.tcl_raw }}</td>
               <td>{{ s.osm_raw }}</td>
@@ -353,7 +396,7 @@
         row.classList.add('selected');
       }
 
-      ['missing-table', 'extra-table'].forEach(function (id) {
+      ['missing-table', 'missing-ln-table', 'extra-table'].forEach(function (id) {
         var t = document.getElementById(id);
         if (!t) return;
         t.addEventListener('click', function (ev) {
@@ -402,6 +445,38 @@
       }
 
       var listPane = document.querySelector('.list-pane');
+
+      function bucketFor(letter) {
+        return /^[A-Z]$/.test(letter) ? letter : '#';
+      }
+      document.querySelectorAll('nav.alpha-nav').forEach(function (nav) {
+        var section = nav.closest('.pane-section');
+        if (!section) return;
+        var have = new Set();
+        section.querySelectorAll('tbody tr[data-letter]').forEach(function (r) {
+          have.add(bucketFor(r.dataset.letter));
+        });
+        nav.querySelectorAll('button[data-letter]').forEach(function (btn) {
+          if (!have.has(btn.dataset.letter)) {
+            var span = document.createElement('span');
+            span.className = 'disabled';
+            span.textContent = btn.textContent;
+            btn.replaceWith(span);
+          }
+        });
+        nav.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('button[data-letter]');
+          if (!btn) return;
+          var target = btn.dataset.letter;
+          var first = null;
+          var rowList = section.querySelectorAll('tbody tr[data-letter]');
+          for (var i = 0; i < rowList.length; i++) {
+            if (bucketFor(rowList[i].dataset.letter) === target) { first = rowList[i]; break; }
+          }
+          if (first) first.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        });
+      });
+
       var tabButtons = document.querySelectorAll('nav.tabs button');
       tabButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
