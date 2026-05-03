@@ -57,7 +57,7 @@ def _tcl_geoms(want: set[str]) -> dict[str, list[list[list[float]]]]:
     return out
 
 
-def _osm_geoms(want: set[str]) -> dict[str, list[list[list[float]]]]:
+def _osm_geoms(want: set[str], tcl_norms: set[str]) -> dict[str, list[list[list[float]]]]:
     if not want:
         return {}
     if not os.path.exists(config.OSM_STREETS_JSON):
@@ -69,8 +69,11 @@ def _osm_geoms(want: set[str]) -> dict[str, list[list[list[float]]]]:
         if el.get("type") != "way":
             continue
         tags = el.get("tags") or {}
-        norm = normalize_street(tags.get("name"))
-        if not norm or norm not in want:
+        chosen = compare._choose_osm_bucket(tags, tcl_norms)
+        if not chosen:
+            continue
+        norm = chosen[0]
+        if norm not in want:
             continue
         geom = el.get("geometry")
         if not geom:
@@ -99,7 +102,7 @@ def build_sidecar(compare_data: dict) -> str:
     }
 
     tcl_g = _tcl_geoms(tcl_set)
-    osm_g = _osm_geoms(osm_set)
+    osm_g = _osm_geoms(osm_set, tcl_norms=tcl_set)
 
     geoms: dict[str, dict[str, list[list[list[float]]]]] = {}
     for norm in tcl_set | osm_set:

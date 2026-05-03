@@ -141,6 +141,7 @@
             font-size: .72rem; font-weight: 600; line-height: 1.4;
             vertical-align: middle; margin-left: .35rem; }
     .pill.pending { background: #fef3c7; color: #92400e; }
+    .pill.alt-name { background: #dbeafe; color: #1e40af; }
 
     .legend { font-size: .85em; color: #6b7280;
               padding: .5rem .8rem; border-top: 1px solid #e5e7eb;
@@ -366,7 +367,7 @@
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="matched" data-letter="{{ s.street_norm[0:1] | upper }}">
               <td><code>{{ s.street_norm }}</code></td>
               <td>{{ s.tcl_raw }}{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
-              <td>{{ s.osm_raw }}</td>
+              <td>{{ s.osm_raw }}{% if s.osm_match_via == 'alt_name' %} <span class="pill alt-name" title="Matched via OSM alt_name (no primary name match)">alt_name</span>{% endif %}</td>
               <td><code>{{ s.highway or '' }}</code></td>
               <td class="num">{{ s.tcl_segments }}</td>
               <td class="num">{{ s.osm_ways }}</td>

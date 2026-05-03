@@ -92,7 +92,37 @@ def _iter_features(path: str):
                 continue
 
 
-def _osm_streets() -> dict[str, dict]:
+def _choose_osm_bucket(tags: dict, tcl_norms: set[str]) -> tuple[str, str, str] | None:
+    """Pick the (norm, source, raw) bucket for one OSM way.
+
+    A way belongs to one bucket. Prefer the primary `name`; only when that
+    name doesn't appear in TCL do we look at `alt_name` (OSM-convention
+    `;`-separated) for a salvage match against TCL. If nothing salvages,
+    fall back to the primary `name` so the way still surfaces as Extra.
+    Returns None when neither tag normalizes to anything.
+    """
+    name_raw = (tags.get("name") or "").strip()
+    alt_raw = (tags.get("alt_name") or "").strip()
+    primary_norm = normalize_street(name_raw) if name_raw else ""
+    if primary_norm and primary_norm in tcl_norms:
+        return (primary_norm, "name", name_raw)
+    if alt_raw:
+        for piece in alt_raw.split(";"):
+            piece = piece.strip()
+            if not piece:
+                continue
+            a = normalize_street(piece)
+            if a and a in tcl_norms:
+                return (a, "alt_name", piece)
+    if primary_norm:
+        return (primary_norm, "name", name_raw)
+    return None
+
+
+def _osm_streets(tcl_norms: set[str]) -> dict[str, dict]:
+    """Bucket OSM ways by normalized street name. Each way contributes to a
+    single bucket -- see `_choose_osm_bucket`. `via` records whether the
+    bucket was reached via `name` (the default) or via an `alt_name` salvage."""
     if not os.path.exists(config.OSM_STREETS_JSON):
         raise FileNotFoundError(
             f"{config.OSM_STREETS_JSON} missing; run `python run.py refresh-osm` first."
@@ -101,29 +131,37 @@ def _osm_streets() -> dict[str, dict]:
     counts: dict[str, int] = defaultdict(int)
     raws: dict[str, str] = {}
     highways: dict[str, str] = {}
+    via: dict[str, str] = {}
     for el in elements:
         if el.get("type") != "way":
             continue
         tags = el.get("tags") or {}
-        raw = (tags.get("name") or "").strip()
-        if not raw:
+        chosen = _choose_osm_bucket(tags, tcl_norms)
+        if not chosen:
             continue
-        norm = normalize_street(raw)
-        if not norm:
-            continue
+        norm, source, raw = chosen
         counts[norm] += 1
         raws.setdefault(norm, raw)
+        if source == "name":
+            via[norm] = "name"
+        else:
+            via.setdefault(norm, "alt_name")
         if tags.get("highway"):
             highways.setdefault(norm, tags["highway"])
     return {
-        norm: {"raw": raws[norm], "count": n, "highway": highways.get(norm)}
+        norm: {
+            "raw": raws[norm],
+            "count": n,
+            "highway": highways.get(norm),
+            "via": via.get(norm, "name"),
+        }
         for norm, n in counts.items()
     }
 
 
 def compute() -> dict:
     tcl = _tcl_streets()
-    osm = _osm_streets()
+    osm = _osm_streets(tcl_norms=set(tcl.keys()))
 
     missing_all = [
         {"street_norm": k, "street_raw": v["raw"], "tcl_segments": v["count"],
@@ -160,6 +198,7 @@ def compute() -> dict:
             "osm_ways": osm[k]["count"],
             "feature_desc": v.get("feature_desc"),
             "highway": osm[k].get("highway"),
+            "osm_match_via": osm[k].get("via", "name"),
         }
         for k, v in tcl.items() if k in osm
     ]
