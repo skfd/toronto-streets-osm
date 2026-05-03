@@ -141,6 +141,7 @@
             font-size: .72rem; font-weight: 600; line-height: 1.4;
             vertical-align: middle; margin-left: .35rem; }
     .pill.pending { background: #fef3c7; color: #92400e; }
+    .pill.alt-name { background: #dbeafe; color: #1e40af; }
 
     .legend { font-size: .85em; color: #6b7280;
               padding: .5rem .8rem; border-top: 1px solid #e5e7eb;
@@ -169,11 +170,11 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-05-03T01:32:34.031708+00:00 ·
+        Computed 2026-05-03T01:54:16.835798+00:00 ·
         TCL <code>centreline-2026-05-01.geojson</code> ·
         OSM extract 2026-05-01T20:41:50.855223+00:00 ·
         TCL streets <strong>13326</strong> ·
-        OSM streets <strong>11198</strong>
+        OSM streets <strong>11199</strong>
       </p>
     </div>
     <span class="header-right">
@@ -234,12 +235,12 @@
   <div class="app">
     <aside class="list-pane">
       <nav class="tabs">
-        <button class="active" data-tab="missing">Missing (67)</button>
-        <button data-tab="missing-major">Missing Major (583)</button>
-        <button data-tab="missing-private">Private (209)</button>
+        <button class="active" data-tab="missing">Missing (66)</button>
+        <button data-tab="missing-major">Missing Major (582)</button>
+        <button data-tab="missing-private">Private (208)</button>
         <button data-tab="missing-ln">Missing Ln (2260)</button>
-        <button data-tab="extra">Extra (991)</button>
-        <button data-tab="matched">Matched (10207)</button>
+        <button data-tab="extra">Extra (989)</button>
+        <button data-tab="matched">Matched (10210)</button>
       </nav>
 
       <section id="tab-missing" class="pane-section active">
@@ -526,12 +527,6 @@
             <tr class="selectable" data-norm="PLANNING BOUNDARY" data-kind="missing" data-letter="P">
               <td>Planning Boundary <span class="muted">· <code>PLANNING BOUNDARY</code></span></td>
               <td class="muted">Local</td>
-              <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="PORCH VIEW DANCES LN" data-kind="missing" data-letter="P">
-              <td>Porch View Dances Lane <span class="muted">· <code>PORCH VIEW DANCES LN</code></span></td>
-              <td class="muted">Laneway</td>
               <td class="num">1</td>
             </tr>
             
@@ -4037,12 +4032,6 @@
               <td class="num">3</td>
             </tr>
             
-            <tr class="selectable" data-norm="WILLIAM R ALLEN RD" data-kind="missing" data-letter="W">
-              <td>William R Allen Rd <span class="muted">· <code>WILLIAM R ALLEN RD</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">5</td>
-            </tr>
-            
             <tr class="selectable" data-norm="WILLIAM R ALLEN RD N" data-kind="missing" data-letter="W">
               <td>William R Allen Rd N <span class="muted">· <code>WILLIAM R ALLEN RD N</code></span></td>
               <td class="muted">Expressway</td>
@@ -5375,12 +5364,6 @@
             
             <tr class="selectable" data-norm="SAN ANTONIOWAY" data-kind="missing" data-letter="S">
               <td>San Antonioway <span class="muted">· <code>SAN ANTONIOWAY</code></span></td>
-              <td class="muted">Other</td>
-              <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="SANDBAR WILLOWAY" data-kind="missing" data-letter="S">
-              <td>Sandbar Willoway <span class="muted">· <code>SANDBAR WILLOWAY</code></span></td>
               <td class="muted">Other</td>
               <td class="num">1</td>
             </tr>
@@ -19297,8 +19280,8 @@
             
             <tr class="selectable" data-norm="ALLEN RD" data-kind="extra" data-letter="A">
               <td>Allen Road <span class="muted">· <code>ALLEN RD</code></span></td>
-              <td><code>primary</code></td>
-              <td class="num">77</td>
+              <td><code>motorway</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="ALLOTMENT LN" data-kind="extra" data-letter="A">
@@ -21494,7 +21477,7 @@
             <tr class="selectable" data-norm="HWY 427" data-kind="extra" data-letter="H">
               <td>Highway 427 <span class="muted">· <code>HWY 427</code></span></td>
               <td><code>motorway</code></td>
-              <td class="num">121</td>
+              <td class="num">119</td>
             </tr>
             
             <tr class="selectable" data-norm="HWY 427 COLLECTOR" data-kind="extra" data-letter="H">
@@ -22811,12 +22794,6 @@
               <td class="num">1</td>
             </tr>
             
-            <tr class="selectable" data-norm="PORCH VIEW DANCES" data-kind="extra" data-letter="P">
-              <td>Porch View Dances <span class="muted">· <code>PORCH VIEW DANCES</code></span></td>
-              <td><code>service</code></td>
-              <td class="num">1</td>
-            </tr>
-            
             <tr class="selectable" data-norm="PORTAGE" data-kind="extra" data-letter="P">
               <td>Portage <span class="muted">· <code>PORTAGE</code></span></td>
               <td><code>path</code></td>
@@ -23221,12 +23198,6 @@
             
             <tr class="selectable" data-norm="SAN ANTONIO WAY" data-kind="extra" data-letter="S">
               <td>San Antonio Way <span class="muted">· <code>SAN ANTONIO WAY</code></span></td>
-              <td><code>residential</code></td>
-              <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="SANDBAR WILLOW WAY" data-kind="extra" data-letter="S">
-              <td>Sandbar Willow Way <span class="muted">· <code>SANDBAR WILLOW WAY</code></span></td>
               <td><code>residential</code></td>
               <td class="num">1</td>
             </tr>
@@ -37518,7 +37489,7 @@
               <td>Brown&#39;s Line</td>
               <td><code>primary</code></td>
               <td class="num">26</td>
-              <td class="num">35</td>
+              <td class="num">37</td>
             </tr>
             
             <tr class="selectable" data-norm="BROWNS LN" data-kind="matched" data-letter="B">
@@ -91224,6 +91195,15 @@
               <td class="num">1</td>
             </tr>
             
+            <tr class="selectable" data-norm="PORCH VIEW DANCES LN" data-kind="matched" data-letter="P">
+              <td><code>PORCH VIEW DANCES LN</code></td>
+              <td>Porch View Dances Lane</td>
+              <td>Porch View Dances Lane <span class="pill alt-name" title="Matched via OSM alt_name (no primary name match)">alt_name</span></td>
+              <td><code>service</code></td>
+              <td class="num">1</td>
+              <td class="num">1</td>
+            </tr>
+            
             <tr class="selectable" data-norm="PORCHESTER DR" data-kind="matched" data-letter="P">
               <td><code>PORCHESTER DR</code></td>
               <td>Porchester Dr</td>
@@ -98212,6 +98192,15 @@
               <td><code>SANDALWOOD PL</code></td>
               <td>Sandalwood Pl</td>
               <td>Sandalwood Place</td>
+              <td><code>residential</code></td>
+              <td class="num">1</td>
+              <td class="num">1</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="SANDBAR WILLOWAY" data-kind="matched" data-letter="S">
+              <td><code>SANDBAR WILLOWAY</code></td>
+              <td>Sandbar Willoway</td>
+              <td>Sandbar Willoway <span class="pill alt-name" title="Matched via OSM alt_name (no primary name match)">alt_name</span></td>
               <td><code>residential</code></td>
               <td class="num">1</td>
               <td class="num">1</td>
@@ -114487,6 +114476,15 @@
               <td><code>service</code></td>
               <td class="num">7</td>
               <td class="num">3</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="WILLIAM R ALLEN RD" data-kind="matched" data-letter="W">
+              <td><code>WILLIAM R ALLEN RD</code></td>
+              <td>William R Allen Rd</td>
+              <td>William R. Allen Road <span class="pill alt-name" title="Matched via OSM alt_name (no primary name match)">alt_name</span></td>
+              <td><code>primary</code></td>
+              <td class="num">5</td>
+              <td class="num">75</td>
             </tr>
             
             <tr class="selectable" data-norm="WILLIAM ST" data-kind="matched" data-letter="W">
