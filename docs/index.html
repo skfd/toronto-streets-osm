@@ -150,7 +150,6 @@
                       vertical-align: middle; margin-right: .3rem; }
     .legend .swatch.miss  { background: #dc2626; }
     .legend .swatch.extra { background: #2563eb; }
-    .legend .swatch.match { background: #059669; }
     .legend .right { margin-left: auto; }
 
     @media (max-width: 900px) {
@@ -170,7 +169,7 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-05-03T00:07:01.233217+00:00 ·
+        Computed 2026-05-03T01:20:27.547053+00:00 ·
         TCL <code>centreline-2026-05-01.geojson</code> ·
         OSM extract 2026-05-01T20:41:50.855223+00:00 ·
         TCL streets <strong>13326</strong> ·
@@ -116869,9 +116868,8 @@
     <main class="map-pane">
       <div id="map"></div>
       <div class="legend">
-        <span><span class="swatch miss"></span>missing (TCL only)</span>
-        <span><span class="swatch extra"></span>extra (OSM only)</span>
-        <span><span class="swatch match"></span>matched (TCL geometry)</span>
+        <span><span class="swatch miss"></span>TCL</span>
+        <span><span class="swatch extra"></span>OSM</span>
         <span class="right">
           <a id="osm-link" href="#" target="_blank" rel="noopener" style="display:none">Open in OSM &rarr;</a>
           <span id="map-status"></span>
@@ -116909,24 +116907,35 @@
         return geomPromise;
       }
 
+      function toLatLngs(lines) {
+        return lines.map(function (line) {
+          return line.map(function (p) { return [p[1], p[0]]; });
+        });
+      }
       function drawStreet(norm, kind) {
         loadGeoms().then(function (data) {
-          var lines = data[norm];
-          if (!lines || !lines.length) {
+          var entry = data[norm];
+          var tcl = entry && entry.tcl;
+          var osm = entry && entry.osm;
+          if ((!tcl || !tcl.length) && (!osm || !osm.length)) {
             status.textContent = 'no geometry for ' + norm;
             return;
           }
           if (current) { map.removeLayer(current); current = null; }
-          var color = kind === 'missing' ? '#dc2626'
-                    : kind === 'matched' ? '#059669'
-                    : '#2563eb';
-          var latlngs = lines.map(function (line) {
-            return line.map(function (p) { return [p[1], p[0]]; });
-          });
-          current = L.polyline(latlngs, { color: color, weight: 5, opacity: 0.9 }).addTo(map);
+          var group = L.featureGroup();
+          var bits = [];
+          if (tcl && tcl.length) {
+            L.polyline(toLatLngs(tcl), { color: '#dc2626', weight: 5, opacity: 0.9 }).addTo(group);
+            bits.push(tcl.length + ' TCL');
+          }
+          if (osm && osm.length) {
+            L.polyline(toLatLngs(osm), { color: '#2563eb', weight: 3, opacity: 0.9, dashArray: '6 5' }).addTo(group);
+            bits.push(osm.length + ' OSM');
+          }
+          current = group.addTo(map);
           var b = current.getBounds();
           map.fitBounds(b, { padding: [40, 40], maxZoom: 17 });
-          status.textContent = norm + ' · ' + lines.length + ' segment' + (lines.length === 1 ? '' : 's');
+          status.textContent = norm + ' · ' + bits.join(' + ');
           osmLink.href = 'https://www.openstreetmap.org/?bbox=' +
             b.getWest() + ',' + b.getSouth() + ',' + b.getEast() + ',' + b.getNorth();
           osmLink.style.display = 'inline';
