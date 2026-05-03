@@ -137,6 +137,11 @@
     tr.selectable:hover td { background: #f1f5f9; }
     tr.selected td { background: #fde68a !important; }
 
+    .pill { display: inline-block; padding: 1px 7px; border-radius: 999px;
+            font-size: .72rem; font-weight: 600; line-height: 1.4;
+            vertical-align: middle; margin-left: .35rem; }
+    .pill.pending { background: #fef3c7; color: #92400e; }
+
     .legend { font-size: .85em; color: #6b7280;
               padding: .5rem .8rem; border-top: 1px solid #e5e7eb;
               flex: none; display: flex; align-items: center;
@@ -164,7 +169,7 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-05-02T22:59:19.520498+00:00 ·
+        Computed 2026-05-03T00:02:13.467405+00:00 ·
         TCL <code>centreline-2026-05-01.geojson</code> ·
         OSM extract 2026-05-01T20:41:50.855223+00:00 ·
         TCL streets <strong>13326</strong> ·
@@ -249,7 +254,7 @@
           <tbody>
             
             <tr class="selectable" data-norm="BECKY CHEUNG CT" data-kind="missing" data-letter="B">
-              <td>Becky Cheung Crt <span class="muted">· <code>BECKY CHEUNG CT</code></span></td>
+              <td>Becky Cheung Crt <span class="muted">· <code>BECKY CHEUNG CT</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -261,7 +266,7 @@
             </tr>
             
             <tr class="selectable" data-norm="BESTOBELL LN" data-kind="missing" data-letter="B">
-              <td>Bestobell Lane <span class="muted">· <code>BESTOBELL LN</code></span></td>
+              <td>Bestobell Lane <span class="muted">· <code>BESTOBELL LN</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -273,7 +278,7 @@
             </tr>
             
             <tr class="selectable" data-norm="BLACK OAK RD" data-kind="missing" data-letter="B">
-              <td>Black Oak Rd <span class="muted">· <code>BLACK OAK RD</code></span></td>
+              <td>Black Oak Rd <span class="muted">· <code>BLACK OAK RD</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
@@ -297,7 +302,7 @@
             </tr>
             
             <tr class="selectable" data-norm="CABLE GTE" data-kind="missing" data-letter="C">
-              <td>Cable Gt <span class="muted">· <code>CABLE GTE</code></span></td>
+              <td>Cable Gt <span class="muted">· <code>CABLE GTE</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -315,7 +320,7 @@
             </tr>
             
             <tr class="selectable" data-norm="CHERRY BLOSSOM GDNS" data-kind="missing" data-letter="C">
-              <td>Cherry Blossom Gdns <span class="muted">· <code>CHERRY BLOSSOM GDNS</code></span></td>
+              <td>Cherry Blossom Gdns <span class="muted">· <code>CHERRY BLOSSOM GDNS</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -327,7 +332,7 @@
             </tr>
             
             <tr class="selectable" data-norm="DAVID SALOMON DR" data-kind="missing" data-letter="D">
-              <td>David Salomon Dr <span class="muted">· <code>DAVID SALOMON DR</code></span></td>
+              <td>David Salomon Dr <span class="muted">· <code>DAVID SALOMON DR</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -363,7 +368,7 @@
             </tr>
             
             <tr class="selectable" data-norm="ESTHER CUTLER RD" data-kind="missing" data-letter="E">
-              <td>Esther Cutler Rd <span class="muted">· <code>ESTHER CUTLER RD</code></span></td>
+              <td>Esther Cutler Rd <span class="muted">· <code>ESTHER CUTLER RD</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
@@ -393,13 +398,13 @@
             </tr>
             
             <tr class="selectable" data-norm="GLENGATE ST" data-kind="missing" data-letter="G">
-              <td>Glengate St <span class="muted">· <code>GLENGATE ST</code></span></td>
+              <td>Glengate St <span class="muted">· <code>GLENGATE ST</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="GLENGROVE AVE PK TRL" data-kind="missing" data-letter="G">
-              <td>Glengrove Avenue Park Trl <span class="muted">· <code>GLENGROVE AVE PK TRL</code></span></td>
+              <td>Glengrove Avenue Park Trl <span class="muted">· <code>GLENGROVE AVE PK TRL</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -423,7 +428,7 @@
             </tr>
             
             <tr class="selectable" data-norm="GREEN TRL CT" data-kind="missing" data-letter="G">
-              <td>Green Trail Crt <span class="muted">· <code>GREEN TRL CT</code></span></td>
+              <td>Green Trail Crt <span class="muted">· <code>GREEN TRL CT</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -435,7 +440,7 @@
             </tr>
             
             <tr class="selectable" data-norm="JAMES FINLAY WAY" data-kind="missing" data-letter="J">
-              <td>James Finlay Way <span class="muted">· <code>JAMES FINLAY WAY</code></span></td>
+              <td>James Finlay Way <span class="muted">· <code>JAMES FINLAY WAY</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -453,7 +458,7 @@
             </tr>
             
             <tr class="selectable" data-norm="KEELESDALE DR" data-kind="missing" data-letter="K">
-              <td>Keelesdale Dr <span class="muted">· <code>KEELESDALE DR</code></span></td>
+              <td>Keelesdale Dr <span class="muted">· <code>KEELESDALE DR</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -471,19 +476,19 @@
             </tr>
             
             <tr class="selectable" data-norm="MUNSHAW LN" data-kind="missing" data-letter="M">
-              <td>Munshaw Lane <span class="muted">· <code>MUNSHAW LN</code></span></td>
+              <td>Munshaw Lane <span class="muted">· <code>MUNSHAW LN</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
             
             <tr class="selectable" data-norm="NARGES DR" data-kind="missing" data-letter="N">
-              <td>Narges Dr <span class="muted">· <code>NARGES DR</code></span></td>
+              <td>Narges Dr <span class="muted">· <code>NARGES DR</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="NEW GARDEN ST" data-kind="missing" data-letter="N">
-              <td>New Garden St <span class="muted">· <code>NEW GARDEN ST</code></span></td>
+              <td>New Garden St <span class="muted">· <code>NEW GARDEN ST</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
@@ -543,7 +548,7 @@
             </tr>
             
             <tr class="selectable" data-norm="RADIATOR ST" data-kind="missing" data-letter="R">
-              <td>Radiator St <span class="muted">· <code>RADIATOR ST</code></span></td>
+              <td>Radiator St <span class="muted">· <code>RADIATOR ST</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
@@ -567,7 +572,7 @@
             </tr>
             
             <tr class="selectable" data-norm="SILVER MAPLE GTE" data-kind="missing" data-letter="S">
-              <td>Silver Maple Gt <span class="muted">· <code>SILVER MAPLE GTE</code></span></td>
+              <td>Silver Maple Gt <span class="muted">· <code>SILVER MAPLE GTE</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -579,7 +584,7 @@
             </tr>
             
             <tr class="selectable" data-norm="ST ANDRE DR" data-kind="missing" data-letter="S">
-              <td>St. Andre Dr <span class="muted">· <code>ST ANDRE DR</code></span></td>
+              <td>St. Andre Dr <span class="muted">· <code>ST ANDRE DR</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">2</td>
             </tr>
@@ -591,13 +596,13 @@
             </tr>
             
             <tr class="selectable" data-norm="TARMOLA PK CT" data-kind="missing" data-letter="T">
-              <td>Tarmola Park Crt <span class="muted">· <code>TARMOLA PK CT</code></span></td>
+              <td>Tarmola Park Crt <span class="muted">· <code>TARMOLA PK CT</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
             
             <tr class="selectable" data-norm="THANE MURRAY WAY" data-kind="missing" data-letter="T">
-              <td>Thane Murray Way <span class="muted">· <code>THANE MURRAY WAY</code></span></td>
+              <td>Thane Murray Way <span class="muted">· <code>THANE MURRAY WAY</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -621,13 +626,13 @@
             </tr>
             
             <tr class="selectable" data-norm="WILD ROSE GDNS" data-kind="missing" data-letter="W">
-              <td>Wild Rose Gdns <span class="muted">· <code>WILD ROSE GDNS</code></span></td>
+              <td>Wild Rose Gdns <span class="muted">· <code>WILD ROSE GDNS</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
             
             <tr class="selectable" data-norm="WILLIAM DURIE WAY" data-kind="missing" data-letter="W">
-              <td>William Durie Way <span class="muted">· <code>WILLIAM DURIE WAY</code></span></td>
+              <td>William Durie Way <span class="muted">· <code>WILLIAM DURIE WAY</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -645,7 +650,7 @@
             </tr>
             
             <tr class="selectable" data-norm="YORK GARDEN WAY" data-kind="missing" data-letter="Y">
-              <td>York Garden Way <span class="muted">· <code>YORK GARDEN WAY</code></span></td>
+              <td>York Garden Way <span class="muted">· <code>YORK GARDEN WAY</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
             </tr>
@@ -25524,7 +25529,7 @@
             
             <tr data-letter="A">
               <td><code>ACKLEY HTS</code></td>
-              <td>Ackley Hts</td>
+              <td>Ackley Hts <span class="pill pending">Pending</span></td>
               <td>Ackley Heights</td>
               <td><code>service</code></td>
               <td class="num">2</td>
@@ -25713,7 +25718,7 @@
             
             <tr data-letter="A">
               <td><code>ADELE AVE</code></td>
-              <td>Adele Ave</td>
+              <td>Adele Ave <span class="pill pending">Pending</span></td>
               <td>Adele Avenue</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -25812,7 +25817,7 @@
             
             <tr data-letter="A">
               <td><code>ADRA GRADO WAY</code></td>
-              <td>Adra Grado Way</td>
+              <td>Adra Grado Way <span class="pill pending">Pending</span></td>
               <td>Adra Grado Way</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -25848,7 +25853,7 @@
             
             <tr data-letter="A">
               <td><code>AERODROME CRES</code></td>
-              <td>Aerodrome Cres</td>
+              <td>Aerodrome Cres <span class="pill pending">Pending</span></td>
               <td>Aerodrome Crescent</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -26037,7 +26042,7 @@
             
             <tr data-letter="A">
               <td><code>AKIL THOMAS GDNS</code></td>
-              <td>Akil Thomas Gdns</td>
+              <td>Akil Thomas Gdns <span class="pill pending">Pending</span></td>
               <td>Akil Thomas Gardens</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -26550,7 +26555,7 @@
             
             <tr data-letter="A">
               <td><code>ALESSIA CIR</code></td>
-              <td>Alessia Crcl</td>
+              <td>Alessia Crcl <span class="pill pending">Pending</span></td>
               <td>Alessia Circle</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -26874,7 +26879,7 @@
             
             <tr data-letter="A">
               <td><code>ALLEGREZZA CT</code></td>
-              <td>Allegrezza Crt</td>
+              <td>Allegrezza Crt <span class="pill pending">Pending</span></td>
               <td>Allegrezza court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -27180,7 +27185,7 @@
             
             <tr data-letter="A">
               <td><code>ALVIN CURLING CRES</code></td>
-              <td>Alvin Curling Cres</td>
+              <td>Alvin Curling Cres <span class="pill pending">Pending</span></td>
               <td>Alvin Curling Crescent</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -27468,7 +27473,7 @@
             
             <tr data-letter="A">
               <td><code>ANASTACIA CT</code></td>
-              <td>Anastacia Crt</td>
+              <td>Anastacia Crt <span class="pill pending">Pending</span></td>
               <td>Anastacia Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -27540,7 +27545,7 @@
             
             <tr data-letter="A">
               <td><code>ANDONA CRES</code></td>
-              <td>Andona Cres</td>
+              <td>Andona Cres <span class="pill pending">Pending</span></td>
               <td>Andona Crescent</td>
               <td><code>residential</code></td>
               <td class="num">6</td>
@@ -27684,7 +27689,7 @@
             
             <tr data-letter="A">
               <td><code>ANN OREILLY RD</code></td>
-              <td>Ann O&#39;Reilly Rd</td>
+              <td>Ann O&#39;Reilly Rd <span class="pill pending">Pending</span></td>
               <td>Ann O&#39;Reilly Road</td>
               <td><code>service</code></td>
               <td class="num">2</td>
@@ -27801,7 +27806,7 @@
             
             <tr data-letter="A">
               <td><code>ANNIE CRAIG DR</code></td>
-              <td>Annie Craig Dr</td>
+              <td>Annie Craig Dr <span class="pill pending">Pending</span></td>
               <td>Annie Craig Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -27936,7 +27941,7 @@
             
             <tr data-letter="A">
               <td><code>ANTONIO CT</code></td>
-              <td>Antonio Crt</td>
+              <td>Antonio Crt <span class="pill pending">Pending</span></td>
               <td>Antonio Court</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -28044,7 +28049,7 @@
             
             <tr data-letter="A">
               <td><code>APPLEBAUM TER</code></td>
-              <td>Applebaum Ter</td>
+              <td>Applebaum Ter <span class="pill pending">Pending</span></td>
               <td>Applebaum Terrace</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -29241,7 +29246,7 @@
             
             <tr data-letter="A">
               <td><code>ASSINIBOINE RD</code></td>
-              <td>Assiniboine Rd</td>
+              <td>Assiniboine Rd <span class="pill pending">Pending</span></td>
               <td>Assiniboine Road</td>
               <td><code>residential</code></td>
               <td class="num">15</td>
@@ -31383,7 +31388,7 @@
             
             <tr data-letter="B">
               <td><code>BASTION ST</code></td>
-              <td>Bastion St</td>
+              <td>Bastion St <span class="pill pending">Pending</span></td>
               <td>Bastion Street</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -31707,7 +31712,7 @@
             
             <tr data-letter="B">
               <td><code>BAZALGETTE DR</code></td>
-              <td>Bazalgette Dr</td>
+              <td>Bazalgette Dr <span class="pill pending">Pending</span></td>
               <td>Bazalgette Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -32184,7 +32189,7 @@
             
             <tr data-letter="B">
               <td><code>BELANGER CRES</code></td>
-              <td>Belanger Cres</td>
+              <td>Belanger Cres <span class="pill pending">Pending</span></td>
               <td>Belanger Crescent</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -32274,7 +32279,7 @@
             
             <tr data-letter="B">
               <td><code>BELL ESTATE RD</code></td>
-              <td>Bell Estate Rd</td>
+              <td>Bell Estate Rd <span class="pill pending">Pending</span></td>
               <td>Bell Estate Road</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -32463,7 +32468,7 @@
             
             <tr data-letter="B">
               <td><code>BELLEW GTE</code></td>
-              <td>Bellew Gt</td>
+              <td>Bellew Gt <span class="pill pending">Pending</span></td>
               <td>Bellew Gate</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -33705,7 +33710,7 @@
             
             <tr data-letter="B">
               <td><code>BILLES HTS</code></td>
-              <td>Billes Hts</td>
+              <td>Billes Hts <span class="pill pending">Pending</span></td>
               <td>Billes Heights</td>
               <td><code>construction</code></td>
               <td class="num">2</td>
@@ -33930,7 +33935,7 @@
             
             <tr data-letter="B">
               <td><code>BIRCHLEY PK DR</code></td>
-              <td>Birchley Park Dr</td>
+              <td>Birchley Park Dr <span class="pill pending">Pending</span></td>
               <td>Birchley Park Drive</td>
               <td><code>construction</code></td>
               <td class="num">1</td>
@@ -34740,7 +34745,7 @@
             
             <tr data-letter="B">
               <td><code>BLUEBIRD PL</code></td>
-              <td>Bluebird Pl</td>
+              <td>Bluebird Pl <span class="pill pending">Pending</span></td>
               <td>Bluebird Place</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -34794,7 +34799,7 @@
             
             <tr data-letter="B">
               <td><code>BLUEWATER CT</code></td>
-              <td>Bluewater Crt</td>
+              <td>Bluewater Crt <span class="pill pending">Pending</span></td>
               <td>Bluewater Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -34866,7 +34871,7 @@
             
             <tr data-letter="B">
               <td><code>BOAKE ST</code></td>
-              <td>Boake St</td>
+              <td>Boake St <span class="pill pending">Pending</span></td>
               <td>Boake Street</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -34902,7 +34907,7 @@
             
             <tr data-letter="B">
               <td><code>BOB YUILL DR</code></td>
-              <td>Bob Yuill Dr</td>
+              <td>Bob Yuill Dr <span class="pill pending">Pending</span></td>
               <td>Bob Yuill Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -35064,7 +35069,7 @@
             
             <tr data-letter="B">
               <td><code>BON ECHO CT</code></td>
-              <td>Bon Echo Crt</td>
+              <td>Bon Echo Crt <span class="pill pending">Pending</span></td>
               <td>Bon Echo Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -35271,7 +35276,7 @@
             
             <tr data-letter="B">
               <td><code>BOOT TER</code></td>
-              <td>Boot Ter</td>
+              <td>Boot Ter <span class="pill pending">Pending</span></td>
               <td>Boot Terrace</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -35955,7 +35960,7 @@
             
             <tr data-letter="B">
               <td><code>BRAECREST AVE</code></td>
-              <td>Braecrest Ave</td>
+              <td>Braecrest Ave <span class="pill pending">Pending</span></td>
               <td>Braecrest Avenue</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -37215,7 +37220,7 @@
             
             <tr data-letter="B">
               <td><code>BROCKVILLE ST</code></td>
-              <td>Brockville St</td>
+              <td>Brockville St <span class="pill pending">Pending</span></td>
               <td>Brockville Street</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -37755,7 +37760,7 @@
             
             <tr data-letter="B">
               <td><code>BRUYERES MEWS</code></td>
-              <td>Bruyeres Mews</td>
+              <td>Bruyeres Mews <span class="pill pending">Pending</span></td>
               <td>Bruyeres Mews</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -38142,7 +38147,7 @@
             
             <tr data-letter="B">
               <td><code>BURKEBROOK PL</code></td>
-              <td>Burkebrook Pl</td>
+              <td>Burkebrook Pl <span class="pill pending">Pending</span></td>
               <td>Burkebrook Place</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -39213,7 +39218,7 @@
             
             <tr data-letter="C">
               <td><code>CAMERON WATSON CRES</code></td>
-              <td>Cameron Watson Cres</td>
+              <td>Cameron Watson Cres <span class="pill pending">Pending</span></td>
               <td>Cameron Watson Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -39339,7 +39344,7 @@
             
             <tr data-letter="C">
               <td><code>CANADIAN CHAMP WAY</code></td>
-              <td>Canadian Champ Way</td>
+              <td>Canadian Champ Way <span class="pill pending">Pending</span></td>
               <td>Canadian Champ Way</td>
               <td><code>footway</code></td>
               <td class="num">2</td>
@@ -39546,7 +39551,7 @@
             
             <tr data-letter="C">
               <td><code>CANON JACKSON DR</code></td>
-              <td>Canon Jackson Dr</td>
+              <td>Canon Jackson Dr <span class="pill pending">Pending</span></td>
               <td>Canon Jackson Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -40023,7 +40028,7 @@
             
             <tr data-letter="C">
               <td><code>CARNAHAN TER</code></td>
-              <td>Carnahan Ter</td>
+              <td>Carnahan Ter <span class="pill pending">Pending</span></td>
               <td>Carnahan Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -40140,7 +40145,7 @@
             
             <tr data-letter="C">
               <td><code>CAROLINE CARPENTER GRV</code></td>
-              <td>Caroline Carpenter Grv</td>
+              <td>Caroline Carpenter Grv <span class="pill pending">Pending</span></td>
               <td>Caroline Carpenter Grove</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -40428,7 +40433,7 @@
             
             <tr data-letter="C">
               <td><code>CASE OOTES DR</code></td>
-              <td>Case Ootes Dr</td>
+              <td>Case Ootes Dr <span class="pill pending">Pending</span></td>
               <td>Case Ootes Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -41373,7 +41378,7 @@
             
             <tr data-letter="C">
               <td><code>CHAMPIONS RD</code></td>
-              <td>Champions Rd</td>
+              <td>Champions Rd <span class="pill pending">Pending</span></td>
               <td>Champions Road</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -41931,7 +41936,7 @@
             
             <tr data-letter="C">
               <td><code>CHELLIAH CT</code></td>
-              <td>Chelliah Crt</td>
+              <td>Chelliah Crt <span class="pill pending">Pending</span></td>
               <td>Chelliah Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -42426,7 +42431,7 @@
             
             <tr data-letter="C">
               <td><code>CHIMNEY SWIFT CT</code></td>
-              <td>Chimney Swift Crt</td>
+              <td>Chimney Swift Crt <span class="pill pending">Pending</span></td>
               <td>Chimney Swift Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -43227,7 +43232,7 @@
             
             <tr data-letter="C">
               <td><code>CLEANSIDE RD</code></td>
-              <td>Cleanside Rd</td>
+              <td>Cleanside Rd <span class="pill pending">Pending</span></td>
               <td>Cleanside Road</td>
               <td><code>residential</code></td>
               <td class="num">6</td>
@@ -44226,7 +44231,7 @@
             
             <tr data-letter="C">
               <td><code>COLLEGIATE RD</code></td>
-              <td>Collegiate Rd</td>
+              <td>Collegiate Rd <span class="pill pending">Pending</span></td>
               <td>Collegiate Road</td>
               <td><code>construction</code></td>
               <td class="num">1</td>
@@ -44289,7 +44294,7 @@
             
             <tr data-letter="C">
               <td><code>COLLIP PL</code></td>
-              <td>Collip Pl</td>
+              <td>Collip Pl <span class="pill pending">Pending</span></td>
               <td>Collip Place</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -44307,7 +44312,7 @@
             
             <tr data-letter="C">
               <td><code>COLONEL SAMUEL SMITH PK DR</code></td>
-              <td>Colonel Samuel Smith Park Dr</td>
+              <td>Colonel Samuel Smith Park Dr <span class="pill pending">Pending</span></td>
               <td>Colonel Samuel Smith Park Drive</td>
               <td><code>unclassified</code></td>
               <td class="num">7</td>
@@ -44649,7 +44654,7 @@
             
             <tr data-letter="C">
               <td><code>CONEFLOWER CRES</code></td>
-              <td>Coneflower Cres</td>
+              <td>Coneflower Cres <span class="pill pending">Pending</span></td>
               <td>Coneflower Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -44946,7 +44951,7 @@
             
             <tr data-letter="C">
               <td><code>COOPERAGE ST</code></td>
-              <td>Cooperage St</td>
+              <td>Cooperage St <span class="pill pending">Pending</span></td>
               <td>Cooperage Street</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -46161,7 +46166,7 @@
             
             <tr data-letter="C">
               <td><code>CREEKBANK RD</code></td>
-              <td>Creekbank Rd</td>
+              <td>Creekbank Rd <span class="pill pending">Pending</span></td>
               <td>Creekbank Road</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -46827,7 +46832,7 @@
             
             <tr data-letter="C">
               <td><code>CULLODEN CT</code></td>
-              <td>Culloden Crt</td>
+              <td>Culloden Crt <span class="pill pending">Pending</span></td>
               <td>Culloden Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -46953,7 +46958,7 @@
             
             <tr data-letter="C">
               <td><code>CURRAN HALL CRES</code></td>
-              <td>Curran Hall Cres</td>
+              <td>Curran Hall Cres <span class="pill pending">Pending</span></td>
               <td>Curran Hall Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -47403,7 +47408,7 @@
             
             <tr data-letter="D">
               <td><code>DANCE SMARTLY BLVD</code></td>
-              <td>Dance Smartly Blvd</td>
+              <td>Dance Smartly Blvd <span class="pill pending">Pending</span></td>
               <td>Dance Smartly Boulevard</td>
               <td><code>service</code></td>
               <td class="num">6</td>
@@ -47475,7 +47480,7 @@
             
             <tr data-letter="D">
               <td><code>DANIEL COZENS CT</code></td>
-              <td>Daniel Cozens Crt</td>
+              <td>Daniel Cozens Crt <span class="pill pending">Pending</span></td>
               <td>Daniel Cozens Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -47484,7 +47489,7 @@
             
             <tr data-letter="D">
               <td><code>DANIELLE MOORE CIR</code></td>
-              <td>Danielle Moore Crcl</td>
+              <td>Danielle Moore Crcl <span class="pill pending">Pending</span></td>
               <td>Danielle Moore Circle</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -47988,7 +47993,7 @@
             
             <tr data-letter="D">
               <td><code>DE BOERS DR</code></td>
-              <td>De Boers Dr</td>
+              <td>De Boers Dr <span class="pill pending">Pending</span></td>
               <td>De Boers Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -48006,7 +48011,7 @@
             
             <tr data-letter="D">
               <td><code>DE JONG ST</code></td>
-              <td>De Jong St</td>
+              <td>De Jong St <span class="pill pending">Pending</span></td>
               <td>De Jong Street</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -48267,7 +48272,7 @@
             
             <tr data-letter="D">
               <td><code>DEEP ROOTS TER</code></td>
-              <td>Deep Roots Ter</td>
+              <td>Deep Roots Ter <span class="pill pending">Pending</span></td>
               <td>Deep Roots Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -48303,7 +48308,7 @@
             
             <tr data-letter="D">
               <td><code>DEER CREEK CT</code></td>
-              <td>Deer Creek Crt</td>
+              <td>Deer Creek Crt <span class="pill pending">Pending</span></td>
               <td>Deer Creek Court</td>
               <td><code>construction</code></td>
               <td class="num">1</td>
@@ -48393,7 +48398,7 @@
             
             <tr data-letter="D">
               <td><code>DEERLICK CT</code></td>
-              <td>Deerlick Crt</td>
+              <td>Deerlick Crt <span class="pill pending">Pending</span></td>
               <td>Deerlick Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -48861,7 +48866,7 @@
             
             <tr data-letter="D">
               <td><code>DENISON RD E</code></td>
-              <td>Denison Rd E</td>
+              <td>Denison Rd E <span class="pill pending">Pending</span></td>
               <td>Denison Road East</td>
               <td><code>tertiary</code></td>
               <td class="num">5</td>
@@ -49104,7 +49109,7 @@
             
             <tr data-letter="D">
               <td><code>DESMONT RD</code></td>
-              <td>Desmont Rd</td>
+              <td>Desmont Rd <span class="pill pending">Pending</span></td>
               <td>Desmont Road</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -49545,7 +49550,7 @@
             
             <tr data-letter="D">
               <td><code>DOCKSIDE DR</code></td>
-              <td>Dockside Dr</td>
+              <td>Dockside Dr <span class="pill pending">Pending</span></td>
               <td>Dockside Drive</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -50463,7 +50468,7 @@
             
             <tr data-letter="D">
               <td><code>DOWNES ST</code></td>
-              <td>Downes St</td>
+              <td>Downes St <span class="pill pending">Pending</span></td>
               <td>Downes Street</td>
               <td><code>unclassified</code></td>
               <td class="num">2</td>
@@ -50499,7 +50504,7 @@
             
             <tr data-letter="D">
               <td><code>DOWNSVIEW PK BLVD</code></td>
-              <td>Downsview Park Blvd</td>
+              <td>Downsview Park Blvd <span class="pill pending">Pending</span></td>
               <td>Downsview Park Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">6</td>
@@ -50607,7 +50612,7 @@
             
             <tr data-letter="D">
               <td><code>DREAMERS WAY</code></td>
-              <td>Dreamers Way</td>
+              <td>Dreamers Way <span class="pill pending">Pending</span></td>
               <td>Dreamers Way</td>
               <td><code>construction</code></td>
               <td class="num">1</td>
@@ -52101,7 +52106,7 @@
             
             <tr data-letter="E">
               <td><code>EASTWOOD PK GDNS</code></td>
-              <td>Eastwood Park Gdns</td>
+              <td>Eastwood Park Gdns <span class="pill pending">Pending</span></td>
               <td>Eastwood Park Gardens</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -52803,7 +52808,7 @@
             
             <tr data-letter="E">
               <td><code>ELAINE LENNOX CT</code></td>
-              <td>Elaine Lennox Crt</td>
+              <td>Elaine Lennox Crt <span class="pill pending">Pending</span></td>
               <td>Elaine Lennox Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -53010,7 +53015,7 @@
             
             <tr data-letter="E">
               <td><code>ELI SHACKLETON CT</code></td>
-              <td>Eli Shackleton Crt</td>
+              <td>Eli Shackleton Crt <span class="pill pending">Pending</span></td>
               <td>Eli Shackleton Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -54135,7 +54140,7 @@
             
             <tr data-letter="E">
               <td><code>ERINVIEW TER</code></td>
-              <td>Erinview Ter</td>
+              <td>Erinview Ter <span class="pill pending">Pending</span></td>
               <td>Erinview Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -54351,7 +54356,7 @@
             
             <tr data-letter="E">
               <td><code>ETHENNONNHAWAHSTIHNEN LN</code></td>
-              <td>Ethennonnhawahstihnen&#39; Lane</td>
+              <td>Ethennonnhawahstihnen&#39; Lane <span class="pill pending">Pending</span></td>
               <td>Ethennonnhawahstihnen&#39; Lane</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -54360,7 +54365,7 @@
             
             <tr data-letter="E">
               <td><code>ETIENNE ST</code></td>
-              <td>Etienne St</td>
+              <td>Etienne St <span class="pill pending">Pending</span></td>
               <td>Etienne Street</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -54495,7 +54500,7 @@
             
             <tr data-letter="E">
               <td><code>EVANS LN</code></td>
-              <td>Evans Lane</td>
+              <td>Evans Lane <span class="pill pending">Pending</span></td>
               <td>Evans Lane</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -54549,7 +54554,7 @@
             
             <tr data-letter="E">
               <td><code>EVELYN WIGGINS DR</code></td>
-              <td>Evelyn Wiggins Dr</td>
+              <td>Evelyn Wiggins Dr <span class="pill pending">Pending</span></td>
               <td>Evelyn Wiggins Drive</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -55206,7 +55211,7 @@
             
             <tr data-letter="F">
               <td><code>FANFRELUCHE TRL</code></td>
-              <td>Fanfreluche Trl</td>
+              <td>Fanfreluche Trl <span class="pill pending">Pending</span></td>
               <td>Fanfreluche Trail</td>
               <td><code>service</code></td>
               <td class="num">3</td>
@@ -55431,7 +55436,7 @@
             
             <tr data-letter="F">
               <td><code>FATHER REDMOND WAY</code></td>
-              <td>Father Redmond Way</td>
+              <td>Father Redmond Way <span class="pill pending">Pending</span></td>
               <td>Father Redmond Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -56502,7 +56507,7 @@
             
             <tr data-letter="F">
               <td><code>FLATFIELD TER</code></td>
-              <td>Flatfield Ter</td>
+              <td>Flatfield Ter <span class="pill pending">Pending</span></td>
               <td>Flatfield Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -57564,7 +57569,7 @@
             
             <tr data-letter="F">
               <td><code>FRANCO BASILE GRV</code></td>
-              <td>Franco Basile Grv</td>
+              <td>Franco Basile Grv <span class="pill pending">Pending</span></td>
               <td>Franco Basile Grove</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -57744,7 +57749,7 @@
             
             <tr data-letter="F">
               <td><code>FRED YOUNG DR</code></td>
-              <td>Fred Young Dr</td>
+              <td>Fred Young Dr <span class="pill pending">Pending</span></td>
               <td>Fred Young Drive</td>
               <td><code>residential</code></td>
               <td class="num">8</td>
@@ -57762,7 +57767,7 @@
             
             <tr data-letter="F">
               <td><code>FREDERICK TISDALE DR</code></td>
-              <td>Frederick Tisdale Dr</td>
+              <td>Frederick Tisdale Dr <span class="pill pending">Pending</span></td>
               <td>Frederick Tisdale Drive</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -57771,7 +57776,7 @@
             
             <tr data-letter="F">
               <td><code>FREDERICK TODD WAY</code></td>
-              <td>Frederick Todd Way</td>
+              <td>Frederick Todd Way <span class="pill pending">Pending</span></td>
               <td>Frederick Todd Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -58167,7 +58172,7 @@
             
             <tr data-letter="F">
               <td><code>FUSILIER DR</code></td>
-              <td>Fusilier Dr</td>
+              <td>Fusilier Dr <span class="pill pending">Pending</span></td>
               <td>Fusilier Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -58365,7 +58370,7 @@
             
             <tr data-letter="G">
               <td><code>GALLERIA RD</code></td>
-              <td>Galleria Rd</td>
+              <td>Galleria Rd <span class="pill pending">Pending</span></td>
               <td>Galleria Road</td>
               <td><code>service</code></td>
               <td class="num">6</td>
@@ -59049,7 +59054,7 @@
             
             <tr data-letter="G">
               <td><code>GEORGE APPLETON WAY</code></td>
-              <td>George Appleton Way</td>
+              <td>George Appleton Way <span class="pill pending">Pending</span></td>
               <td>George Appleton Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -59058,7 +59063,7 @@
             
             <tr data-letter="G">
               <td><code>GEORGE BROWNLEE CT</code></td>
-              <td>George Brownlee Crt</td>
+              <td>George Brownlee Crt <span class="pill pending">Pending</span></td>
               <td>George Brownlee Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -59067,7 +59072,7 @@
             
             <tr data-letter="G">
               <td><code>GEORGE BUTCHART DR</code></td>
-              <td>George Butchart Dr</td>
+              <td>George Butchart Dr <span class="pill pending">Pending</span></td>
               <td>George Butchart Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -59094,7 +59099,7 @@
             
             <tr data-letter="G">
               <td><code>GEORGE MCKENZIE CT</code></td>
-              <td>George Mckenzie Crt</td>
+              <td>George Mckenzie Crt <span class="pill pending">Pending</span></td>
               <td>George McKenzie Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -59175,7 +59180,7 @@
             
             <tr data-letter="G">
               <td><code>GERANIUM CT</code></td>
-              <td>Geranium Crt</td>
+              <td>Geranium Crt <span class="pill pending">Pending</span></td>
               <td>Geranium Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -59184,7 +59189,7 @@
             
             <tr data-letter="G">
               <td><code>GERIGS ST</code></td>
-              <td>Gerigs St</td>
+              <td>Gerigs St <span class="pill pending">Pending</span></td>
               <td>Gerigs Street</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -59211,7 +59216,7 @@
             
             <tr data-letter="G">
               <td><code>GERRY FITZGERALD DR</code></td>
-              <td>Gerry Fitzgerald Dr</td>
+              <td>Gerry Fitzgerald Dr <span class="pill pending">Pending</span></td>
               <td>Gerry Fitzgerald Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -60246,7 +60251,7 @@
             
             <tr data-letter="G">
               <td><code>GLENEITA ST</code></td>
-              <td>Gleneita St</td>
+              <td>Gleneita St <span class="pill pending">Pending</span></td>
               <td>Gleneita Street</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -60642,7 +60647,7 @@
             
             <tr data-letter="G">
               <td><code>GLORIOUS SONG WAY</code></td>
-              <td>Glorious Song Way</td>
+              <td>Glorious Song Way <span class="pill pending">Pending</span></td>
               <td>Glorious Song Way</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -60903,7 +60908,7 @@
             
             <tr data-letter="G">
               <td><code>GOLDTHREAD TER</code></td>
-              <td>Goldthread Ter</td>
+              <td>Goldthread Ter <span class="pill pending">Pending</span></td>
               <td>Goldthread Terrace</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -61614,7 +61619,7 @@
             
             <tr data-letter="G">
               <td><code>GRAND MAGAZINE ST</code></td>
-              <td>Grand Magazine St</td>
+              <td>Grand Magazine St <span class="pill pending">Pending</span></td>
               <td>Grand Magazine Street</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -61794,7 +61799,7 @@
             
             <tr data-letter="G">
               <td><code>GRANGEWAY AVE</code></td>
-              <td>Grangeway Ave</td>
+              <td>Grangeway Ave <span class="pill pending">Pending</span></td>
               <td>Grangeway Avenue</td>
               <td><code>tertiary</code></td>
               <td class="num">3</td>
@@ -62073,7 +62078,7 @@
             
             <tr data-letter="G">
               <td><code>GREEN GDNS BLVD</code></td>
-              <td>Green Gardens Blvd</td>
+              <td>Green Gardens Blvd <span class="pill pending">Pending</span></td>
               <td>Green Gardens Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -63153,7 +63158,7 @@
             
             <tr data-letter="G">
               <td><code>GZOWSKI BLVD</code></td>
-              <td>Gzowski Blvd</td>
+              <td>Gzowski Blvd <span class="pill pending">Pending</span></td>
               <td>Gzowski Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -63198,7 +63203,7 @@
             
             <tr data-letter="H">
               <td><code>HACKETT AVE</code></td>
-              <td>Hackett Ave</td>
+              <td>Hackett Ave <span class="pill pending">Pending</span></td>
               <td>Hackett Avenue</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -63846,7 +63851,7 @@
             
             <tr data-letter="H">
               <td><code>HARBOURVIEW CRES</code></td>
-              <td>Harbourview Cres</td>
+              <td>Harbourview Cres <span class="pill pending">Pending</span></td>
               <td>Harbourview Crescent</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -64143,7 +64148,7 @@
             
             <tr data-letter="H">
               <td><code>HARPREET CIR</code></td>
-              <td>Harpreet Crcl</td>
+              <td>Harpreet Crcl <span class="pill pending">Pending</span></td>
               <td>Harpreet Circle</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -65232,7 +65237,7 @@
             
             <tr data-letter="H">
               <td><code>HELEN LU RD</code></td>
-              <td>Helen Lu Rd</td>
+              <td>Helen Lu Rd <span class="pill pending">Pending</span></td>
               <td>Helen Lu Road</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -65556,7 +65561,7 @@
             
             <tr data-letter="H">
               <td><code>HERON PK PL</code></td>
-              <td>Heron Park Pl</td>
+              <td>Heron Park Pl <span class="pill pending">Pending</span></td>
               <td>Heron Park Place</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -65565,7 +65570,7 @@
             
             <tr data-letter="H">
               <td><code>HERONS HILL WAY</code></td>
-              <td>Herons Hill Way</td>
+              <td>Herons Hill Way <span class="pill pending">Pending</span></td>
               <td>Herons Hill Way</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -66753,7 +66758,7 @@
             
             <tr data-letter="H">
               <td><code>HOLLYHOCK CT</code></td>
-              <td>Hollyhock Crt</td>
+              <td>Hollyhock Crt <span class="pill pending">Pending</span></td>
               <td>Hollyhock Court</td>
               <td><code>living_street</code></td>
               <td class="num">2</td>
@@ -67059,7 +67064,7 @@
             
             <tr data-letter="H">
               <td><code>HOOYO TER</code></td>
-              <td>Hooyo Ter</td>
+              <td>Hooyo Ter <span class="pill pending">Pending</span></td>
               <td>Hooyo Terrace</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -67320,7 +67325,7 @@
             
             <tr data-letter="H">
               <td><code>HOWARD MOSCOE WAY</code></td>
-              <td>Howard Moscoe Way</td>
+              <td>Howard Moscoe Way <span class="pill pending">Pending</span></td>
               <td>Howard Moscoe Way</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -67707,7 +67712,7 @@
             
             <tr data-letter="H">
               <td><code>HUMBERVIEW CRES</code></td>
-              <td>Humberview Cres</td>
+              <td>Humberview Cres <span class="pill pending">Pending</span></td>
               <td>Humberview Crescent</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -68157,7 +68162,7 @@
             
             <tr data-letter="I">
               <td><code>IANNUZZI ST</code></td>
-              <td>Iannuzzi St</td>
+              <td>Iannuzzi St <span class="pill pending">Pending</span></td>
               <td>Iannuzzi Street</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -68508,7 +68513,7 @@
             
             <tr data-letter="I">
               <td><code>INN ON THE PK DR</code></td>
-              <td>Inn on The Park Dr</td>
+              <td>Inn on The Park Dr <span class="pill pending">Pending</span></td>
               <td>Inn On The Park Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -69093,7 +69098,7 @@
             
             <tr data-letter="J">
               <td><code>JACK WIGGINS LN</code></td>
-              <td>Jack Wiggins Lane</td>
+              <td>Jack Wiggins Lane <span class="pill pending">Pending</span></td>
               <td>Jack Wiggins Lane</td>
               <td><code>service</code></td>
               <td class="num">2</td>
@@ -69804,7 +69809,7 @@
             
             <tr data-letter="J">
               <td><code>JINNAH CT</code></td>
-              <td>Jinnah Crt</td>
+              <td>Jinnah Crt <span class="pill pending">Pending</span></td>
               <td>Jinnah Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -69993,7 +69998,7 @@
             
             <tr data-letter="J">
               <td><code>JOHN PERKINS BULL DR</code></td>
-              <td>John Perkins Bull Dr</td>
+              <td>John Perkins Bull Dr <span class="pill pending">Pending</span></td>
               <td>John Perkins Bull Drive</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -70128,7 +70133,7 @@
             
             <tr data-letter="J">
               <td><code>JORMA PALOMAKI TER</code></td>
-              <td>Jorma Palomaki Ter</td>
+              <td>Jorma Palomaki Ter <span class="pill pending">Pending</span></td>
               <td>Jorma Palomaki Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -70290,7 +70295,7 @@
             
             <tr data-letter="J">
               <td><code>JUDY SGRO AVE</code></td>
-              <td>Judy Sgro Ave</td>
+              <td>Judy Sgro Ave <span class="pill pending">Pending</span></td>
               <td>Judy Sgro Avenue</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -70380,7 +70385,7 @@
             
             <tr data-letter="J">
               <td><code>JUSTICE GDNS</code></td>
-              <td>Justice Gdns</td>
+              <td>Justice Gdns <span class="pill pending">Pending</span></td>
               <td>Justice Gardens</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -70596,7 +70601,7 @@
             
             <tr data-letter="K">
               <td><code>KAWNEER TER</code></td>
-              <td>Kawneer Ter</td>
+              <td>Kawneer Ter <span class="pill pending">Pending</span></td>
               <td>Kawneer Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -71082,7 +71087,7 @@
             
             <tr data-letter="K">
               <td><code>KENNETH WOOD CRES</code></td>
-              <td>Kenneth Wood Cres</td>
+              <td>Kenneth Wood Cres <span class="pill pending">Pending</span></td>
               <td>Kenneth Wood Crescent</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -71523,7 +71528,7 @@
             
             <tr data-letter="K">
               <td><code>KILGOUR RD</code></td>
-              <td>Kilgour Rd</td>
+              <td>Kilgour Rd <span class="pill pending">Pending</span></td>
               <td>Kilgour Road</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -71847,7 +71852,7 @@
             
             <tr data-letter="K">
               <td><code>KINGBIRD GRV</code></td>
-              <td>Kingbird Grv</td>
+              <td>Kingbird Grv <span class="pill pending">Pending</span></td>
               <td>Kingbird Grove</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -72252,7 +72257,7 @@
             
             <tr data-letter="K">
               <td><code>KIPLING GRV CT</code></td>
-              <td>Kipling Grove Crt</td>
+              <td>Kipling Grove Crt <span class="pill pending">Pending</span></td>
               <td>Kipling Grove Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -72513,7 +72518,7 @@
             
             <tr data-letter="K">
               <td><code>KNAPP LN</code></td>
-              <td>Knapp Lane</td>
+              <td>Knapp Lane <span class="pill pending">Pending</span></td>
               <td>Knapp Lane</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -72765,7 +72770,7 @@
             
             <tr data-letter="K">
               <td><code>KYLE LOWRY RD</code></td>
-              <td>Kyle Lowry Rd</td>
+              <td>Kyle Lowry Rd <span class="pill pending">Pending</span></td>
               <td>Kyle Lowry Road</td>
               <td><code>construction</code></td>
               <td class="num">4</td>
@@ -73665,7 +73670,7 @@
             
             <tr data-letter="L">
               <td><code>LANSING SQ</code></td>
-              <td>Lansing Sq</td>
+              <td>Lansing Sq <span class="pill pending">Pending</span></td>
               <td>Lansing Square</td>
               <td><code>service</code></td>
               <td class="num">3</td>
@@ -73683,7 +73688,7 @@
             
             <tr data-letter="L">
               <td><code>LANTERN CT</code></td>
-              <td>Lantern Crt</td>
+              <td>Lantern Crt <span class="pill pending">Pending</span></td>
               <td>Lantern Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -74016,7 +74021,7 @@
             
             <tr data-letter="L">
               <td><code>LAURA ELLIS CT</code></td>
-              <td>Laura Ellis Crt</td>
+              <td>Laura Ellis Crt <span class="pill pending">Pending</span></td>
               <td>Laura Ellis Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -74259,7 +74264,7 @@
             
             <tr data-letter="L">
               <td><code>LAWREN HARRIS SQ</code></td>
-              <td>Lawren Harris Sq</td>
+              <td>Lawren Harris Sq <span class="pill pending">Pending</span></td>
               <td>Lawren Harris Square</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -74295,7 +74300,7 @@
             
             <tr data-letter="L">
               <td><code>LAWRENCE HTS WAY</code></td>
-              <td>Lawrence Heights Way</td>
+              <td>Lawrence Heights Way <span class="pill pending">Pending</span></td>
               <td>Lawrence Heights Way</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -74592,7 +74597,7 @@
             
             <tr data-letter="L">
               <td><code>LEATHERWOOD GDNS</code></td>
-              <td>Leatherwood Gdns</td>
+              <td>Leatherwood Gdns <span class="pill pending">Pending</span></td>
               <td>Leatherwood Gardens</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -74808,7 +74813,7 @@
             
             <tr data-letter="L">
               <td><code>LEILA JACKSON TER</code></td>
-              <td>Leila Jackson Ter</td>
+              <td>Leila Jackson Ter <span class="pill pending">Pending</span></td>
               <td>Leila Jackson Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -75240,7 +75245,7 @@
             
             <tr data-letter="L">
               <td><code>LIAM FOUDY CT</code></td>
-              <td>Liam Foudy Crt</td>
+              <td>Liam Foudy Crt <span class="pill pending">Pending</span></td>
               <td>Liam Foudy Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -75411,7 +75416,7 @@
             
             <tr data-letter="L">
               <td><code>LILY CUP AVE</code></td>
-              <td>Lily Cup Ave</td>
+              <td>Lily Cup Ave <span class="pill pending">Pending</span></td>
               <td>Lily Cup Avenue</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -75951,7 +75956,7 @@
             
             <tr data-letter="L">
               <td><code>LIVERPOOL ST</code></td>
-              <td>Liverpool St</td>
+              <td>Liverpool St <span class="pill pending">Pending</span></td>
               <td>Liverpool Street</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -76194,7 +76199,7 @@
             
             <tr data-letter="L">
               <td><code>LOCUST LODGE GDNS</code></td>
-              <td>Locust Lodge Gdns</td>
+              <td>Locust Lodge Gdns <span class="pill pending">Pending</span></td>
               <td>Locust Lodge Gardens</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -76419,7 +76424,7 @@
             
             <tr data-letter="L">
               <td><code>LONERGAN CRES</code></td>
-              <td>Lonergan Cres</td>
+              <td>Lonergan Cres <span class="pill pending">Pending</span></td>
               <td>Lonergan Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -76437,7 +76442,7 @@
             
             <tr data-letter="L">
               <td><code>LONG BRANCH AVE</code></td>
-              <td>Long Branch Ave</td>
+              <td>Long Branch Ave <span class="pill pending">Pending</span></td>
               <td>Long Branch Avenue</td>
               <td><code>residential</code></td>
               <td class="num">11</td>
@@ -76995,7 +77000,7 @@
             
             <tr data-letter="L">
               <td><code>LOWER RIVER ST</code></td>
-              <td>Lower River St</td>
+              <td>Lower River St <span class="pill pending">Pending</span></td>
               <td>Lower River Street</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -77040,7 +77045,7 @@
             
             <tr data-letter="L">
               <td><code>LOWES PL</code></td>
-              <td>Lowe&#39;s Pl</td>
+              <td>Lowe&#39;s Pl <span class="pill pending">Pending</span></td>
               <td>Lowe&#39;s Place</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -77688,7 +77693,7 @@
             
             <tr data-letter="M">
               <td><code>MACFROST WAY</code></td>
-              <td>Mac Frost Way</td>
+              <td>Mac Frost Way <span class="pill pending">Pending</span></td>
               <td>Mac Frost Way</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -78606,7 +78611,7 @@
             
             <tr data-letter="M">
               <td><code>MANTELLO DR</code></td>
-              <td>Mantello Dr</td>
+              <td>Mantello Dr <span class="pill pending">Pending</span></td>
               <td>Mantello Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -78993,7 +78998,7 @@
             
             <tr data-letter="M">
               <td><code>MARIA IACAMPO GDNS</code></td>
-              <td>Maria Iacampo Gdns</td>
+              <td>Maria Iacampo Gdns <span class="pill pending">Pending</span></td>
               <td>Maria Iacampo Gardens</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -79146,7 +79151,7 @@
             
             <tr data-letter="M">
               <td><code>MARJORIE HILEY RD</code></td>
-              <td>Marjorie Hiley Rd</td>
+              <td>Marjorie Hiley Rd <span class="pill pending">Pending</span></td>
               <td>Marjorie Hiley Road</td>
               <td><code>construction</code></td>
               <td class="num">1</td>
@@ -79857,7 +79862,7 @@
             
             <tr data-letter="M">
               <td><code>MATTHEW CT</code></td>
-              <td>Matthew Crt</td>
+              <td>Matthew Crt <span class="pill pending">Pending</span></td>
               <td>Matthew Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -81297,7 +81302,7 @@
             
             <tr data-letter="M">
               <td><code>MERCHANTS WHARF</code></td>
-              <td>Merchants&#39; Wharf</td>
+              <td>Merchants&#39; Wharf <span class="pill pending">Pending</span></td>
               <td>Merchants&#39; Wharf</td>
               <td><code>residential</code></td>
               <td class="num">6</td>
@@ -81738,7 +81743,7 @@
             
             <tr data-letter="M">
               <td><code>MIKE PALMATEER RD</code></td>
-              <td>Mike Palmateer Rd</td>
+              <td>Mike Palmateer Rd <span class="pill pending">Pending</span></td>
               <td>Mike Palmateer Road</td>
               <td><code>construction</code></td>
               <td class="num">5</td>
@@ -82017,7 +82022,7 @@
             
             <tr data-letter="M">
               <td><code>MILLIKEN BLVD</code></td>
-              <td>Milliken Blvd</td>
+              <td>Milliken Blvd <span class="pill pending">Pending</span></td>
               <td>Milliken Boulevard</td>
               <td><code>unclassified</code></td>
               <td class="num">6</td>
@@ -82800,7 +82805,7 @@
             
             <tr data-letter="M">
               <td><code>MONTE KWINTER CT</code></td>
-              <td>Monte Kwinter Crt</td>
+              <td>Monte Kwinter Crt <span class="pill pending">Pending</span></td>
               <td>Monte Kwinter Court</td>
               <td><code>living_street</code></td>
               <td class="num">2</td>
@@ -82944,7 +82949,7 @@
             
             <tr data-letter="M">
               <td><code>MOONSEED CT</code></td>
-              <td>Moonseed Crt</td>
+              <td>Moonseed Crt <span class="pill pending">Pending</span></td>
               <td>Moonseed Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -83115,7 +83120,7 @@
             
             <tr data-letter="M">
               <td><code>MORIYAMA DR</code></td>
-              <td>Moriyama Dr</td>
+              <td>Moriyama Dr <span class="pill pending">Pending</span></td>
               <td>Moriyama Drive</td>
               <td><code>tertiary</code></td>
               <td class="num">8</td>
@@ -83304,7 +83309,7 @@
             
             <tr data-letter="M">
               <td><code>MORTON SHULMAN AVE</code></td>
-              <td>Morton Shulman Ave</td>
+              <td>Morton Shulman Ave <span class="pill pending">Pending</span></td>
               <td>Morton Shulman Avenue</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -84537,7 +84542,7 @@
             
             <tr data-letter="N">
               <td><code>NEELANDS CRES</code></td>
-              <td>Neelands Cres</td>
+              <td>Neelands Cres <span class="pill pending">Pending</span></td>
               <td>Neelands Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -84753,7 +84758,7 @@
             
             <tr data-letter="N">
               <td><code>NEW BRUNSWICK WAY</code></td>
-              <td>New Brunswick Way</td>
+              <td>New Brunswick Way <span class="pill pending">Pending</span></td>
               <td>New Brunswick Way</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -84780,7 +84785,7 @@
             
             <tr data-letter="N">
               <td><code>NEW HTS CT</code></td>
-              <td>New Heights Crt</td>
+              <td>New Heights Crt <span class="pill pending">Pending</span></td>
               <td>New Heights Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -84789,7 +84794,7 @@
             
             <tr data-letter="N">
               <td><code>NEW PROVIDENCE TRL</code></td>
-              <td>New Providence Trl</td>
+              <td>New Providence Trl <span class="pill pending">Pending</span></td>
               <td>New Providence Trail</td>
               <td><code>tertiary</code></td>
               <td class="num">1</td>
@@ -85203,7 +85208,7 @@
             
             <tr data-letter="N">
               <td><code>NIXON HTS</code></td>
-              <td>Nixon Hts</td>
+              <td>Nixon Hts <span class="pill pending">Pending</span></td>
               <td>Nixon Heights</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -85671,7 +85676,7 @@
             
             <tr data-letter="N">
               <td><code>NORTHERNETTE HTS</code></td>
-              <td>Northernette Hts</td>
+              <td>Northernette Hts <span class="pill pending">Pending</span></td>
               <td>Northernette Heights</td>
               <td><code>service</code></td>
               <td class="num">3</td>
@@ -85815,7 +85820,7 @@
             
             <tr data-letter="N">
               <td><code>NORTHWEST GTE</code></td>
-              <td>Northwest Gt</td>
+              <td>Northwest Gt <span class="pill pending">Pending</span></td>
               <td>Northwest Gate</td>
               <td><code>tertiary</code></td>
               <td class="num">2</td>
@@ -86121,7 +86126,7 @@
             
             <tr data-letter="O">
               <td><code>OAK ST</code></td>
-              <td>Oak St</td>
+              <td>Oak St <span class="pill pending">Pending</span></td>
               <td>Oak Street</td>
               <td><code>residential</code></td>
               <td class="num">14</td>
@@ -86472,7 +86477,7 @@
             
             <tr data-letter="O">
               <td><code>OKRA TOMAR CRES</code></td>
-              <td>Okra Tomar Cres</td>
+              <td>Okra Tomar Cres <span class="pill pending">Pending</span></td>
               <td>Okra Tomar Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -86796,7 +86801,7 @@
             
             <tr data-letter="O">
               <td><code>OLGA ST</code></td>
-              <td>Olga St</td>
+              <td>Olga St <span class="pill pending">Pending</span></td>
               <td>Olga Street</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -86868,7 +86873,7 @@
             
             <tr data-letter="O">
               <td><code>OLYMPIC GARDEN DR</code></td>
-              <td>Olympic Garden Dr</td>
+              <td>Olympic Garden Dr <span class="pill pending">Pending</span></td>
               <td>Olympic Garden Drive</td>
               <td><code>service</code></td>
               <td class="num">3</td>
@@ -87984,7 +87989,7 @@
             
             <tr data-letter="P">
               <td><code>PALK LN</code></td>
-              <td>Palk Lane</td>
+              <td>Palk Lane <span class="pill pending">Pending</span></td>
               <td>Palk Lane</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -88812,7 +88817,7 @@
             
             <tr data-letter="P">
               <td><code>PAUL LN GDNS</code></td>
-              <td>Paul Lane Gdns</td>
+              <td>Paul Lane Gdns <span class="pill pending">Pending</span></td>
               <td>Paul Lane Gardens</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -89766,7 +89771,7 @@
             
             <tr data-letter="P">
               <td><code>PETHERHILL AVE</code></td>
-              <td>Petherhill Ave</td>
+              <td>Petherhill Ave <span class="pill pending">Pending</span></td>
               <td>Petherhill Avenue</td>
               <td><code>service</code></td>
               <td class="num">2</td>
@@ -89937,7 +89942,7 @@
             
             <tr data-letter="P">
               <td><code>PHILPOTT GDNS</code></td>
-              <td>Philpott Gdns</td>
+              <td>Philpott Gdns <span class="pill pending">Pending</span></td>
               <td>Philpott Gardens</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -90126,7 +90131,7 @@
             
             <tr data-letter="P">
               <td><code>PILKINGTON DR</code></td>
-              <td>Pilkington Dr</td>
+              <td>Pilkington Dr <span class="pill pending">Pending</span></td>
               <td>Pilkington Drive</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -90324,7 +90329,7 @@
             
             <tr data-letter="P">
               <td><code>PINERY TRL</code></td>
-              <td>Pinery Trl</td>
+              <td>Pinery Trl <span class="pill pending">Pending</span></td>
               <td>Pinery Trail</td>
               <td><code>residential</code></td>
               <td class="num">6</td>
@@ -91125,7 +91130,7 @@
             
             <tr data-letter="P">
               <td><code>PONY FARM DR</code></td>
-              <td>Pony Farm Dr</td>
+              <td>Pony Farm Dr <span class="pill pending">Pending</span></td>
               <td>Pony Farm Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -91215,7 +91220,7 @@
             
             <tr data-letter="P">
               <td><code>PORCELAIN TER</code></td>
-              <td>Porcelain Ter</td>
+              <td>Porcelain Ter <span class="pill pending">Pending</span></td>
               <td>Porcelain Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -91386,7 +91391,7 @@
             
             <tr data-letter="P">
               <td><code>PORTWINE DR</code></td>
-              <td>Portwine Dr</td>
+              <td>Portwine Dr <span class="pill pending">Pending</span></td>
               <td>Portwine Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -91530,7 +91535,7 @@
             
             <tr data-letter="P">
               <td><code>PRADO CT</code></td>
-              <td>Prado Crt</td>
+              <td>Prado Crt <span class="pill pending">Pending</span></td>
               <td>Prado Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -91935,7 +91940,7 @@
             
             <tr data-letter="P">
               <td><code>PRINGDALE GDNS CIR</code></td>
-              <td>Pringdale Gardens Crcl</td>
+              <td>Pringdale Gardens Crcl <span class="pill pending">Pending</span></td>
               <td>Pringdale Gardens Circle</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -91944,7 +91949,7 @@
             
             <tr data-letter="P">
               <td><code>PRINT DR</code></td>
-              <td>Print Dr</td>
+              <td>Print Dr <span class="pill pending">Pending</span></td>
               <td>Print Drive</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -92421,7 +92426,7 @@
             
             <tr data-letter="Q">
               <td><code>QUEEN MAGDALENE PL</code></td>
-              <td>Queen Magdalene Pl</td>
+              <td>Queen Magdalene Pl <span class="pill pending">Pending</span></td>
               <td>Queen Magdalene Place</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -92538,7 +92543,7 @@
             
             <tr data-letter="Q">
               <td><code>QUEENS WHARF RD</code></td>
-              <td>Queens Wharf Rd</td>
+              <td>Queens Wharf Rd <span class="pill pending">Pending</span></td>
               <td>Queens Wharf Road</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -93240,7 +93245,7 @@
             
             <tr data-letter="R">
               <td><code>RAPONI CIR</code></td>
-              <td>Raponi Crcl</td>
+              <td>Raponi Crcl <span class="pill pending">Pending</span></td>
               <td>Raponi Circle</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -93591,7 +93596,7 @@
             
             <tr data-letter="R">
               <td><code>RECOVERY RD</code></td>
-              <td>Recovery Rd</td>
+              <td>Recovery Rd <span class="pill pending">Pending</span></td>
               <td>Recovery Road</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -93843,7 +93848,7 @@
             
             <tr data-letter="R">
               <td><code>REDLEA AVE</code></td>
-              <td>Redlea Ave</td>
+              <td>Redlea Ave <span class="pill pending">Pending</span></td>
               <td>Redlea Avenue</td>
               <td><code>unclassified</code></td>
               <td class="num">2</td>
@@ -94023,7 +94028,7 @@
             
             <tr data-letter="R">
               <td><code>REGENT PK BLVD</code></td>
-              <td>Regent Park Blvd</td>
+              <td>Regent Park Blvd <span class="pill pending">Pending</span></td>
               <td>Regent Park Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -95310,7 +95315,7 @@
             
             <tr data-letter="R">
               <td><code>RIVITT PL</code></td>
-              <td>Rivitt Pl</td>
+              <td>Rivitt Pl <span class="pill pending">Pending</span></td>
               <td>Rivitt Place</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -95931,7 +95936,7 @@
             
             <tr data-letter="R">
               <td><code>ROLLING MILLS RD</code></td>
-              <td>Rolling Mills Rd</td>
+              <td>Rolling Mills Rd <span class="pill pending">Pending</span></td>
               <td>Rolling Mills Road</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -96003,7 +96008,7 @@
             
             <tr data-letter="R">
               <td><code>ROMAN ABRAHAM BLVD</code></td>
-              <td>Roman Abraham Blvd</td>
+              <td>Roman Abraham Blvd <span class="pill pending">Pending</span></td>
               <td>Roman Abraham Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -97128,7 +97133,7 @@
             
             <tr data-letter="R">
               <td><code>RUBY CRES</code></td>
-              <td>Ruby Cres</td>
+              <td>Ruby Cres <span class="pill pending">Pending</span></td>
               <td>Ruby Crescent</td>
               <td><code>footway</code></td>
               <td class="num">1</td>
@@ -97902,7 +97907,7 @@
             
             <tr data-letter="S">
               <td><code>SALINAS CT</code></td>
-              <td>Salinas Crt</td>
+              <td>Salinas Crt <span class="pill pending">Pending</span></td>
               <td>Salinas Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -98514,7 +98519,7 @@
             
             <tr data-letter="S">
               <td><code>SARAH JACKSON CRES</code></td>
-              <td>Sarah Jackson Cres</td>
+              <td>Sarah Jackson Cres <span class="pill pending">Pending</span></td>
               <td>Sarah Jackson Crescent</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -98568,7 +98573,7 @@
             
             <tr data-letter="S">
               <td><code>SARGENT LN</code></td>
-              <td>Sargent Lane</td>
+              <td>Sargent Lane <span class="pill pending">Pending</span></td>
               <td>Sargent Lane</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -98811,7 +98816,7 @@
             
             <tr data-letter="S">
               <td><code>SAYWELL AVE</code></td>
-              <td>Saywell Ave</td>
+              <td>Saywell Ave <span class="pill pending">Pending</span></td>
               <td>Saywell Avenue</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -99612,7 +99617,7 @@
             
             <tr data-letter="S">
               <td><code>SERENITY CT</code></td>
-              <td>Serenity Crt</td>
+              <td>Serenity Crt <span class="pill pending">Pending</span></td>
               <td>Serenity Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -99621,7 +99626,7 @@
             
             <tr data-letter="S">
               <td><code>SERGIO MARCHI ST</code></td>
-              <td>Sergio Marchi St</td>
+              <td>Sergio Marchi St <span class="pill pending">Pending</span></td>
               <td>Sergio Marchi Street</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -99918,7 +99923,7 @@
             
             <tr data-letter="S">
               <td><code>SHALE RIDGE CT</code></td>
-              <td>Shale Ridge Crt</td>
+              <td>Shale Ridge Crt <span class="pill pending">Pending</span></td>
               <td>Shale Ridge Court</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -100224,7 +100229,7 @@
             
             <tr data-letter="S">
               <td><code>SHEFFER TER</code></td>
-              <td>Sheffer Ter</td>
+              <td>Sheffer Ter <span class="pill pending">Pending</span></td>
               <td>Sheffer Terrace</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -100629,7 +100634,7 @@
             
             <tr data-letter="S">
               <td><code>SHORE BREEZE DR</code></td>
-              <td>Shore Breeze Dr</td>
+              <td>Shore Breeze Dr <span class="pill pending">Pending</span></td>
               <td>Shore Breeze Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -100971,7 +100976,7 @@
             
             <tr data-letter="S">
               <td><code>SILVER MOON DR</code></td>
-              <td>Silver Moon Dr</td>
+              <td>Silver Moon Dr <span class="pill pending">Pending</span></td>
               <td>Silver Moon Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -100980,7 +100985,7 @@
             
             <tr data-letter="S">
               <td><code>SILVER REIGN DR</code></td>
-              <td>Silver Reign Dr</td>
+              <td>Silver Reign Dr <span class="pill pending">Pending</span></td>
               <td>Silver Reign Drive</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -101277,7 +101282,7 @@
             
             <tr data-letter="S">
               <td><code>SIR WILLIAM HEARST AVE</code></td>
-              <td>Sir William Hearst Ave</td>
+              <td>Sir William Hearst Ave <span class="pill pending">Pending</span></td>
               <td>Sir William Hearst Avenue</td>
               <td><code>service</code></td>
               <td class="num">2</td>
@@ -101601,7 +101606,7 @@
             
             <tr data-letter="S">
               <td><code>SLOPING SKY MEWS</code></td>
-              <td>Sloping Sky Mews</td>
+              <td>Sloping Sky Mews <span class="pill pending">Pending</span></td>
               <td>Sloping Sky Mews</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -101682,7 +101687,7 @@
             
             <tr data-letter="S">
               <td><code>SMOOTH ROSE CT</code></td>
-              <td>Smooth Rose Crt</td>
+              <td>Smooth Rose Crt <span class="pill pending">Pending</span></td>
               <td>Smooth Rose Court</td>
               <td><code>unclassified</code></td>
               <td class="num">2</td>
@@ -101826,7 +101831,7 @@
             
             <tr data-letter="S">
               <td><code>SNOWY OWL WAY</code></td>
-              <td>Snowy Owl Way</td>
+              <td>Snowy Owl Way <span class="pill pending">Pending</span></td>
               <td>Snowy Owl Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -101862,7 +101867,7 @@
             
             <tr data-letter="S">
               <td><code>SOLIDARITY WAY</code></td>
-              <td>Solidarity Way</td>
+              <td>Solidarity Way <span class="pill pending">Pending</span></td>
               <td>Solidarity Way</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -101979,7 +101984,7 @@
             
             <tr data-letter="S">
               <td><code>SONIC WAY</code></td>
-              <td>Sonic Way</td>
+              <td>Sonic Way <span class="pill pending">Pending</span></td>
               <td>Sonic Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -102906,7 +102911,7 @@
             
             <tr data-letter="S">
               <td><code>ST GASPAR CT</code></td>
-              <td>St. Gaspar Crt</td>
+              <td>St. Gaspar Crt <span class="pill pending">Pending</span></td>
               <td>St. Gaspar Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -103095,7 +103100,7 @@
             
             <tr data-letter="S">
               <td><code>ST MAGNUS DR</code></td>
-              <td>St Magnus Dr</td>
+              <td>St Magnus Dr <span class="pill pending">Pending</span></td>
               <td>St. Magnus Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -103383,7 +103388,7 @@
             
             <tr data-letter="S">
               <td><code>STAINES RD</code></td>
-              <td>Staines Rd</td>
+              <td>Staines Rd <span class="pill pending">Pending</span></td>
               <td>Staines Road</td>
               <td><code>tertiary</code></td>
               <td class="num">34</td>
@@ -103500,7 +103505,7 @@
             
             <tr data-letter="S">
               <td><code>STANLEY GREENE BLVD</code></td>
-              <td>Stanley Greene Blvd</td>
+              <td>Stanley Greene Blvd <span class="pill pending">Pending</span></td>
               <td>Stanley Greene Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -103914,7 +103919,7 @@
             
             <tr data-letter="S">
               <td><code>STEVE PODBORSKI RD</code></td>
-              <td>Steve Podborski Rd</td>
+              <td>Steve Podborski Rd <span class="pill pending">Pending</span></td>
               <td>Steve Podborski Road</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -104355,7 +104360,7 @@
             
             <tr data-letter="S">
               <td><code>STOTTS TER</code></td>
-              <td>Stotts Ter</td>
+              <td>Stotts Ter <span class="pill pending">Pending</span></td>
               <td>Stotts Terrace</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -105156,7 +105161,7 @@
             
             <tr data-letter="S">
               <td><code>SUNNYS HALO TRL</code></td>
-              <td>Sunny&#39;s Halo Trl</td>
+              <td>Sunny&#39;s Halo Trl <span class="pill pending">Pending</span></td>
               <td>Sunny&#39;s Halo Trail</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -105714,7 +105719,7 @@
             
             <tr data-letter="T">
               <td><code>TAIT CT</code></td>
-              <td>Tait Crt</td>
+              <td>Tait Crt <span class="pill pending">Pending</span></td>
               <td>Tait Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -105957,7 +105962,7 @@
             
             <tr data-letter="T">
               <td><code>TANGIERS RD</code></td>
-              <td>Tangiers Rd</td>
+              <td>Tangiers Rd <span class="pill pending">Pending</span></td>
               <td>Tangiers Road</td>
               <td><code>unclassified</code></td>
               <td class="num">7</td>
@@ -106038,7 +106043,7 @@
             
             <tr data-letter="T">
               <td><code>TANNERY RD</code></td>
-              <td>Tannery Rd</td>
+              <td>Tannery Rd <span class="pill pending">Pending</span></td>
               <td>Tannery Road</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -106137,7 +106142,7 @@
             
             <tr data-letter="T">
               <td><code>TARRAGONA BLVD</code></td>
-              <td>Tarragona Blvd</td>
+              <td>Tarragona Blvd <span class="pill pending">Pending</span></td>
               <td>Tarragona Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -106434,7 +106439,7 @@
             
             <tr data-letter="T">
               <td><code>TELFER GDNS</code></td>
-              <td>Telfer Gdns</td>
+              <td>Telfer Gdns <span class="pill pending">Pending</span></td>
               <td>Telfer Gardens</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -106839,7 +106844,7 @@
             
             <tr data-letter="T">
               <td><code>THE MARGINAL BLVD</code></td>
-              <td>The Marginal Blvd</td>
+              <td>The Marginal Blvd <span class="pill pending">Pending</span></td>
               <td>The Marginal Boulevard</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -107127,7 +107132,7 @@
             
             <tr data-letter="T">
               <td><code>THOMAS CLARK WAY</code></td>
-              <td>Thomas Clark Way</td>
+              <td>Thomas Clark Way <span class="pill pending">Pending</span></td>
               <td>Thomas Clark Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -107136,7 +107141,7 @@
             
             <tr data-letter="T">
               <td><code>THOMAS ELGIE DR</code></td>
-              <td>Thomas Elgie Dr</td>
+              <td>Thomas Elgie Dr <span class="pill pending">Pending</span></td>
               <td>Thomas Elgie Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -107163,7 +107168,7 @@
             
             <tr data-letter="T">
               <td><code>THOMAS MULHOLLAND DR</code></td>
-              <td>Thomas Mulholland Dr</td>
+              <td>Thomas Mulholland Dr <span class="pill pending">Pending</span></td>
               <td>Thomas Mulholland Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -109035,7 +109040,7 @@
             
             <tr data-letter="T">
               <td><code>TROLLEY CRES</code></td>
-              <td>Trolley Cres</td>
+              <td>Trolley Cres <span class="pill pending">Pending</span></td>
               <td>Trolley Crescent</td>
               <td><code>living_street</code></td>
               <td class="num">2</td>
@@ -109107,7 +109112,7 @@
             
             <tr data-letter="T">
               <td><code>TROYER AVE</code></td>
-              <td>Troyer Ave</td>
+              <td>Troyer Ave <span class="pill pending">Pending</span></td>
               <td>Troyer Avenue</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -109188,7 +109193,7 @@
             
             <tr data-letter="T">
               <td><code>TUBMAN AVE</code></td>
-              <td>Tubman Ave</td>
+              <td>Tubman Ave <span class="pill pending">Pending</span></td>
               <td>Tubman Avenue</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -109413,7 +109418,7 @@
             
             <tr data-letter="T">
               <td><code>TURTLE ISLAND RD</code></td>
-              <td>Turtle Island Rd</td>
+              <td>Turtle Island Rd <span class="pill pending">Pending</span></td>
               <td>Turtle Island Road</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -110313,7 +110318,7 @@
             
             <tr data-letter="V">
               <td><code>VALLIERE PL</code></td>
-              <td>Valliere Pl</td>
+              <td>Valliere Pl <span class="pill pending">Pending</span></td>
               <td>Valliere Place</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -110421,7 +110426,7 @@
             
             <tr data-letter="V">
               <td><code>VANAULEY ST</code></td>
-              <td>Vanauley St</td>
+              <td>Vanauley St <span class="pill pending">Pending</span></td>
               <td>Vanauley Street</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -110664,7 +110669,7 @@
             
             <tr data-letter="V">
               <td><code>VAUDEVILLE DR</code></td>
-              <td>Vaudeville Dr</td>
+              <td>Vaudeville Dr <span class="pill pending">Pending</span></td>
               <td>Vaudeville Drive</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -110745,7 +110750,7 @@
             
             <tr data-letter="V">
               <td><code>VENA WAY</code></td>
-              <td>Vena Way</td>
+              <td>Vena Way <span class="pill pending">Pending</span></td>
               <td>Vena Way</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -111006,7 +111011,7 @@
             
             <tr data-letter="V">
               <td><code>VETIVER DR</code></td>
-              <td>Vetiver Dr</td>
+              <td>Vetiver Dr <span class="pill pending">Pending</span></td>
               <td>Vetiver Drive</td>
               <td><code>unclassified</code></td>
               <td class="num">1</td>
@@ -111294,7 +111299,7 @@
             
             <tr data-letter="V">
               <td><code>VILLAGE GREEN SQ</code></td>
-              <td>Village Green Sq</td>
+              <td>Village Green Sq <span class="pill pending">Pending</span></td>
               <td>Village Green Square</td>
               <td><code>residential</code></td>
               <td class="num">7</td>
@@ -111357,7 +111362,7 @@
             
             <tr data-letter="V">
               <td><code>VINCE AVE</code></td>
-              <td>Vince Ave</td>
+              <td>Vince Ave <span class="pill pending">Pending</span></td>
               <td>Vince Avenue</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -111456,7 +111461,7 @@
             
             <tr data-letter="V">
               <td><code>VIVIAN RD</code></td>
-              <td>Vivian Rd</td>
+              <td>Vivian Rd <span class="pill pending">Pending</span></td>
               <td>Vivian Road</td>
               <td><code>residential</code></td>
               <td class="num">4</td>
@@ -111609,7 +111614,7 @@
             
             <tr data-letter="W">
               <td><code>W PK DR</code></td>
-              <td>West Park Dr</td>
+              <td>West Park Dr <span class="pill pending">Pending</span></td>
               <td>West Park Drive</td>
               <td><code>service</code></td>
               <td class="num">1</td>
@@ -114417,7 +114422,7 @@
             
             <tr data-letter="W">
               <td><code>WILLIAM DUNCAN RD</code></td>
-              <td>William Duncan Rd</td>
+              <td>William Duncan Rd <span class="pill pending">Pending</span></td>
               <td>William Duncan Road</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
@@ -115083,7 +115088,7 @@
             
             <tr data-letter="W">
               <td><code>WINGSTEM CT</code></td>
-              <td>Wingstem Crt</td>
+              <td>Wingstem Crt <span class="pill pending">Pending</span></td>
               <td>Wingstem Court</td>
               <td><code>residential</code></td>
               <td class="num">1</td>
@@ -115848,7 +115853,7 @@
             
             <tr data-letter="W">
               <td><code>WOODSTREAM DR</code></td>
-              <td>Woodstream Dr</td>
+              <td>Woodstream Dr <span class="pill pending">Pending</span></td>
               <td>Woodstream Drive</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -116145,7 +116150,7 @@
             
             <tr data-letter="W">
               <td><code>WYATT AVE</code></td>
-              <td>Wyatt Ave</td>
+              <td>Wyatt Ave <span class="pill pending">Pending</span></td>
               <td>Wyatt Avenue</td>
               <td><code>residential</code></td>
               <td class="num">3</td>
@@ -116793,7 +116798,7 @@
             
             <tr data-letter="Z">
               <td><code>ZAPPACOSTA DR</code></td>
-              <td>Zappacosta Dr</td>
+              <td>Zappacosta Dr <span class="pill pending">Pending</span></td>
               <td>Zappacosta Drive</td>
               <td><code>residential</code></td>
               <td class="num">2</td>
@@ -116820,7 +116825,7 @@
             
             <tr data-letter="Z">
               <td><code>ZEZEL WAY</code></td>
-              <td>Zezel Way</td>
+              <td>Zezel Way <span class="pill pending">Pending</span></td>
               <td>Zezel Way</td>
               <td><code>residential</code></td>
               <td class="num">5</td>
