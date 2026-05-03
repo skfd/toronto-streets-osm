@@ -137,6 +137,11 @@
     tr.selectable:hover td { background: #f1f5f9; }
     tr.selected td { background: #fde68a !important; }
 
+    .pill { display: inline-block; padding: 1px 7px; border-radius: 999px;
+            font-size: .72rem; font-weight: 600; line-height: 1.4;
+            vertical-align: middle; margin-left: .35rem; }
+    .pill.pending { background: #fef3c7; color: #92400e; }
+
     .legend { font-size: .85em; color: #6b7280;
               padding: .5rem .8rem; border-top: 1px solid #e5e7eb;
               flex: none; display: flex; align-items: center;
@@ -249,7 +254,7 @@
           <tbody>
             {% for s in data.missing | sort(attribute='street_raw') %}
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
-              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span>{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
               <td class="num">{{ s.tcl_segments }}</td>
             </tr>
@@ -271,7 +276,7 @@
           <tbody>
             {% for s in data.missing_major | sort(attribute='street_raw') %}
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
-              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span>{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
               <td class="num">{{ s.tcl_segments }}</td>
             </tr>
@@ -293,7 +298,7 @@
           <tbody>
             {% for s in data.missing_private | sort(attribute='street_raw') %}
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
-              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span>{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
               <td class="num">{{ s.tcl_segments }}</td>
             </tr>
@@ -315,7 +320,7 @@
           <tbody>
             {% for s in data.missing_ln | sort(attribute='street_raw') %}
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[3:4] | upper }}">
-              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span></td>
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span>{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
               <td class="num">{{ s.tcl_segments }}</td>
             </tr>
@@ -360,7 +365,7 @@
             {% for s in data.matched | sort(attribute='street_norm') %}
             <tr data-letter="{{ s.street_norm[0:1] | upper }}">
               <td><code>{{ s.street_norm }}</code></td>
-              <td>{{ s.tcl_raw }}</td>
+              <td>{{ s.tcl_raw }}{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td>{{ s.osm_raw }}</td>
               <td><code>{{ s.highway or '' }}</code></td>
               <td class="num">{{ s.tcl_segments }}</td>
