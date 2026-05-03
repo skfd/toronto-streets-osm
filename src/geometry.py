@@ -1,12 +1,11 @@
 """Build the per-street polyline sidecar consumed by the report's map panel.
 
 Output: `docs/streets-geom.json`, shape `{street_norm: [[[lon,lat], ...], ...]}`.
-Only streets in the missing-or-extra buckets are included (matched is excluded
-intentionally -- the map only previews single-sided streets).
+Every street the report can display in any tab is included.
 
 Sources:
-    missing -> latest TCL GeoJSON (data/tcl/centreline-*.geojson), filtered to
-               the same FEATURE_CODE_DESC set used by the comparison.
+    missing buckets + matched -> latest TCL GeoJSON (data/tcl/centreline-*.geojson),
+               filtered to the same FEATURE_CODE_DESC set used by the comparison.
     extra   -> data/osm/toronto-streets.json. Requires the `geometry` field on
                each way; run `python run.py refresh-osm --rebuild` after pulling
                this change to populate it.
@@ -83,15 +82,15 @@ def _osm_geoms(extra_set: set[str]) -> dict[str, list[list[list[float]]]]:
 
 
 def build_sidecar(compare_data: dict) -> str:
-    missing_set = {
+    tcl_set = {
         row["street_norm"]
-        for key in ("missing", "missing_ln")
+        for key in ("missing", "missing_ln", "missing_major", "missing_private", "matched")
         for row in compare_data.get(key) or []
     }
     extra_set = {row["street_norm"] for row in compare_data.get("extra") or []}
 
     geoms: dict[str, list[list[list[float]]]] = {}
-    geoms.update(_tcl_geoms(missing_set))
+    geoms.update(_tcl_geoms(tcl_set))
     geoms.update(_osm_geoms(extra_set))
 
     os.makedirs(config.DOCS_DIR, exist_ok=True)

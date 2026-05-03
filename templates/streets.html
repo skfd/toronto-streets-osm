@@ -150,6 +150,7 @@
                       vertical-align: middle; margin-right: .3rem; }
     .legend .swatch.miss  { background: #dc2626; }
     .legend .swatch.extra { background: #2563eb; }
+    .legend .swatch.match { background: #059669; }
     .legend .right { margin-left: auto; }
 
     @media (max-width: 900px) {
@@ -354,16 +355,16 @@
 
       <section id="tab-matched" class="pane-section">
         <h2>Matched</h2>
-        <p class="muted">Both sides have it. Counts are TCL segments and OSM ways for the same street name.</p>
+        <p class="muted">Both sides have it. Counts are TCL segments and OSM ways for the same street name. Click a row to view it on the map.</p>
         {% if data.matched %}
         <nav class="alpha-nav" aria-label="Jump to letter">
           <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
         </nav>
-        <table>
+        <table id="matched-table">
           <thead><tr><th>Normalized</th><th>TCL raw</th><th>OSM raw</th><th>highway</th><th class="num">TCL</th><th class="num">OSM</th></tr></thead>
           <tbody>
             {% for s in data.matched | sort(attribute='street_norm') %}
-            <tr data-letter="{{ s.street_norm[0:1] | upper }}">
+            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="matched" data-letter="{{ s.street_norm[0:1] | upper }}">
               <td><code>{{ s.street_norm }}</code></td>
               <td>{{ s.tcl_raw }}{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td>{{ s.osm_raw }}</td>
@@ -383,6 +384,7 @@
       <div class="legend">
         <span><span class="swatch miss"></span>missing (TCL only)</span>
         <span><span class="swatch extra"></span>extra (OSM only)</span>
+        <span><span class="swatch match"></span>matched (TCL geometry)</span>
         <span class="right">
           <a id="osm-link" href="#" target="_blank" rel="noopener" style="display:none">Open in OSM &rarr;</a>
           <span id="map-status"></span>
@@ -428,7 +430,9 @@
             return;
           }
           if (current) { map.removeLayer(current); current = null; }
-          var color = kind === 'missing' ? '#dc2626' : '#2563eb';
+          var color = kind === 'missing' ? '#dc2626'
+                    : kind === 'matched' ? '#059669'
+                    : '#2563eb';
           var latlngs = lines.map(function (line) {
             return line.map(function (p) { return [p[1], p[0]]; });
           });
@@ -447,7 +451,7 @@
         row.classList.add('selected');
       }
 
-      ['missing-table', 'missing-major-table', 'missing-private-table', 'missing-ln-table', 'extra-table'].forEach(function (id) {
+      ['missing-table', 'missing-major-table', 'missing-private-table', 'missing-ln-table', 'extra-table', 'matched-table'].forEach(function (id) {
         var t = document.getElementById(id);
         if (!t) return;
         t.addEventListener('click', function (ev) {
