@@ -148,12 +148,6 @@
     .legend .swatch.extra { background: #2563eb; }
     .legend .right { margin-left: auto; }
 
-    .funbar { font-size: .85em; color: #6b7280;
-              padding: .5rem .8rem; border-top: 1px solid #e5e7eb;
-              flex: none; display: flex; align-items: center;
-              gap: .8rem; flex-wrap: wrap; }
-    .funbar-label { font-weight: 600; }
-
     @media (max-width: 900px) {
       body { overflow: auto; }
       .app { grid-template-columns: 1fr; }
@@ -171,7 +165,7 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-06-04T16:50:45.465603+00:00 ·
+        Computed 2026-06-04T16:54:51.859235+00:00 ·
         TCL <code>centreline-2026-06-03.geojson</code> ·
         OSM extract 2026-06-04T00:30:37.936336+00:00 ·
         TCL streets <strong>13327</strong> ·
@@ -181,6 +175,8 @@
     <span class="header-right">
       <button type="button" class="menu-toggle" id="rules-toggle"
               aria-haspopup="dialog" aria-expanded="false">Filter rules</button>
+      <button type="button" class="menu-toggle" id="fun-toggle"
+              aria-haspopup="dialog" aria-expanded="false">Fun links</button>
       <a href="https://github.com/skfd/toronto-streets-osm">GitHub</a>
     </span>
   </header>
@@ -225,6 +221,24 @@
         <p class="muted">TCL is published under the <a href="https://open.toronto.ca/open-data-licence/">Open Government Licence &ndash; Toronto</a>, which the OSMF Licensing Working Group approved as <strong>ODbL-compatible</strong> for OpenStreetMap (<a href="https://osmfoundation.org/wiki/OGL_Canada_and_local_variants">LWG minutes 2024-04-08</a>). TCL data may be used as a source for OSM edits, with attribution. This report is read-only and never edits OSM.</p>
 
         <p class="note">Filter rules above are auto-generated from <code>src/config.py</code> at report render time. Update the frozensets in <code>config.py</code> and this popup will follow on the next <code>python run.py compare</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="fun-modal" role="dialog" aria-modal="true"
+       aria-labelledby="fun-modal-title" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="fun-modal-title">Fun links</h2>
+        <button type="button" class="modal-close" id="fun-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li><a href="https://www.kleinosky.com/domains/svlanes/index.php"
+                 target="_blank" rel="noopener">SV Lanes</a></li>
+          <li><a href="https://www.toronto.com/news/humber-college-launches-50th-anniversary-garden/article_8f7b24e3-48e6-57d5-bcb2-5b0ae590af03.html"
+                 target="_blank" rel="noopener">Humber Garden</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -114613,13 +114627,6 @@
           <span id="map-status"></span>
         </span>
       </div>
-      <div class="funbar">
-        <span class="funbar-label">Fun links:</span>
-        <a href="https://www.kleinosky.com/domains/svlanes/index.php"
-           target="_blank" rel="noopener">SV Lanes</a>
-        <a href="https://www.toronto.com/news/humber-college-launches-50th-anniversary-garden/article_8f7b24e3-48e6-57d5-bcb2-5b0ae590af03.html"
-           target="_blank" rel="noopener">Humber Garden</a>
-      </div>
     </main>
   </div>
 
@@ -114721,6 +114728,27 @@
         });
         document.addEventListener('keydown', function (ev) {
           if (ev.key === 'Escape' && rulesModal.classList.contains('open')) setRulesOpen(false);
+        });
+      }
+
+      var funToggle = document.getElementById('fun-toggle');
+      var funModal = document.getElementById('fun-modal');
+      var funClose = document.getElementById('fun-close');
+      function setFunOpen(open) {
+        if (!funModal) return;
+        funModal.classList.toggle('open', open);
+        if (open) { funModal.removeAttribute('hidden'); }
+        else { funModal.setAttribute('hidden', ''); }
+        if (funToggle) funToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      if (funToggle && funModal) {
+        funToggle.addEventListener('click', function () { setFunOpen(true); });
+        if (funClose) funClose.addEventListener('click', function () { setFunOpen(false); });
+        funModal.addEventListener('click', function (ev) {
+          if (ev.target === funModal) setFunOpen(false);
+        });
+        document.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Escape' && funModal.classList.contains('open')) setFunOpen(false);
         });
       }
 
