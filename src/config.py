@@ -50,9 +50,8 @@ TORONTO_BBOX = (43.58, -79.64, 43.86, -79.11)
 # obvious drivable classes we also keep pedestrian/footway/track (a TCL
 # street can show up under any of these in OSM) and construction/proposed
 # (in-progress roads). Excludes ramps (*_link, by request), rec trails
-# (cycleway, path), unclassified (by request), and inherently-undrivable
-# types (steps, busway, bus_stop, bridleway, corridor, platform). name=*
-# still required.
+# (cycleway, path), and inherently-undrivable types (steps, busway, bus_stop,
+# bridleway, corridor, platform). name=* still required.
 #
 # Source of truth for the "Filter rules" popup in the rendered report --
 # templates/streets.html reads this set via the `rules` context. Edit here
@@ -63,6 +62,17 @@ OSM_HIGHWAY_TYPES = frozenset({
     "living_street", "pedestrian", "footway", "track",
     "construction", "proposed",
 })
+
+# Salvage-only highway types: kept in the extract so they can confirm a TCL
+# match (rescuing a street from "Missing"), but never surface on their own as
+# "Extra". OSM commonly tags ordinary municipal roads `unclassified`; we want
+# those to vouch for a TCL street without flooding the OSM-only bucket. See
+# the salvage handling in src/compare.py::_osm_streets.
+OSM_SALVAGE_HIGHWAY_TYPES = frozenset({"unclassified"})
+
+# What the PBF filter actually keeps: the Extra-eligible types plus the
+# salvage-only types. osm_refresh.py uses this union.
+OSM_EXTRACT_HIGHWAY_TYPES = OSM_HIGHWAY_TYPES | OSM_SALVAGE_HIGHWAY_TYPES
 
 # TCL FEATURE_CODE_DESC values kept on the TCL side of the comparison.
 # Drivable public roads + Laneway + expressway/major-arterial ramps. Excludes

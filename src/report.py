@@ -16,6 +16,7 @@ def _rules_context() -> dict:
     """Snapshot of the filter rules used by the comparison, for the report popup."""
     return {
         "osm_highway_kept": sorted(config.OSM_HIGHWAY_TYPES),
+        "osm_salvage_only": sorted(config.OSM_SALVAGE_HIGHWAY_TYPES),
         "tcl_feature_codes_kept": sorted(config.TCL_FEATURE_CODES),
     }
 

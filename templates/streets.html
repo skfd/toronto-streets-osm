@@ -216,6 +216,7 @@
           {% for t in rules.osm_highway_kept %}<code>{{ t }}</code>{% endfor %}
         </div>
         <p class="muted">Liberal include: any tag where OSM could plausibly label a TCL drivable road. Excludes ramps (<code>*_link</code>), rec trails (<code>cycleway</code>), and inherently-undrivable types (<code>steps</code>, <code>busway</code>, <code>bus_stop</code>, <code>bridleway</code>, <code>corridor</code>, <code>platform</code>).</p>
+        <p class="muted">Salvage-only (matched, never Extra): {% for t in rules.osm_salvage_only %}<code>{{ t }}</code>{% endfor %} &mdash; these confirm a TCL match but, when no TCL street shares the name, are dropped rather than shown as OSM-only.</p>
 
         <h3>TCL side</h3>
         <p>A TCL feature is kept if <code>FEATURE_CODE_DESC</code> is one of:</p>

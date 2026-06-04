@@ -139,7 +139,7 @@ def _filter(pbf_path: Path, bbox: tuple[float, float, float, float]) -> tuple[li
         "outside_bbox": 0, "outside_city": 0,
         "no_name": 0, "wrong_type": 0,
     }
-    keep_types = config.OSM_HIGHWAY_TYPES
+    keep_types = config.OSM_EXTRACT_HIGHWAY_TYPES
 
     class Handler(osmium.SimpleHandler):
         def way(self, w):

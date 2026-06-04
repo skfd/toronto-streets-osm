@@ -132,6 +132,8 @@ def _osm_streets(tcl_norms: set[str]) -> dict[str, dict]:
     raws: dict[str, str] = {}
     highways: dict[str, str] = {}
     via: dict[str, str] = {}
+    non_salvage: set[str] = set()
+    salvage_types = config.OSM_SALVAGE_HIGHWAY_TYPES
     for el in elements:
         if el.get("type") != "way":
             continue
@@ -146,17 +148,25 @@ def _osm_streets(tcl_norms: set[str]) -> dict[str, dict]:
             via[norm] = "name"
         else:
             via.setdefault(norm, "alt_name")
-        if tags.get("highway"):
-            highways.setdefault(norm, tags["highway"])
-    return {
-        norm: {
+        hw = tags.get("highway")
+        if hw:
+            highways.setdefault(norm, hw)
+            if hw not in salvage_types:
+                non_salvage.add(norm)
+    out: dict[str, dict] = {}
+    for norm, n in counts.items():
+        # Salvage-only names (every contributing way is a salvage highway type,
+        # e.g. unclassified) can confirm a TCL match but never stand alone as
+        # Extra -- drop them when no TCL street shares the name.
+        if norm not in non_salvage and norm not in tcl_norms:
+            continue
+        out[norm] = {
             "raw": raws[norm],
             "count": n,
             "highway": highways.get(norm),
             "via": via.get(norm, "name"),
         }
-        for norm, n in counts.items()
-    }
+    return out
 
 
 def compute() -> dict:
