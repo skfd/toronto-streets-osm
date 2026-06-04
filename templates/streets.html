@@ -94,9 +94,11 @@
     nav.tabs { position: sticky; top: 0; z-index: 2;
                height: var(--tabs-h); box-sizing: border-box;
                background: #fff; border-bottom: 1px solid #e5e7eb;
-               padding: 0 .6rem; display: flex; align-items: center; gap: .25rem; }
+               padding: 0 .6rem; display: flex; align-items: center; gap: .25rem;
+               flex-wrap: nowrap; overflow-x: auto; }
     nav.tabs button { background: none; border: 1px solid transparent;
-                      padding: .35rem .8rem; font: inherit;
+                      padding: .35rem .65rem; font: inherit; font-size: .9rem;
+                      white-space: nowrap; flex: none;
                       color: #4b5563; cursor: pointer; border-radius: 4px; }
     nav.tabs button:hover { background: #f3f4f6; }
     nav.tabs button.active { background: #1f2937; color: #fff; }
