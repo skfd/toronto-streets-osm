@@ -100,6 +100,7 @@
                       color: #4b5563; cursor: pointer; border-radius: 4px; }
     nav.tabs button:hover { background: #f3f4f6; }
     nav.tabs button.active { background: #1f2937; color: #fff; }
+    nav.tabs button.lead { font-weight: 700; }
 
     nav.alpha-nav { position: sticky; top: var(--tabs-h); z-index: 2;
                     height: var(--alpha-h); box-sizing: border-box;
@@ -170,7 +171,7 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-06-04T16:25:41.396470+00:00 ·
+        Computed 2026-06-04T16:38:13.283332+00:00 ·
         TCL <code>centreline-2026-06-03.geojson</code> ·
         OSM extract 2026-06-04T00:30:37.936336+00:00 ·
         TCL streets <strong>13327</strong> ·
@@ -228,7 +229,10 @@
         <h3>Match key</h3>
         <p><code>normalize_street(name)</code> &mdash; e.g. "Yonge Street" and "Yonge St" both become <code>YONGE ST</code>.</p>
 
-        <p class="note">Auto-generated from <code>src/config.py</code> at report render time. Update the frozensets in <code>config.py</code> and this popup will follow on the next <code>python run.py compare</code>.</p>
+        <h3>Licensing</h3>
+        <p class="muted">TCL is published under the <a href="https://open.toronto.ca/open-data-licence/">Open Government Licence &ndash; Toronto</a>, which the OSMF Licensing Working Group approved as <strong>ODbL-compatible</strong> for OpenStreetMap (<a href="https://osmfoundation.org/wiki/OGL_Canada_and_local_variants">LWG minutes 2024-04-08</a>). TCL data may be used as a source for OSM edits, with attribution. This report is read-only and never edits OSM.</p>
+
+        <p class="note">Filter rules above are auto-generated from <code>src/config.py</code> at report render time. Update the frozensets in <code>config.py</code> and this popup will follow on the next <code>python run.py compare</code>.</p>
       </div>
     </div>
   </div>
@@ -236,12 +240,12 @@
   <div class="app">
     <aside class="list-pane">
       <nav class="tabs">
-        <button class="active" data-tab="missing">Missing (42)</button>
-        <button data-tab="missing-major">Missing Major (52)</button>
+        <button class="active lead" data-tab="missing">Local streets (42)</button>
+        <button class="lead" data-tab="extra">Extra in OSM (594)</button>
+        <button class="lead" data-tab="missing-private">Private (207)</button>
+        <button data-tab="missing-major">Major arterials (52)</button>
+        <button data-tab="missing-ln">Laneways (2255)</button>
         <button data-tab="missing-ramp">Ramps (530)</button>
-        <button data-tab="missing-private">Private (207)</button>
-        <button data-tab="missing-ln">Missing Ln (2255)</button>
-        <button data-tab="extra">Extra (594)</button>
         <button data-tab="matched">Matched (10241)</button>
       </nav>
 

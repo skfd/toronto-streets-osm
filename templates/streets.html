@@ -100,6 +100,7 @@
                       color: #4b5563; cursor: pointer; border-radius: 4px; }
     nav.tabs button:hover { background: #f3f4f6; }
     nav.tabs button.active { background: #1f2937; color: #fff; }
+    nav.tabs button.lead { font-weight: 700; }
 
     nav.alpha-nav { position: sticky; top: var(--tabs-h); z-index: 2;
                     height: var(--alpha-h); box-sizing: border-box;
@@ -228,7 +229,10 @@
         <h3>Match key</h3>
         <p><code>normalize_street(name)</code> &mdash; e.g. "Yonge Street" and "Yonge St" both become <code>YONGE ST</code>.</p>
 
-        <p class="note">Auto-generated from <code>src/config.py</code> at report render time. Update the frozensets in <code>config.py</code> and this popup will follow on the next <code>python run.py compare</code>.</p>
+        <h3>Licensing</h3>
+        <p class="muted">TCL is published under the <a href="https://open.toronto.ca/open-data-licence/">Open Government Licence &ndash; Toronto</a>, which the OSMF Licensing Working Group approved as <strong>ODbL-compatible</strong> for OpenStreetMap (<a href="https://osmfoundation.org/wiki/OGL_Canada_and_local_variants">LWG minutes 2024-04-08</a>). TCL data may be used as a source for OSM edits, with attribution. This report is read-only and never edits OSM.</p>
+
+        <p class="note">Filter rules above are auto-generated from <code>src/config.py</code> at report render time. Update the frozensets in <code>config.py</code> and this popup will follow on the next <code>python run.py compare</code>.</p>
       </div>
     </div>
   </div>
@@ -236,12 +240,12 @@
   <div class="app">
     <aside class="list-pane">
       <nav class="tabs">
-        <button class="active" data-tab="missing">Missing ({{ data.totals.missing }})</button>
-        <button data-tab="missing-major">Missing Major ({{ data.totals.missing_major }})</button>
+        <button class="active lead" data-tab="missing">Local streets ({{ data.totals.missing }})</button>
+        <button class="lead" data-tab="extra">Extra in OSM ({{ data.totals.extra }})</button>
+        <button class="lead" data-tab="missing-private">Private ({{ data.totals.missing_private }})</button>
+        <button data-tab="missing-major">Major arterials ({{ data.totals.missing_major }})</button>
+        <button data-tab="missing-ln">Laneways ({{ data.totals.missing_ln }})</button>
         <button data-tab="missing-ramp">Ramps ({{ data.totals.missing_ramp }})</button>
-        <button data-tab="missing-private">Private ({{ data.totals.missing_private }})</button>
-        <button data-tab="missing-ln">Missing Ln ({{ data.totals.missing_ln }})</button>
-        <button data-tab="extra">Extra ({{ data.totals.extra }})</button>
         <button data-tab="matched">Matched ({{ data.totals.matched }})</button>
       </nav>
 
