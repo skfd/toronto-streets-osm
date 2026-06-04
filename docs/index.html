@@ -170,11 +170,11 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-06-04T16:12:39.857669+00:00 ·
+        Computed 2026-06-04T16:25:41.396470+00:00 ·
         TCL <code>centreline-2026-06-03.geojson</code> ·
         OSM extract 2026-06-04T00:30:37.936336+00:00 ·
         TCL streets <strong>13327</strong> ·
-        OSM streets <strong>10833</strong>
+        OSM streets <strong>10835</strong>
       </p>
     </div>
     <span class="header-right">
@@ -216,7 +216,7 @@
           <code>construction</code><code>footway</code><code>living_street</code><code>motorway</code><code>pedestrian</code><code>primary</code><code>proposed</code><code>residential</code><code>secondary</code><code>service</code><code>tertiary</code><code>track</code><code>trunk</code>
         </div>
         <p class="muted">Liberal include: any tag where OSM could plausibly label a TCL drivable road. Excludes ramps (<code>*_link</code>), rec trails (<code>cycleway</code>), and inherently-undrivable types (<code>steps</code>, <code>busway</code>, <code>bus_stop</code>, <code>bridleway</code>, <code>corridor</code>, <code>platform</code>).</p>
-        <p class="muted">Salvage-only (matched, never Extra): <code>unclassified</code> &mdash; these confirm a TCL match but, when no TCL street shares the name, are dropped rather than shown as OSM-only.</p>
+        <p class="muted">Salvage-only (matched, never Extra): <code>path</code><code>unclassified</code> &mdash; these confirm a TCL match but, when no TCL street shares the name, are dropped rather than shown as OSM-only.</p>
 
         <h3>TCL side</h3>
         <p>A TCL feature is kept if <code>FEATURE_CODE_DESC</code> is one of:</p>
@@ -236,13 +236,13 @@
   <div class="app">
     <aside class="list-pane">
       <nav class="tabs">
-        <button class="active" data-tab="missing">Missing (44)</button>
+        <button class="active" data-tab="missing">Missing (42)</button>
         <button data-tab="missing-major">Missing Major (52)</button>
         <button data-tab="missing-ramp">Ramps (530)</button>
         <button data-tab="missing-private">Private (207)</button>
         <button data-tab="missing-ln">Missing Ln (2255)</button>
         <button data-tab="extra">Extra (594)</button>
-        <button data-tab="matched">Matched (10239)</button>
+        <button data-tab="matched">Matched (10241)</button>
       </nav>
 
       <section id="tab-missing" class="pane-section active">
@@ -255,12 +255,6 @@
         <table id="missing-table">
           <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
           <tbody>
-            
-            <tr class="selectable" data-norm="BATHFORD LN" data-kind="missing" data-letter="B">
-              <td>Bathford Lane <span class="muted">· <code>BATHFORD LN</code></span></td>
-              <td class="muted">Laneway</td>
-              <td class="num">1</td>
-            </tr>
             
             <tr class="selectable" data-norm="BELSHAW PL" data-kind="missing" data-letter="B">
               <td>Belshaw Pl <span class="muted">· <code>BELSHAW PL</code></span></td>
@@ -386,12 +380,6 @@
               <td>Keelesdale Dr <span class="muted">· <code>KEELESDALE DR</code></span> <span class="pill pending">Pending</span></td>
               <td class="muted">Pending</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="LAWRENCE WALKWAY" data-kind="missing" data-letter="L">
-              <td>Lawrence Walkway <span class="muted">· <code>LAWRENCE WALKWAY</code></span></td>
-              <td class="muted">Other</td>
-              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="MUNSHAW LN" data-kind="missing" data-letter="M">
@@ -19064,8 +19052,8 @@
             
             <tr class="selectable" data-norm="ALLEN PTWY" data-kind="extra" data-letter="A">
               <td>Allen Pathway <span class="muted">· <code>ALLEN PTWY</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td><code>path</code></td>
+              <td class="num">8</td>
             </tr>
             
             <tr class="selectable" data-norm="ALLEN RD" data-kind="extra" data-letter="A">
@@ -19280,8 +19268,8 @@
             
             <tr class="selectable" data-norm="BEAVER FLATS" data-kind="extra" data-letter="B">
               <td>Beaver Flats <span class="muted">· <code>BEAVER FLATS</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="BEECH FOREST DR" data-kind="extra" data-letter="B">
@@ -19353,19 +19341,19 @@
             <tr class="selectable" data-norm="BOND PK TRL" data-kind="extra" data-letter="B">
               <td>Bond Park Trail <span class="muted">· <code>BOND PK TRL</code></span></td>
               <td><code>service</code></td>
-              <td class="num">3</td>
+              <td class="num">4</td>
             </tr>
             
             <tr class="selectable" data-norm="BOO TRL" data-kind="extra" data-letter="B">
               <td>Boo Trail <span class="muted">· <code>BOO TRL</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">2</td>
+              <td><code>path</code></td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="BOOMERANG TRL" data-kind="extra" data-letter="B">
               <td>Boomerang Trail <span class="muted">· <code>BOOMERANG TRL</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">4</td>
             </tr>
             
             <tr class="selectable" data-norm="BRANT PL" data-kind="extra" data-letter="B">
@@ -19395,7 +19383,7 @@
             <tr class="selectable" data-norm="BRICKWORKS VISTA" data-kind="extra" data-letter="B">
               <td>Brickworks Vista <span class="muted">· <code>BRICKWORKS VISTA</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="BDGE 7" data-kind="extra" data-letter="B">
@@ -19424,8 +19412,8 @@
             
             <tr class="selectable" data-norm="BUNNY RUN" data-kind="extra" data-letter="B">
               <td>Bunny Run <span class="muted">· <code>BUNNY RUN</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="BURNHAMTHORPE GTE" data-kind="extra" data-letter="B">
@@ -19496,8 +19484,8 @@
             
             <tr class="selectable" data-norm="CATALYST" data-kind="extra" data-letter="C">
               <td>Catalyst <span class="muted">· <code>CATALYST</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">4</td>
             </tr>
             
             <tr class="selectable" data-norm="CEDAR TRL" data-kind="extra" data-letter="C">
@@ -19653,13 +19641,13 @@
             <tr class="selectable" data-norm="CORMORANT COVE TRL" data-kind="extra" data-letter="C">
               <td>Cormorant Cove Trail <span class="muted">· <code>CORMORANT COVE TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="COTTONWOOD FLATS ACCESS TRL" data-kind="extra" data-letter="C">
               <td>Cottonwood Flats Access Trail <span class="muted">· <code>COTTONWOOD FLATS ACCESS TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td><code>path</code></td>
+              <td class="num">4</td>
             </tr>
             
             <tr class="selectable" data-norm="COURTYARD LN" data-kind="extra" data-letter="C">
@@ -19694,8 +19682,8 @@
             
             <tr class="selectable" data-norm="CROTHERS WDS TRL" data-kind="extra" data-letter="C">
               <td>Crothers Woods Trail <span class="muted">· <code>CROTHERS WDS TRL</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="CUMBERLAND TER GROUND FLOOR" data-kind="extra" data-letter="C">
@@ -19869,7 +19857,7 @@
             <tr class="selectable" data-norm="EARLS UPPER FLATS TRL" data-kind="extra" data-letter="E">
               <td>Earl&#39;s Upper Flats Trail <span class="muted">· <code>EARLS UPPER FLATS TRL</code></span></td>
               <td><code>service</code></td>
-              <td class="num">1</td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="EARLSCOURT LOOP" data-kind="extra" data-letter="E">
@@ -19893,7 +19881,7 @@
             <tr class="selectable" data-norm="EASTVIEW PATH" data-kind="extra" data-letter="E">
               <td>Eastview Path <span class="muted">· <code>EASTVIEW PATH</code></span></td>
               <td><code>service</code></td>
-              <td class="num">2</td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="EATON CENTRE LEVEL 1" data-kind="extra" data-letter="E">
@@ -20018,8 +20006,8 @@
             
             <tr class="selectable" data-norm="FINCH CORRIDOR RECREATIONAL TRL" data-kind="extra" data-letter="F">
               <td>Finch Corridor Recreational Trail <span class="muted">· <code>FINCH CORRIDOR RECREATIONAL TRL</code></span></td>
-              <td><code>service</code></td>
-              <td class="num">6</td>
+              <td><code>path</code></td>
+              <td class="num">10</td>
             </tr>
             
             <tr class="selectable" data-norm="FINCH MEANDER TRL" data-kind="extra" data-letter="F">
@@ -20174,8 +20162,8 @@
             
             <tr class="selectable" data-norm="GLENWOOD CLIMB" data-kind="extra" data-letter="G">
               <td>Glenwood Climb <span class="muted">· <code>GLENWOOD CLIMB</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="GO TRANSIT PATH TO PARKING OVERFLOW" data-kind="extra" data-letter="G">
@@ -20228,8 +20216,8 @@
             
             <tr class="selectable" data-norm="GRN LINE" data-kind="extra" data-letter="G">
               <td>Green Line <span class="muted">· <code>GRN LINE</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">3</td>
+              <td><code>path</code></td>
+              <td class="num">12</td>
             </tr>
             
             <tr class="selectable" data-norm="GREENWOOD BUS LOOP" data-kind="extra" data-letter="G">
@@ -20247,13 +20235,13 @@
             <tr class="selectable" data-norm="GULL POND TRL" data-kind="extra" data-letter="G">
               <td>Gull Pond Trail <span class="muted">· <code>GULL POND TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">4</td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="HAMMEL ST" data-kind="extra" data-letter="H">
               <td>Hammel Street <span class="muted">· <code>HAMMEL ST</code></span></td>
               <td><code>service</code></td>
-              <td class="num">1</td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="HARBOUR SQ TUNNEL" data-kind="extra" data-letter="H">
@@ -20300,8 +20288,8 @@
             
             <tr class="selectable" data-norm="HIGH PK RAVINE TRL" data-kind="extra" data-letter="H">
               <td>High Park Ravine Trail <span class="muted">· <code>HIGH PK RAVINE TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="HIGHLAND CREEK TRL" data-kind="extra" data-letter="H">
@@ -20738,8 +20726,8 @@
             
             <tr class="selectable" data-norm="MCCOWAN DISTRICT PK TRL" data-kind="extra" data-letter="M">
               <td>McCowan District Park Trail <span class="muted">· <code>MCCOWAN DISTRICT PK TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="MCDONALDS DRIVE-THRU" data-kind="extra" data-letter="M">
@@ -20762,8 +20750,8 @@
             
             <tr class="selectable" data-norm="MERRILL BDGE PK TRL" data-kind="extra" data-letter="M">
               <td>Merrill Bridge Park Trail <span class="muted">· <code>MERRILL BDGE PK TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="MEZZANINE LEVEL" data-kind="extra" data-letter="M">
@@ -20793,7 +20781,7 @@
             <tr class="selectable" data-norm="MIMICO CREEK TRL" data-kind="extra" data-letter="M">
               <td>Mimico creek trail <span class="muted">· <code>MIMICO CREEK TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="MONARCH PK CROSSING" data-kind="extra" data-letter="M">
@@ -20816,8 +20804,8 @@
             
             <tr class="selectable" data-norm="NATURE TRL" data-kind="extra" data-letter="N">
               <td>Nature Trail <span class="muted">· <code>NATURE TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="NELSON MANDELA WALK" data-kind="extra" data-letter="N">
@@ -21026,8 +21014,8 @@
             
             <tr class="selectable" data-norm="PARTY ATMOSPHERE" data-kind="extra" data-letter="P">
               <td>Party Atmosphere <span class="muted">· <code>PARTY ATMOSPHERE</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="PASSENGER PICK-UP/DROP-OFF" data-kind="extra" data-letter="P">
@@ -21255,7 +21243,7 @@
             <tr class="selectable" data-norm="RENNIE PK TRL" data-kind="extra" data-letter="R">
               <td>Rennie Park Trail <span class="muted">· <code>RENNIE PK TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="RESIDENCE RD" data-kind="extra" data-letter="R">
@@ -21267,7 +21255,7 @@
             <tr class="selectable" data-norm="REXLEIGH GRAVEL CLIMB" data-kind="extra" data-letter="R">
               <td>Rexleigh Gravel Climb <span class="muted">· <code>REXLEIGH GRAVEL CLIMB</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="RICHMOND ADELAIDE CENTRE COURTYARD" data-kind="extra" data-letter="R">
@@ -21314,8 +21302,8 @@
             
             <tr class="selectable" data-norm="RIVERDALE TRL" data-kind="extra" data-letter="R">
               <td>Riverdale Trail <span class="muted">· <code>RIVERDALE TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">7</td>
+              <td><code>path</code></td>
+              <td class="num">11</td>
             </tr>
             
             <tr class="selectable" data-norm="RIVERSIDE COMMON PK" data-kind="extra" data-letter="R">
@@ -21380,8 +21368,8 @@
             
             <tr class="selectable" data-norm="SCIENCE CENTRE CONNECTOR" data-kind="extra" data-letter="S">
               <td>Science Centre Connector <span class="muted">· <code>SCIENCE CENTRE CONNECTOR</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">2</td>
+              <td><code>path</code></td>
+              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="SCOTIABANK ARENA LOADING DOCK ENTRANCE" data-kind="extra" data-letter="S">
@@ -21471,7 +21459,7 @@
             <tr class="selectable" data-norm="SHERWOOD PK TRL" data-kind="extra" data-letter="S">
               <td>Sherwood Park Trail <span class="muted">· <code>SHERWOOD PK TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">4</td>
+              <td class="num">8</td>
             </tr>
             
             <tr class="selectable" data-norm="SHIPPING &amp; RECEIVING ACCESS" data-kind="extra" data-letter="S">
@@ -21536,8 +21524,8 @@
             
             <tr class="selectable" data-norm="SMALLS CREEK LOOP" data-kind="extra" data-letter="S">
               <td>Small&#39;s Creek Loop <span class="muted">· <code>SMALLS CREEK LOOP</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="SMALLS CREEK TRL" data-kind="extra" data-letter="S">
@@ -21603,7 +21591,7 @@
             <tr class="selectable" data-norm="SPIT SINGLETRACK" data-kind="extra" data-letter="S">
               <td>Spit Singletrack <span class="muted">· <code>SPIT SINGLETRACK</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">5</td>
+              <td class="num">9</td>
             </tr>
             
             <tr class="selectable" data-norm="ST ANDREW STATION CONCOURSE" data-kind="extra" data-letter="S">
@@ -21638,8 +21626,8 @@
             
             <tr class="selectable" data-norm="STEELES RECREATIONAL TRL" data-kind="extra" data-letter="S">
               <td>Steeles Recreational Trail <span class="muted">· <code>STEELES RECREATIONAL TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">4</td>
             </tr>
             
             <tr class="selectable" data-norm="SUBWAY LEVEL" data-kind="extra" data-letter="S">
@@ -21674,14 +21662,14 @@
             
             <tr class="selectable" data-norm="TAYLOR CREEK HYDRO CORRIDOR (EAST SECTION) TRL" data-kind="extra" data-letter="T">
               <td>Taylor Creek Hydro Corridor (East Section) Trail <span class="muted">· <code>TAYLOR CREEK HYDRO CORRIDOR (EAST SECTION) TRL</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="TAYLOR CREEK HYDRO CORRIDOR CONNECTOR" data-kind="extra" data-letter="T">
               <td>Taylor Creek Hydro Corridor Connector <span class="muted">· <code>TAYLOR CREEK HYDRO CORRIDOR CONNECTOR</code></span></td>
-              <td><code>service</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="TAYLOR-MASSEY CREEK PATH" data-kind="extra" data-letter="T">
@@ -21716,8 +21704,8 @@
             
             <tr class="selectable" data-norm="THE BOARDWALK" data-kind="extra" data-letter="T">
               <td>The Boardwalk <span class="muted">· <code>THE BOARDWALK</code></span></td>
-              <td><code>footway</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">4</td>
             </tr>
             
             <tr class="selectable" data-norm="THE BRICKWORKS TRL" data-kind="extra" data-letter="T">
@@ -21740,8 +21728,8 @@
             
             <tr class="selectable" data-norm="THE FLATS" data-kind="extra" data-letter="T">
               <td>The Flats <span class="muted">· <code>THE FLATS</code></span></td>
-              <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">6</td>
             </tr>
             
             <tr class="selectable" data-norm="THE HILL / LOOKOUT TRL" data-kind="extra" data-letter="T">
@@ -21765,7 +21753,7 @@
             <tr class="selectable" data-norm="THE ROCKETS" data-kind="extra" data-letter="T">
               <td>The Rockets <span class="muted">· <code>THE ROCKETS</code></span></td>
               <td><code>construction</code></td>
-              <td class="num">1</td>
+              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="THE SOUSTER STEPS" data-kind="extra" data-letter="T">
@@ -22100,8 +22088,8 @@
             
             <tr class="selectable" data-norm="WARDS ISLAND TRL" data-kind="extra" data-letter="W">
               <td>Ward&#39;s Island Trail <span class="muted">· <code>WARDS ISLAND TRL</code></span></td>
-              <td><code>service</code></td>
-              <td class="num">1</td>
+              <td><code>path</code></td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="WARDEN WDS RD" data-kind="extra" data-letter="W">
@@ -22131,7 +22119,7 @@
             <tr class="selectable" data-norm="WATERFRONT TRL" data-kind="extra" data-letter="W">
               <td>Waterfront Trail <span class="muted">· <code>WATERFRONT TRL</code></span></td>
               <td><code>construction</code></td>
-              <td class="num">9</td>
+              <td class="num">14</td>
             </tr>
             
             <tr class="selectable" data-norm="WAYNE &amp; SHUSTER LN" data-kind="extra" data-letter="W">
@@ -22221,7 +22209,7 @@
             <tr class="selectable" data-norm="WILKET CREEK TRL" data-kind="extra" data-letter="W">
               <td>Wilket Creek Trail <span class="muted">· <code>WILKET CREEK TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="WILLCOCKS COMMON" data-kind="extra" data-letter="W">
@@ -22275,7 +22263,7 @@
             <tr class="selectable" data-norm="WINDERMERE TO ELLIS TRL" data-kind="extra" data-letter="W">
               <td>Windermere to Ellis Trail <span class="muted">· <code>WINDERMERE TO ELLIS TRL</code></span></td>
               <td><code>footway</code></td>
-              <td class="num">2</td>
+              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="WINFIELD SHORTCUT" data-kind="extra" data-letter="W">
@@ -28870,6 +28858,15 @@
               <td class="num">1</td>
             </tr>
             
+            <tr class="selectable" data-norm="BATHFORD LN" data-kind="matched" data-letter="B">
+              <td><code>BATHFORD LN</code></td>
+              <td>Bathford Lane</td>
+              <td>Bathford Lane</td>
+              <td><code>path</code></td>
+              <td class="num">1</td>
+              <td class="num">1</td>
+            </tr>
+            
             <tr class="selectable" data-norm="BATHGATE DR" data-kind="matched" data-letter="B">
               <td><code>BATHGATE DR</code></td>
               <td>Bathgate Dr</td>
@@ -29083,7 +29080,7 @@
               <td>Bayview Avenue</td>
               <td><code>secondary</code></td>
               <td class="num">151</td>
-              <td class="num">262</td>
+              <td class="num">263</td>
             </tr>
             
             <tr class="selectable" data-norm="BAYVIEW HTS DR" data-kind="matched" data-letter="B">
@@ -36787,7 +36784,7 @@
               <td>Campus Walk</td>
               <td><code>footway</code></td>
               <td class="num">2</td>
-              <td class="num">19</td>
+              <td class="num">20</td>
             </tr>
             
             <tr class="selectable" data-norm="CAMROSE CRES" data-kind="matched" data-letter="C">
@@ -40180,7 +40177,7 @@
               <td>Cibola Avenue</td>
               <td><code>service</code></td>
               <td class="num">1</td>
-              <td class="num">18</td>
+              <td class="num">22</td>
             </tr>
             
             <tr class="selectable" data-norm="CICADA CT" data-kind="matched" data-letter="C">
@@ -70807,7 +70804,7 @@
               <td>Lakeshore Avenue</td>
               <td><code>service</code></td>
               <td class="num">1</td>
-              <td class="num">35</td>
+              <td class="num">37</td>
             </tr>
             
             <tr class="selectable" data-norm="LAKESIDE AVE" data-kind="matched" data-letter="L">
@@ -71915,6 +71912,15 @@
               <td><code>unclassified</code></td>
               <td class="num">1</td>
               <td class="num">1</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="LAWRENCE WALKWAY" data-kind="matched" data-letter="L">
+              <td><code>LAWRENCE WALKWAY</code></td>
+              <td>Lawrence Walkway</td>
+              <td>Lawrence Walkway</td>
+              <td><code>path</code></td>
+              <td class="num">7</td>
+              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="LAWS ST" data-kind="matched" data-letter="L">
@@ -81562,7 +81568,7 @@
               <td>Murray Ross Parkway</td>
               <td><code>tertiary</code></td>
               <td class="num">14</td>
-              <td class="num">26</td>
+              <td class="num">27</td>
             </tr>
             
             <tr class="selectable" data-norm="MURRAY ST" data-kind="matched" data-letter="M">
@@ -98131,7 +98137,7 @@
               <td>Sherway Drive</td>
               <td><code>service</code></td>
               <td class="num">4</td>
-              <td class="num">4</td>
+              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="SHERWAY GDNS RD" data-kind="matched" data-letter="S">
@@ -98158,7 +98164,7 @@
               <td>Sherwood Avenue</td>
               <td><code>residential</code></td>
               <td class="num">12</td>
-              <td class="num">5</td>
+              <td class="num">6</td>
             </tr>
             
             <tr class="selectable" data-norm="SHERWOOD LN" data-kind="matched" data-letter="S">

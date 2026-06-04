@@ -65,10 +65,11 @@ OSM_HIGHWAY_TYPES = frozenset({
 
 # Salvage-only highway types: kept in the extract so they can confirm a TCL
 # match (rescuing a street from "Missing"), but never surface on their own as
-# "Extra". OSM commonly tags ordinary municipal roads `unclassified`; we want
-# those to vouch for a TCL street without flooding the OSM-only bucket. See
-# the salvage handling in src/compare.py::_osm_streets.
-OSM_SALVAGE_HIGHWAY_TYPES = frozenset({"unclassified"})
+# "Extra". OSM commonly tags ordinary municipal roads `unclassified` and maps
+# Toronto laneways/walkways as `path`; we want those to vouch for a TCL street
+# without flooding the OSM-only bucket (a `path` that matches no TCL street is
+# just a rec trail and is dropped). See src/compare.py::_osm_streets.
+OSM_SALVAGE_HIGHWAY_TYPES = frozenset({"unclassified", "path"})
 
 # What the PBF filter actually keeps: the Extra-eligible types plus the
 # salvage-only types. osm_refresh.py uses this union.
