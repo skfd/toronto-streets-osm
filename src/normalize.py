@@ -14,6 +14,7 @@ STREET_SUFFIXES = {
     "GARDENS": "GDNS", "GROVE": "GRV", "HEIGHTS": "HTS",
     "PATHWAY": "PTWY", "CIRCUIT": "CRCT", "BRIDGE": "BDGE", "LAWN": "LWN",
     "PARK": "PK", "ROADWAY": "RDWY", "CLOSE": "CS", "WOODS": "WDS",
+    "GREEN": "GRN",
 }
 DIRS = {"NORTH": "N", "SOUTH": "S", "EAST": "E", "WEST": "W"}
 
