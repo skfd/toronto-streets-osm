@@ -87,6 +87,8 @@ The task is named `TorontoStreetsOSM` and can also be managed via the Task Sched
 - **OpenStreetMap** — © OpenStreetMap contributors, [ODbL 1.0](https://www.openstreetmap.org/copyright).
 - **Geofabrik** — Ontario `.osm.pbf` extract, redistributed under ODbL.
 
+The Open Government Licence – Toronto is **ODbL-compatible for OpenStreetMap**: the OSMF Licensing Working Group reviewed and approved it (LWG minutes 2024-04-08, listed under [OGL Canada and local variants](https://osmfoundation.org/wiki/OGL_Canada_and_local_variants)). So TCL data may legally be used as a source for OSM edits, with attribution. (This repo never edits OSM — it is read-only data quality — but the clearance applies to anyone acting on these findings.)
+
 ## License
 
 MIT.
