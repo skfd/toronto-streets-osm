@@ -170,7 +170,7 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-06-04T00:30:39.628829+00:00 ·
+        Computed 2026-06-04T15:51:46.518362+00:00 ·
         TCL <code>centreline-2026-06-03.geojson</code> ·
         OSM extract 2026-06-04T00:30:37.936336+00:00 ·
         TCL streets <strong>13327</strong> ·
@@ -222,7 +222,7 @@
         <div class="rules-tags">
           <span class="tcl-tag">Collector</span><span class="tcl-tag">Expressway</span><span class="tcl-tag">Expressway Ramp</span><span class="tcl-tag">Laneway</span><span class="tcl-tag">Local</span><span class="tcl-tag">Major Arterial</span><span class="tcl-tag">Major Arterial Ramp</span><span class="tcl-tag">Minor Arterial</span><span class="tcl-tag">Other</span><span class="tcl-tag">Pending</span>
         </div>
-        <p class="muted">Excludes Trail, Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry. Expressway/Major Arterial ramps surface in <em>Missing Major</em> (OSM tags ramps with <code>ref</code>, not <code>name</code>, so they never match). <code>JURISDICTION=PRIVATE</code> features (apartment-complex driveways, mall internal roads) bucket into <em>Private</em>.</p>
+        <p class="muted">Excludes Trail, Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry. Expressway/Major Arterial ramps surface in <em>Ramps</em> (OSM tags ramps with <code>ref</code>, not <code>name</code>, so they never match). <code>JURISDICTION=PRIVATE</code> features (apartment-complex driveways, mall internal roads) bucket into <em>Private</em>.</p>
 
         <h3>Match key</h3>
         <p><code>normalize_street(name)</code> &mdash; e.g. "Yonge Street" and "Yonge St" both become <code>YONGE ST</code>.</p>
@@ -236,7 +236,8 @@
     <aside class="list-pane">
       <nav class="tabs">
         <button class="active" data-tab="missing">Missing (323)</button>
-        <button data-tab="missing-major">Missing Major (582)</button>
+        <button data-tab="missing-major">Missing Major (52)</button>
+        <button data-tab="missing-ramp">Ramps (530)</button>
         <button data-tab="missing-private">Private (227)</button>
         <button data-tab="missing-ln">Missing Ln (2255)</button>
         <button data-tab="extra">Extra (594)</button>
@@ -2208,6 +2209,334 @@
           <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
           <tbody>
             
+            <tr class="selectable" data-norm="401 C E 401 X E" data-kind="missing" data-letter="4">
+              <td>401 C E 401 X E <span class="muted">· <code>401 C E 401 X E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">17</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="401 C W 401 X W" data-kind="missing" data-letter="4">
+              <td>401 C W 401 X W <span class="muted">· <code>401 C W 401 X W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">11</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="401 C W 401 X W 409 W" data-kind="missing" data-letter="4">
+              <td>401 C W 401 X W 409 W <span class="muted">· <code>401 C W 401 X W 409 W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">1</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="401 C W 409 W" data-kind="missing" data-letter="4">
+              <td>401 C W 409 W <span class="muted">· <code>401 C W 409 W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">3</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="401 X E 401 C E" data-kind="missing" data-letter="4">
+              <td>401 X E 401 C E <span class="muted">· <code>401 X E 401 C E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">12</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="401 X W 401 C W" data-kind="missing" data-letter="4">
+              <td>401 X W 401 C W <span class="muted">· <code>401 X W 401 C W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">18</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="401 X W 409 W" data-kind="missing" data-letter="4">
+              <td>401 X W 409 W <span class="muted">· <code>401 X W 409 W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">7</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="409 E 401 C E" data-kind="missing" data-letter="4">
+              <td>409 E 401 C E <span class="muted">· <code>409 E 401 C E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">2</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="409 E 401 X E" data-kind="missing" data-letter="4">
+              <td>409 E 401 X E <span class="muted">· <code>409 E 401 X E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">2</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="427 C N 427 X N" data-kind="missing" data-letter="4">
+              <td>427 C N 427 X N <span class="muted">· <code>427 C N 427 X N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">3</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="427 C S 427 X S" data-kind="missing" data-letter="4">
+              <td>427 C S 427 X S <span class="muted">· <code>427 C S 427 X S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">2</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="427 X N 427 C N" data-kind="missing" data-letter="4">
+              <td>427 X N 427 C N <span class="muted">· <code>427 X N 427 C N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">3</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="427 X S 427 C S" data-kind="missing" data-letter="4">
+              <td>427 X S 427 C S <span class="muted">· <code>427 X S 427 C S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">5</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="CHARLES H HISCOTT BDGE" data-kind="missing" data-letter="C">
+              <td>Charles H Hiscott Bdge <span class="muted">· <code>CHARLES H HISCOTT BDGE</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">3</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="DON VALLEY PKWY N" data-kind="missing" data-letter="D">
+              <td>Don Valley Parkway N <span class="muted">· <code>DON VALLEY PKWY N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">52</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="DON VALLEY PKWY S" data-kind="missing" data-letter="D">
+              <td>Don Valley Parkway S <span class="muted">· <code>DON VALLEY PKWY S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">49</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="DVP 401" data-kind="missing" data-letter="D">
+              <td>Dvp 401 <span class="muted">· <code>DVP 401</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">1</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="EASTERN AVE DIVERSION" data-kind="missing" data-letter="E">
+              <td>Eastern Ave Diversion <span class="muted">· <code>EASTERN AVE DIVERSION</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">13</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="F G GARDINER C E" data-kind="missing" data-letter="F">
+              <td>F G Gardiner C E <span class="muted">· <code>F G GARDINER C E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">9</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="F G GARDINER C W" data-kind="missing" data-letter="F">
+              <td>F G Gardiner C W <span class="muted">· <code>F G GARDINER C W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">11</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="F G GARDINER XY E" data-kind="missing" data-letter="F">
+              <td>F G Gardiner Xy E <span class="muted">· <code>F G GARDINER XY E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">60</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="F G GARDINER XY W" data-kind="missing" data-letter="F">
+              <td>F G Gardiner Xy W <span class="muted">· <code>F G GARDINER XY W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">64</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="GARDINER E PK LWN RD RAMP" data-kind="missing" data-letter="G">
+              <td>Gardiner E Park Lawn Rd Ramp <span class="muted">· <code>GARDINER E PK LWN RD RAMP</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">5</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="GARDINER X W GARDINER C W" data-kind="missing" data-letter="G">
+              <td>Gardiner X W Gardiner C W <span class="muted">· <code>GARDINER X W GARDINER C W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">1</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 27 N" data-kind="missing" data-letter="H">
+              <td>Highway 27 N <span class="muted">· <code>HWY 27 N</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">31</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 27 S" data-kind="missing" data-letter="H">
+              <td>Highway 27 S <span class="muted">· <code>HWY 27 S</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">33</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 2A E" data-kind="missing" data-letter="H">
+              <td>Highway 2a E <span class="muted">· <code>HWY 2A E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">6</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 2A W" data-kind="missing" data-letter="H">
+              <td>Highway 2a W <span class="muted">· <code>HWY 2A W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">9</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 400 N" data-kind="missing" data-letter="H">
+              <td>Highway 400 N <span class="muted">· <code>HWY 400 N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">21</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 400 S" data-kind="missing" data-letter="H">
+              <td>Highway 400 S <span class="muted">· <code>HWY 400 S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">20</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 401 C E" data-kind="missing" data-letter="H">
+              <td>Highway 401 C E <span class="muted">· <code>HWY 401 C E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">132</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 401 C W" data-kind="missing" data-letter="H">
+              <td>Highway 401 C W <span class="muted">· <code>HWY 401 C W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">135</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 401 C W 401 X W" data-kind="missing" data-letter="H">
+              <td>Highway 401 C W 401 X W <span class="muted">· <code>HWY 401 C W 401 X W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">1</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 401 X E" data-kind="missing" data-letter="H">
+              <td>Highway 401 X E <span class="muted">· <code>HWY 401 X E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">108</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 401 X W" data-kind="missing" data-letter="H">
+              <td>Highway 401 X W <span class="muted">· <code>HWY 401 X W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">106</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 404 N" data-kind="missing" data-letter="H">
+              <td>Highway 404 N <span class="muted">· <code>HWY 404 N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">21</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 404 S" data-kind="missing" data-letter="H">
+              <td>Highway 404 S <span class="muted">· <code>HWY 404 S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">24</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 409 E" data-kind="missing" data-letter="H">
+              <td>Highway 409 E <span class="muted">· <code>HWY 409 E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">21</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 409 W" data-kind="missing" data-letter="H">
+              <td>Highway 409 W <span class="muted">· <code>HWY 409 W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">19</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 427 C N" data-kind="missing" data-letter="H">
+              <td>Highway 427 C N <span class="muted">· <code>HWY 427 C N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">21</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 427 C S" data-kind="missing" data-letter="H">
+              <td>Highway 427 C S <span class="muted">· <code>HWY 427 C S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">21</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 427 N" data-kind="missing" data-letter="H">
+              <td>Highway 427 N <span class="muted">· <code>HWY 427 N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">42</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 427 S" data-kind="missing" data-letter="H">
+              <td>Highway 427 S <span class="muted">· <code>HWY 427 S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">48</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 427 X N" data-kind="missing" data-letter="H">
+              <td>Highway 427 X N <span class="muted">· <code>HWY 427 X N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">11</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="HWY 427 X S" data-kind="missing" data-letter="H">
+              <td>Highway 427 X S <span class="muted">· <code>HWY 427 X S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">12</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="LAKESHORE RD E" data-kind="missing" data-letter="L">
+              <td>Lakeshore Rd E <span class="muted">· <code>LAKESHORE RD E</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">3</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="LEASIDE BDGE" data-kind="missing" data-letter="L">
+              <td>Leaside Bdge <span class="muted">· <code>LEASIDE BDGE</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">7</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="PRINCE EDWARD VIADUCT" data-kind="missing" data-letter="P">
+              <td>Prince Edward Viaduct <span class="muted">· <code>PRINCE EDWARD VIADUCT</code></span></td>
+              <td class="muted">Major Arterial</td>
+              <td class="num">10</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="QEW X E" data-kind="missing" data-letter="Q">
+              <td>Qew X E <span class="muted">· <code>QEW X E</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">10</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="QEW X W" data-kind="missing" data-letter="Q">
+              <td>Qew X W <span class="muted">· <code>QEW X W</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">9</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="WILLIAM R ALLEN RD N" data-kind="missing" data-letter="W">
+              <td>William R Allen Rd N <span class="muted">· <code>WILLIAM R ALLEN RD N</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">27</td>
+            </tr>
+            
+            <tr class="selectable" data-norm="WILLIAM R ALLEN RD S" data-kind="missing" data-letter="W">
+              <td>William R Allen Rd S <span class="muted">· <code>WILLIAM R ALLEN RD S</code></span></td>
+              <td class="muted">Expressway</td>
+              <td class="num">28</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        
+      </section>
+
+      <section id="tab-missing-ramp" class="pane-section">
+        <h2>Missing in OSM &middot; expressway &amp; arterial ramps</h2>
+        <p class="muted">TCL has it as a ramp. OSM tags ramps with <code>ref</code>, not <code>name</code>, so they don't match by name. Click a row to view it on the map.</p>
+        
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button><button type="button" data-letter="A">A</button><button type="button" data-letter="B">B</button><button type="button" data-letter="C">C</button><button type="button" data-letter="D">D</button><button type="button" data-letter="E">E</button><button type="button" data-letter="F">F</button><button type="button" data-letter="G">G</button><button type="button" data-letter="H">H</button><button type="button" data-letter="I">I</button><button type="button" data-letter="J">J</button><button type="button" data-letter="K">K</button><button type="button" data-letter="L">L</button><button type="button" data-letter="M">M</button><button type="button" data-letter="N">N</button><button type="button" data-letter="O">O</button><button type="button" data-letter="P">P</button><button type="button" data-letter="Q">Q</button><button type="button" data-letter="R">R</button><button type="button" data-letter="S">S</button><button type="button" data-letter="T">T</button><button type="button" data-letter="U">U</button><button type="button" data-letter="V">V</button><button type="button" data-letter="W">W</button><button type="button" data-letter="X">X</button><button type="button" data-letter="Y">Y</button><button type="button" data-letter="Z">Z</button>
+        </nav>
+        <table id="missing-ramp-table">
+          <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
+          <tbody>
+            
             <tr class="selectable" data-norm="27 401 427 EGLINTON E RAMP" data-kind="missing" data-letter="2">
               <td>27 401 427 Eglinton E Ramp <span class="muted">· <code>27 401 427 EGLINTON E RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -2416,12 +2745,6 @@
               <td>401 C E 400 S Ramp <span class="muted">· <code>401 C E 400 S RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="401 C E 401 X E" data-kind="missing" data-letter="4">
-              <td>401 C E 401 X E <span class="muted">· <code>401 C E 401 X E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">17</td>
             </tr>
             
             <tr class="selectable" data-norm="401 C E 404 RAMP" data-kind="missing" data-letter="4">
@@ -2664,28 +2987,10 @@
               <td class="num">7</td>
             </tr>
             
-            <tr class="selectable" data-norm="401 C W 401 X W" data-kind="missing" data-letter="4">
-              <td>401 C W 401 X W <span class="muted">· <code>401 C W 401 X W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">11</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="401 C W 401 X W 409 W" data-kind="missing" data-letter="4">
-              <td>401 C W 401 X W 409 W <span class="muted">· <code>401 C W 401 X W 409 W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">1</td>
-            </tr>
-            
             <tr class="selectable" data-norm="401 C W 404 RAMP" data-kind="missing" data-letter="4">
               <td>401 C W 404 Ramp <span class="muted">· <code>401 C W 404 RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="401 C W 409 W" data-kind="missing" data-letter="4">
-              <td>401 C W 409 W <span class="muted">· <code>401 C W 409 W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="401 C W ALLEN RAMP" data-kind="missing" data-letter="4">
@@ -2892,12 +3197,6 @@
               <td class="num">3</td>
             </tr>
             
-            <tr class="selectable" data-norm="401 X E 401 C E" data-kind="missing" data-letter="4">
-              <td>401 X E 401 C E <span class="muted">· <code>401 X E 401 C E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">12</td>
-            </tr>
-            
             <tr class="selectable" data-norm="401 X E 404 RAMP" data-kind="missing" data-letter="4">
               <td>401 X E 404 Ramp <span class="muted">· <code>401 X E 404 RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -2934,22 +3233,10 @@
               <td class="num">5</td>
             </tr>
             
-            <tr class="selectable" data-norm="401 X W 401 C W" data-kind="missing" data-letter="4">
-              <td>401 X W 401 C W <span class="muted">· <code>401 X W 401 C W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">18</td>
-            </tr>
-            
             <tr class="selectable" data-norm="401 X W 404 N RAMP" data-kind="missing" data-letter="4">
               <td>401 X W 404 N Ramp <span class="muted">· <code>401 X W 404 N RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="401 X W 409 W" data-kind="missing" data-letter="4">
-              <td>401 X W 409 W <span class="muted">· <code>401 X W 409 W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="401 X W 427 X S RAMP" data-kind="missing" data-letter="4">
@@ -3084,18 +3371,6 @@
               <td class="num">1</td>
             </tr>
             
-            <tr class="selectable" data-norm="409 E 401 C E" data-kind="missing" data-letter="4">
-              <td>409 E 401 C E <span class="muted">· <code>409 E 401 C E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">2</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="409 E 401 X E" data-kind="missing" data-letter="4">
-              <td>409 E 401 X E <span class="muted">· <code>409 E 401 X E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">2</td>
-            </tr>
-            
             <tr class="selectable" data-norm="409 E 427 N RAMP" data-kind="missing" data-letter="4">
               <td>409 E 427 N Ramp <span class="muted">· <code>409 E 427 N RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -3136,12 +3411,6 @@
               <td>427 C N 27 N Ramp <span class="muted">· <code>427 C N 27 N RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">11</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="427 C N 427 X N" data-kind="missing" data-letter="4">
-              <td>427 C N 427 X N <span class="muted">· <code>427 C N 427 X N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">3</td>
             </tr>
             
             <tr class="selectable" data-norm="427 C N BURNHAMTHORPE RAMP" data-kind="missing" data-letter="4">
@@ -3202,12 +3471,6 @@
               <td>427 C N Valhalla Inn Ramp <span class="muted">· <code>427 C N VALHALLA INN RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="427 C S 427 X S" data-kind="missing" data-letter="4">
-              <td>427 C S 427 X S <span class="muted">· <code>427 C S 427 X S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">2</td>
             </tr>
             
             <tr class="selectable" data-norm="427 C S BROWNS LI RAMP" data-kind="missing" data-letter="4">
@@ -3378,22 +3641,10 @@
               <td class="num">10</td>
             </tr>
             
-            <tr class="selectable" data-norm="427 X N 427 C N" data-kind="missing" data-letter="4">
-              <td>427 X N 427 C N <span class="muted">· <code>427 X N 427 C N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">3</td>
-            </tr>
-            
             <tr class="selectable" data-norm="427 X N CLOVERDALE RAMP" data-kind="missing" data-letter="4">
               <td>427 X N Cloverdale Ramp <span class="muted">· <code>427 X N CLOVERDALE RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="427 X S 427 C S" data-kind="missing" data-letter="4">
-              <td>427 X S 427 C S <span class="muted">· <code>427 X S 427 C S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">5</td>
             </tr>
             
             <tr class="selectable" data-norm="427 X S GARDINER X E RAMP" data-kind="missing" data-letter="4">
@@ -3756,12 +4007,6 @@
               <td class="num">5</td>
             </tr>
             
-            <tr class="selectable" data-norm="CHARLES H HISCOTT BDGE" data-kind="missing" data-letter="C">
-              <td>Charles H Hiscott Bdge <span class="muted">· <code>CHARLES H HISCOTT BDGE</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">3</td>
-            </tr>
-            
             <tr class="selectable" data-norm="CORPORATE DR 401 C E RAMP" data-kind="missing" data-letter="C">
               <td>Corporate Dr 401 C E Ramp <span class="muted">· <code>CORPORATE DR 401 C E RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -3826,18 +4071,6 @@
               <td>Don Mills Rd S Dvp S Ramp <span class="muted">· <code>DON MILLS RD S DVP S RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">2</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="DON VALLEY PKWY N" data-kind="missing" data-letter="D">
-              <td>Don Valley Parkway N <span class="muted">· <code>DON VALLEY PKWY N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">52</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="DON VALLEY PKWY S" data-kind="missing" data-letter="D">
-              <td>Don Valley Parkway S <span class="muted">· <code>DON VALLEY PKWY S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">49</td>
             </tr>
             
             <tr class="selectable" data-norm="DON VALLEY S LAWRENCE RAMP" data-kind="missing" data-letter="D">
@@ -3922,12 +4155,6 @@
               <td>Dunn Lake Shore W Ramp <span class="muted">· <code>DUNN LAKE SHORE W RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">2</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="DVP 401" data-kind="missing" data-letter="D">
-              <td>Dvp 401 <span class="muted">· <code>DVP 401</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">1</td>
             </tr>
             
             <tr class="selectable" data-norm="DVP 401 C E RAMP" data-kind="missing" data-letter="D">
@@ -4068,12 +4295,6 @@
               <td class="num">1</td>
             </tr>
             
-            <tr class="selectable" data-norm="EASTERN AVE DIVERSION" data-kind="missing" data-letter="E">
-              <td>Eastern Ave Diversion <span class="muted">· <code>EASTERN AVE DIVERSION</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">13</td>
-            </tr>
-            
             <tr class="selectable" data-norm="EGLINTON DVP S RAMP" data-kind="missing" data-letter="E">
               <td>Eglinton Dvp S Ramp <span class="muted">· <code>EGLINTON DVP S RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -4192,30 +4413,6 @@
               <td>Evans W 427 C N Ramp <span class="muted">· <code>EVANS W 427 C N RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">4</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="F G GARDINER C E" data-kind="missing" data-letter="F">
-              <td>F G Gardiner C E <span class="muted">· <code>F G GARDINER C E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">9</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="F G GARDINER C W" data-kind="missing" data-letter="F">
-              <td>F G Gardiner C W <span class="muted">· <code>F G GARDINER C W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">11</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="F G GARDINER XY E" data-kind="missing" data-letter="F">
-              <td>F G Gardiner Xy E <span class="muted">· <code>F G GARDINER XY E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">60</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="F G GARDINER XY W" data-kind="missing" data-letter="F">
-              <td>F G Gardiner Xy W <span class="muted">· <code>F G GARDINER XY W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">64</td>
             </tr>
             
             <tr class="selectable" data-norm="FAIRVIEW MALL 404 S RAMP" data-kind="missing" data-letter="F">
@@ -4338,12 +4535,6 @@
               <td class="num">7</td>
             </tr>
             
-            <tr class="selectable" data-norm="GARDINER E PK LWN RD RAMP" data-kind="missing" data-letter="G">
-              <td>Gardiner E Park Lawn Rd Ramp <span class="muted">· <code>GARDINER E PK LWN RD RAMP</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">5</td>
-            </tr>
-            
             <tr class="selectable" data-norm="GARDINER E SPADINA AV RAMP" data-kind="missing" data-letter="G">
               <td>Gardiner E Spadina Av Ramp <span class="muted">· <code>GARDINER E SPADINA AV RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -4422,12 +4613,6 @@
               <td class="num">15</td>
             </tr>
             
-            <tr class="selectable" data-norm="GARDINER X W GARDINER C W" data-kind="missing" data-letter="G">
-              <td>Gardiner X W Gardiner C W <span class="muted">· <code>GARDINER X W GARDINER C W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">1</td>
-            </tr>
-            
             <tr class="selectable" data-norm="GARDINER X W SHERWAY GDNS RAMP" data-kind="missing" data-letter="G">
               <td>Gardiner X W Sherway Gardens Ramp <span class="muted">· <code>GARDINER X W SHERWAY GDNS RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -4450,132 +4635,6 @@
               <td>Grandstand S 27 N Ramp <span class="muted">· <code>GRANDSTAND S 27 N RAMP</code></span></td>
               <td class="muted">Major Arterial Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 27 N" data-kind="missing" data-letter="H">
-              <td>Highway 27 N <span class="muted">· <code>HWY 27 N</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">31</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 27 S" data-kind="missing" data-letter="H">
-              <td>Highway 27 S <span class="muted">· <code>HWY 27 S</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">33</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 2A E" data-kind="missing" data-letter="H">
-              <td>Highway 2a E <span class="muted">· <code>HWY 2A E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">6</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 2A W" data-kind="missing" data-letter="H">
-              <td>Highway 2a W <span class="muted">· <code>HWY 2A W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">9</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 400 N" data-kind="missing" data-letter="H">
-              <td>Highway 400 N <span class="muted">· <code>HWY 400 N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">21</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 400 S" data-kind="missing" data-letter="H">
-              <td>Highway 400 S <span class="muted">· <code>HWY 400 S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">20</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 401 C E" data-kind="missing" data-letter="H">
-              <td>Highway 401 C E <span class="muted">· <code>HWY 401 C E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">132</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 401 C W" data-kind="missing" data-letter="H">
-              <td>Highway 401 C W <span class="muted">· <code>HWY 401 C W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">135</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 401 C W 401 X W" data-kind="missing" data-letter="H">
-              <td>Highway 401 C W 401 X W <span class="muted">· <code>HWY 401 C W 401 X W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 401 X E" data-kind="missing" data-letter="H">
-              <td>Highway 401 X E <span class="muted">· <code>HWY 401 X E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">108</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 401 X W" data-kind="missing" data-letter="H">
-              <td>Highway 401 X W <span class="muted">· <code>HWY 401 X W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">106</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 404 N" data-kind="missing" data-letter="H">
-              <td>Highway 404 N <span class="muted">· <code>HWY 404 N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">21</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 404 S" data-kind="missing" data-letter="H">
-              <td>Highway 404 S <span class="muted">· <code>HWY 404 S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">24</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 409 E" data-kind="missing" data-letter="H">
-              <td>Highway 409 E <span class="muted">· <code>HWY 409 E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">21</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 409 W" data-kind="missing" data-letter="H">
-              <td>Highway 409 W <span class="muted">· <code>HWY 409 W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">19</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 427 C N" data-kind="missing" data-letter="H">
-              <td>Highway 427 C N <span class="muted">· <code>HWY 427 C N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">21</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 427 C S" data-kind="missing" data-letter="H">
-              <td>Highway 427 C S <span class="muted">· <code>HWY 427 C S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">21</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 427 N" data-kind="missing" data-letter="H">
-              <td>Highway 427 N <span class="muted">· <code>HWY 427 N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">42</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 427 S" data-kind="missing" data-letter="H">
-              <td>Highway 427 S <span class="muted">· <code>HWY 427 S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">48</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 427 X N" data-kind="missing" data-letter="H">
-              <td>Highway 427 X N <span class="muted">· <code>HWY 427 X N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">11</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="HWY 427 X S" data-kind="missing" data-letter="H">
-              <td>Highway 427 X S <span class="muted">· <code>HWY 427 X S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">12</td>
             </tr>
             
             <tr class="selectable" data-norm="HORNER AVE RAMP" data-kind="missing" data-letter="H">
@@ -4854,12 +4913,6 @@
               <td class="num">1</td>
             </tr>
             
-            <tr class="selectable" data-norm="LAKESHORE RD E" data-kind="missing" data-letter="L">
-              <td>Lakeshore Rd E <span class="muted">· <code>LAKESHORE RD E</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">3</td>
-            </tr>
-            
             <tr class="selectable" data-norm="LAKESHORE W GARDINER" data-kind="missing" data-letter="L">
               <td>Lakeshore W Gardiner <span class="muted">· <code>LAKESHORE W GARDINER</code></span></td>
               <td class="muted">Expressway Ramp</td>
@@ -4954,12 +5007,6 @@
               <td>Lawson Rd Hwy 2a E Ramp <span class="muted">· <code>LAWSON RD HWY 2A E RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">1</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="LEASIDE BDGE" data-kind="missing" data-letter="L">
-              <td>Leaside Bdge <span class="muted">· <code>LEASIDE BDGE</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">7</td>
             </tr>
             
             <tr class="selectable" data-norm="LESLIE N 401 C E RAMP" data-kind="missing" data-letter="L">
@@ -5226,22 +5273,10 @@
               <td class="num">2</td>
             </tr>
             
-            <tr class="selectable" data-norm="PRINCE EDWARD VIADUCT" data-kind="missing" data-letter="P">
-              <td>Prince Edward Viaduct <span class="muted">· <code>PRINCE EDWARD VIADUCT</code></span></td>
-              <td class="muted">Major Arterial</td>
-              <td class="num">10</td>
-            </tr>
-            
             <tr class="selectable" data-norm="PROGRESS AVE N 401 C E RAMP" data-kind="missing" data-letter="P">
               <td>Progress Ave N 401 C E Ramp <span class="muted">· <code>PROGRESS AVE N 401 C E RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">2</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="QEW X E" data-kind="missing" data-letter="Q">
-              <td>Qew X E <span class="muted">· <code>QEW X E</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">10</td>
             </tr>
             
             <tr class="selectable" data-norm="QEW X E 427 X N RAMP" data-kind="missing" data-letter="Q">
@@ -5254,12 +5289,6 @@
               <td>Qew X E West Mall Ramp <span class="muted">· <code>QEW X E W MALL RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">3</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="QEW X W" data-kind="missing" data-letter="Q">
-              <td>Qew X W <span class="muted">· <code>QEW X W</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">9</td>
             </tr>
             
             <tr class="selectable" data-norm="QUEEN ST E DVP N RAMP" data-kind="missing" data-letter="Q">
@@ -5572,18 +5601,6 @@
               <td>Weston Rd S 401 C W Ramp <span class="muted">· <code>WESTON RD S 401 C W RAMP</code></span></td>
               <td class="muted">Expressway Ramp</td>
               <td class="num">3</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="WILLIAM R ALLEN RD N" data-kind="missing" data-letter="W">
-              <td>William R Allen Rd N <span class="muted">· <code>WILLIAM R ALLEN RD N</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">27</td>
-            </tr>
-            
-            <tr class="selectable" data-norm="WILLIAM R ALLEN RD S" data-kind="missing" data-letter="W">
-              <td>William R Allen Rd S <span class="muted">· <code>WILLIAM R ALLEN RD S</code></span></td>
-              <td class="muted">Expressway</td>
-              <td class="num">28</td>
             </tr>
             
             <tr class="selectable" data-norm="WILSON HS N ALLEN S RAMP" data-kind="missing" data-letter="W">
@@ -113768,7 +113785,7 @@
         row.classList.add('selected');
       }
 
-      ['missing-table', 'missing-major-table', 'missing-private-table', 'missing-ln-table', 'extra-table', 'matched-table'].forEach(function (id) {
+      ['missing-table', 'missing-major-table', 'missing-ramp-table', 'missing-private-table', 'missing-ln-table', 'extra-table', 'matched-table'].forEach(function (id) {
         var t = document.getElementById(id);
         if (!t) return;
         t.addEventListener('click', function (ev) {
