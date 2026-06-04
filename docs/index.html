@@ -35,18 +35,10 @@
     header .header-right { display: flex; align-items: center; gap: 1rem;
                            flex: none; }
 
-    .menu { position: relative; }
     .menu-toggle { background: none; border: 1px solid rgba(255,255,255,.3);
                    color: #fff; padding: .25rem .6rem; border-radius: 4px;
                    font: inherit; cursor: pointer; opacity: .85; }
     .menu-toggle:hover { opacity: 1; background: rgba(255,255,255,.1); }
-    .menu-panel { position: absolute; top: 100%; right: 0; margin-top: .4rem;
-                  background: #fff; color: #1f2937; border-radius: 6px;
-                  box-shadow: 0 4px 12px rgba(0,0,0,.15);
-                  min-width: 200px; padding: .35rem 0; display: none; z-index: 10; }
-    .menu-panel.open { display: block; }
-    .menu-panel a { display: block; padding: .4rem .9rem; color: #1f2937; opacity: 1; }
-    .menu-panel a:hover { background: #f3f4f6; text-decoration: none; }
 
     /* "Filter rules" modal. Body is generated from src/config.py via the
        `rules` context in src/report.py -- edit config to change the popup. */
@@ -94,10 +86,10 @@
     nav.tabs { position: sticky; top: 0; z-index: 2;
                height: var(--tabs-h); box-sizing: border-box;
                background: #fff; border-bottom: 1px solid #e5e7eb;
-               padding: 0 .6rem; display: flex; align-items: center; gap: .25rem;
+               padding: 0 .4rem; display: flex; align-items: center; gap: .15rem;
                flex-wrap: nowrap; overflow-x: auto; }
     nav.tabs button { background: none; border: 1px solid transparent;
-                      padding: .35rem .65rem; font: inherit; font-size: .9rem;
+                      padding: .35rem .5rem; font: inherit; font-size: .85rem;
                       white-space: nowrap; flex: none;
                       color: #4b5563; cursor: pointer; border-radius: 4px; }
     nav.tabs button:hover { background: #f3f4f6; }
@@ -156,6 +148,12 @@
     .legend .swatch.extra { background: #2563eb; }
     .legend .right { margin-left: auto; }
 
+    .funbar { font-size: .85em; color: #6b7280;
+              padding: .5rem .8rem; border-top: 1px solid #e5e7eb;
+              flex: none; display: flex; align-items: center;
+              gap: .8rem; flex-wrap: wrap; }
+    .funbar-label { font-weight: 600; }
+
     @media (max-width: 900px) {
       body { overflow: auto; }
       .app { grid-template-columns: 1fr; }
@@ -173,7 +171,7 @@
       <p class="header-meta">
         <a href="https://open.toronto.ca/dataset/toronto-centreline-tcl/">Toronto Centreline (TCL)</a>
         vs OSM <code>highway=*</code> ways with <code>name=*</code>, joined by normalized name.
-        Computed 2026-06-04T16:45:35.526940+00:00 ·
+        Computed 2026-06-04T16:50:45.465603+00:00 ·
         TCL <code>centreline-2026-06-03.geojson</code> ·
         OSM extract 2026-06-04T00:30:37.936336+00:00 ·
         TCL streets <strong>13327</strong> ·
@@ -183,14 +181,6 @@
     <span class="header-right">
       <button type="button" class="menu-toggle" id="rules-toggle"
               aria-haspopup="dialog" aria-expanded="false">Filter rules</button>
-      <span class="menu">
-        <button type="button" class="menu-toggle" id="fun-links-toggle"
-                aria-haspopup="true" aria-expanded="false">Fun links</button>
-        <div class="menu-panel" id="fun-links-panel" role="menu">
-          <a href="https://www.kleinosky.com/domains/svlanes/index.php"
-             target="_blank" rel="noopener">SV Lanes</a>
-        </div>
-      </span>
       <a href="https://github.com/skfd/toronto-streets-osm">GitHub</a>
     </span>
   </header>
@@ -114623,6 +114613,13 @@
           <span id="map-status"></span>
         </span>
       </div>
+      <div class="funbar">
+        <span class="funbar-label">Fun links:</span>
+        <a href="https://www.kleinosky.com/domains/svlanes/index.php"
+           target="_blank" rel="noopener">SV Lanes</a>
+        <a href="https://www.toronto.com/news/humber-college-launches-50th-anniversary-garden/article_8f7b24e3-48e6-57d5-bcb2-5b0ae590af03.html"
+           target="_blank" rel="noopener">Humber Garden</a>
+      </div>
     </main>
   </div>
 
@@ -114705,22 +114702,6 @@
           drawStreet(row.dataset.norm, row.dataset.kind);
         });
       });
-
-      var funToggle = document.getElementById('fun-links-toggle');
-      var funPanel = document.getElementById('fun-links-panel');
-      if (funToggle && funPanel) {
-        funToggle.addEventListener('click', function (ev) {
-          ev.stopPropagation();
-          var open = funPanel.classList.toggle('open');
-          funToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-        document.addEventListener('click', function (ev) {
-          if (!funPanel.contains(ev.target) && ev.target !== funToggle) {
-            funPanel.classList.remove('open');
-            funToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
 
       var rulesToggle = document.getElementById('rules-toggle');
       var rulesModal = document.getElementById('rules-modal');
