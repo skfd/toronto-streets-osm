@@ -222,7 +222,7 @@
         <div class="rules-tags">
           {% for c in rules.tcl_feature_codes_kept %}<span class="tcl-tag">{{ c }}</span>{% endfor %}
         </div>
-        <p class="muted">Excludes Trail, Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry. Expressway/Major Arterial ramps surface in <em>Missing Major</em> (OSM tags ramps with <code>ref</code>, not <code>name</code>, so they never match). <code>JURISDICTION=PRIVATE</code> features (apartment-complex driveways, mall internal roads) bucket into <em>Private</em>.</p>
+        <p class="muted">Excludes Trail, Walkway, Busway, Railway, River, Hydro Line, Shoreline, Creek, Ferry. Expressway/Major Arterial ramps surface in <em>Ramps</em> (OSM tags ramps with <code>ref</code>, not <code>name</code>, so they never match). <code>JURISDICTION=PRIVATE</code> features (apartment-complex driveways, mall internal roads) bucket into <em>Private</em>.</p>
 
         <h3>Match key</h3>
         <p><code>normalize_street(name)</code> &mdash; e.g. "Yonge Street" and "Yonge St" both become <code>YONGE ST</code>.</p>
@@ -237,6 +237,7 @@
       <nav class="tabs">
         <button class="active" data-tab="missing">Missing ({{ data.totals.missing }})</button>
         <button data-tab="missing-major">Missing Major ({{ data.totals.missing_major }})</button>
+        <button data-tab="missing-ramp">Ramps ({{ data.totals.missing_ramp }})</button>
         <button data-tab="missing-private">Private ({{ data.totals.missing_private }})</button>
         <button data-tab="missing-ln">Missing Ln ({{ data.totals.missing_ln }})</button>
         <button data-tab="extra">Extra ({{ data.totals.extra }})</button>
@@ -276,6 +277,28 @@
           <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
           <tbody>
             {% for s in data.missing_major | sort(attribute='street_raw') %}
+            <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
+              <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span>{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
+              <td class="muted">{{ s.feature_desc or '' }}</td>
+              <td class="num">{{ s.tcl_segments }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}<p class="muted">None.</p>{% endif %}
+      </section>
+
+      <section id="tab-missing-ramp" class="pane-section">
+        <h2>Missing in OSM &middot; expressway &amp; arterial ramps</h2>
+        <p class="muted">TCL has it as a ramp. OSM tags ramps with <code>ref</code>, not <code>name</code>, so they don't match by name. Click a row to view it on the map.</p>
+        {% if data.missing_ramp %}
+        <nav class="alpha-nav" aria-label="Jump to letter">
+          <button type="button" data-letter="#">#</button>{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<button type="button" data-letter="{{ letter }}">{{ letter }}</button>{% endfor %}
+        </nav>
+        <table id="missing-ramp-table">
+          <thead><tr><th>Street (TCL)</th><th>Class</th><th class="num">TCL segments</th></tr></thead>
+          <tbody>
+            {% for s in data.missing_ramp | sort(attribute='street_raw') %}
             <tr class="selectable" data-norm="{{ s.street_norm }}" data-kind="missing" data-letter="{{ s.street_raw[0:1] | upper }}">
               <td>{{ s.street_raw }} <span class="muted">· <code>{{ s.street_norm }}</code></span>{% if s.feature_desc == 'Pending' %} <span class="pill pending">Pending</span>{% endif %}</td>
               <td class="muted">{{ s.feature_desc or '' }}</td>
@@ -461,7 +484,7 @@
         row.classList.add('selected');
       }
 
-      ['missing-table', 'missing-major-table', 'missing-private-table', 'missing-ln-table', 'extra-table', 'matched-table'].forEach(function (id) {
+      ['missing-table', 'missing-major-table', 'missing-ramp-table', 'missing-private-table', 'missing-ln-table', 'extra-table', 'matched-table'].forEach(function (id) {
         var t = document.getElementById(id);
         if (!t) return;
         t.addEventListener('click', function (ev) {

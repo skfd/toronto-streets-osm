@@ -169,19 +169,23 @@ def compute() -> dict:
          "jurisdiction": v.get("jurisdiction")}
         for k, v in tcl.items() if k not in osm
     ]
-    _MAJOR = {"Expressway", "Expressway Ramp", "Major Arterial", "Major Arterial Ramp"}
+    _RAMP = {"Expressway Ramp", "Major Arterial Ramp"}
+    _MAJOR = {"Expressway", "Major Arterial"}
 
     def _bucket(r):
         if r["street_raw"].startswith("Ln "):
             return "ln"
         if r.get("jurisdiction") == "PRIVATE":
             return "private"
+        if r.get("feature_desc") in _RAMP:
+            return "ramp"
         if r.get("feature_desc") in _MAJOR:
             return "major"
         return "missing"
 
     missing_ln = [r for r in missing_all if _bucket(r) == "ln"]
     missing_private = [r for r in missing_all if _bucket(r) == "private"]
+    missing_ramp = [r for r in missing_all if _bucket(r) == "ramp"]
     missing_major = [r for r in missing_all if _bucket(r) == "major"]
     missing = [r for r in missing_all if _bucket(r) == "missing"]
     extra = [
@@ -205,6 +209,7 @@ def compute() -> dict:
 
     missing.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     missing_ln.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
+    missing_ramp.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     missing_major.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     missing_private.sort(key=lambda r: (-r["tcl_segments"], r["street_norm"]))
     extra.sort(key=lambda r: (-r["osm_ways"], r["street_norm"]))
@@ -225,6 +230,7 @@ def compute() -> dict:
             "osm_streets": len(osm),
             "missing": len(missing),
             "missing_ln": len(missing_ln),
+            "missing_ramp": len(missing_ramp),
             "missing_major": len(missing_major),
             "missing_private": len(missing_private),
             "extra": len(extra),
@@ -232,6 +238,7 @@ def compute() -> dict:
         },
         "missing": missing,
         "missing_ln": missing_ln,
+        "missing_ramp": missing_ramp,
         "missing_major": missing_major,
         "missing_private": missing_private,
         "extra": extra,
