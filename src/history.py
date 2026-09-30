@@ -1,9 +1,10 @@
 """Keep the totals of every compare run, and rebuild the past from git.
 
-Each compare writes one row to docs/history.jsonl: the date, the day the OSM
-extract was taken, and the totals. A second compare on the same day replaces
-that day's row, so the record holds one point per day. docs/ is committed by
-`update`, so the record travels with the page and needs no other backup.
+Each compare writes one row to docs/history.jsonl, dated by the day the OSM
+extract was taken, with the totals. A second compare on the same extract
+replaces that row, so the record holds one point per extract. docs/ is
+committed by `update`, so the record travels with the page and needs no other
+backup.
 
 The past before the record began is recovered from the repo itself: every
 commit that touched docs/index.html holds a rendered page with the totals in
@@ -24,10 +25,16 @@ FIELDS = ("missing", "extra", "missing_private", "missing_major", "missing_ln",
 
 
 def record(result, day=None):
-    """Add today's row from a compare result, replacing an earlier one today."""
-    day = day or date.today().isoformat()
+    """Add the row for this compare's OSM extract, replacing an earlier one.
+
+    A row is dated by the day its extract was taken, not the day compare ran:
+    re-running compare on an old extract would otherwise chart a new point
+    that observed nothing new. Without an extract date, today is the day.
+    """
+    osm_date = _local_date(result.get("osm_extract_downloaded"))
+    day = day or osm_date or date.today().isoformat()
     row = {"date": day,
-           "osm_date": _local_date(result.get("osm_extract_downloaded")) or day,
+           "osm_date": osm_date or day,
            "source": "live",
            **{k: result["totals"][k] for k in FIELDS if k in result["totals"]}}
     rows = [r for r in load() if r["date"] != day] + [row]

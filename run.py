@@ -4,7 +4,7 @@ Subcommands:
   download         TCL GeoJSON download (HEAD-cache by Last-Modified date)
   refresh-osm      Geofabrik PBF + filter to highway=*
   compare          TCL vs OSM bucketing -> data/compare.json + docs/index.html
-                   (+ today's row in docs/history.jsonl -> docs/history.html)
+                   (+ the extract's row in docs/history.jsonl -> docs/history.html)
   backfill         Rebuild past history rows from the pages committed to git
   update           download + refresh-osm + compare + auto-push docs/
 """

@@ -60,6 +60,15 @@ def test_record_appends_and_replaces_same_day():
     assert rows[1]["osm_date"] == "2026-07-16"
 
 
+def test_a_rerun_on_the_same_extract_replaces_its_row_not_today():
+    # A manual compare on a months-old extract is not a new observation.
+    history.record(_result(37, 574))
+    history.record(_result(36, 570))
+    rows = history.load()
+    assert [r["date"] for r in rows] == ["2026-07-16"]
+    assert rows[0]["missing"] == 36
+
+
 def test_load_is_oldest_first_and_empty_when_absent(tmp_docs):
     assert history.load() == []
     lines = [{"date": "2026-07-16", "missing": 1}, {"date": "2026-05-01", "missing": 2}]
