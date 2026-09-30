@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Toronto streets vs OSM &mdash; gaps over time</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Same palette as the streets page (templates/streets.html). */
+    :root { --ink: #1f2937; --muted: #6b7280; --border: #e5e7eb; --code-bg: #f3f4f6; }
+
+    body { margin: 0; font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+           color: var(--ink); background: #f9fafb; }
+    header { background: #111827; color: #fff; padding: .55rem 1.2rem;
+             display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    header strong { font-size: 1.05rem; }
+    header a { color: #fff; opacity: .85; text-decoration: none; margin-left: 1rem; }
+    header a:hover { opacity: 1; text-decoration: underline; }
+    main { max-width: 960px; margin: 1rem auto; padding: 1rem 1.4rem 2rem;
+           background: #fff; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    h1 { font-size: 1.3rem; margin: .2rem 0 .5rem; }
+    h2 { font-size: 1.05rem; margin: 2rem 0 .5rem; }
+    p { line-height: 1.5; }
+    .meta { color: var(--muted); font-size: .9rem; }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 1.1rem; font-size: .9rem; margin: 1rem 0 .25rem; }
+    .legend span { display: inline-flex; align-items: center; gap: .4rem; }
+    .legend i { display: inline-block; width: 18px; height: 0; border-top: 2px solid; border-radius: 2px; }
+    .legend .git i { width: 14px; height: 12px; border: 0; background: var(--code-bg); }
+    .chart { position: relative; overflow-x: auto; }
+    .chart svg { display: block; width: 100%; min-width: 640px; height: auto; font-size: 12px; }
+    .chart .git-band { fill: var(--code-bg); }
+    .chart .grid { stroke: var(--border); stroke-width: 1; }
+    .chart .axis { fill: var(--muted); }
+    .chart .series { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .chart .pt { stroke: #fff; stroke-width: 2; }
+    .chart .end-label { fill: var(--ink); font-weight: 600; }
+    .chart .crosshair { stroke: var(--muted); stroke-width: 1; pointer-events: none; }
+    .chart .hit { fill: transparent; cursor: crosshair; }
+    .tip {
+      position: absolute; top: 0; left: 0; pointer-events: none; display: none;
+      background: #fff; border: 1px solid var(--border); border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12); padding: .45rem .65rem;
+      font-size: .85rem; line-height: 1.45; white-space: nowrap;
+    }
+    .tip .d { color: var(--muted); }
+    .tip i { display: inline-block; width: 12px; border-top: 2px solid; margin-right: .4rem; vertical-align: middle; }
+    .tip strong { display: inline-block; min-width: 3em; }
+    .empty { color: var(--muted); padding: 2rem 0; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    th, td { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid var(--border);
+             white-space: nowrap; }
+    th { background: var(--code-bg); font-weight: 600; white-space: normal; vertical-align: bottom; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    code { background: var(--code-bg); padding: 0 4px; border-radius: 3px; font-size: .85em; }
+  </style>
+  <script defer src="history.js"></script>
+  <script data-goatcounter="https://toronto-streets-osm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header>
+    <strong>Toronto streets vs OpenStreetMap</strong>
+    <span><a href="./">Today's gaps</a><a href="https://github.com/skfd/toronto-streets-osm">GitHub</a></span>
+  </header>
+  <main>
+    <h1>Gaps over time</h1>
+    <p>
+      How many Toronto Centreline local streets are still <strong>missing</strong>
+      from OpenStreetMap, and how many named OSM streets are <strong>extra</strong>
+      (no TCL street by that name) &mdash; one point per daily comparison, so a
+      mapper can see the worklist shrink.
+    </p>
+    <p class="meta">
+      3 comparisons
+      from 2026-05-01 to 2026-07-16 &middot; 
+      <a href="./">today's gaps</a> &middot; <a href="history.jsonl">data (JSONL)</a>
+    </p>
+
+    <div class="legend" id="legend"></div>
+    <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+
+    <p class="meta">
+      Points in the shaded span are reconstructed from earlier published pages:
+      each is the last page this repo committed for that OSM extract, read back
+      from git history, so it counts under the comparison rules of its day.
+      The rules were still being tuned then (street-name normalization, which
+      road types count), so a step between early points can be a rule change
+      rather than mapping. The rest were recorded by the comparison itself.
+      Counts move when the City edits the Centreline, not only when someone maps.
+    </p>
+
+    <h2>Every comparison</h2>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Date</th><th class="num">Local streets missing</th><th class="num">Extra in OSM</th>
+            <th class="num">Private</th><th class="num">Major arterials</th>
+            <th class="num">Laneways</th><th class="num">Ramps</th><th class="num">Matched</th>
+            <th class="num">TCL streets</th><th class="num">OSM streets</th>
+            <th>OSM extract</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+      
+        <tr><td>2026-07-16</td>
+          
+          <td class="num">37</td>
+          
+          <td class="num">574</td>
+          
+          <td class="num">207</td>
+          
+          <td class="num">52</td>
+          
+          <td class="num">2,255</td>
+          
+          <td class="num">530</td>
+          
+          <td class="num">10,246</td>
+          
+          <td class="num">13,327</td>
+          
+          <td class="num">10,820</td>
+          
+          <td>2026-07-16</td>
+          <td>reconstructed <code>edcb8e8</code></td></tr>
+      
+        <tr><td>2026-06-03</td>
+          
+          <td class="num">42</td>
+          
+          <td class="num">594</td>
+          
+          <td class="num">207</td>
+          
+          <td class="num">52</td>
+          
+          <td class="num">2,255</td>
+          
+          <td class="num">530</td>
+          
+          <td class="num">10,241</td>
+          
+          <td class="num">13,327</td>
+          
+          <td class="num">10,835</td>
+          
+          <td>2026-06-03</td>
+          <td>reconstructed <code>2aaca1d</code></td></tr>
+      
+        <tr><td>2026-05-01</td>
+          
+          <td class="num">64</td>
+          
+          <td class="num">986</td>
+          
+          <td class="num">207</td>
+          
+          <td class="num">582</td>
+          
+          <td class="num">2,260</td>
+          
+          <td class="num">–</td>
+          
+          <td class="num">10,213</td>
+          
+          <td class="num">13,326</td>
+          
+          <td class="num">11,199</td>
+          
+          <td>2026-05-01</td>
+          <td>reconstructed <code>4b533cf</code></td></tr>
+      
+      </tbody>
+    </table>
+    </div>
+
+    <p class="meta" style="margin-top:2rem">
+      TCL &copy; City of Toronto, <a href="https://open.toronto.ca/open-data-licence/">OGL &ndash; Toronto</a>.
+      OSM data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.
+    </p>
+
+    <script type="application/json" id="history-data">[{"date": "2026-05-01", "osm_date": "2026-05-01", "source": "git", "missing": 64, "extra": 986, "missing_private": 207, "missing_major": 582, "missing_ln": 2260, "matched": 10213, "tcl_streets": 13326, "osm_streets": 11199, "commit": "4b533cf"}, {"date": "2026-06-03", "osm_date": "2026-06-03", "source": "git", "missing": 42, "extra": 594, "missing_private": 207, "missing_major": 52, "missing_ln": 2255, "missing_ramp": 530, "matched": 10241, "tcl_streets": 13327, "osm_streets": 10835, "commit": "2aaca1d"}, {"date": "2026-07-16", "osm_date": "2026-07-16", "source": "git", "missing": 37, "extra": 574, "missing_private": 207, "missing_major": 52, "missing_ln": 2255, "missing_ramp": 530, "matched": 10246, "tcl_streets": 13327, "osm_streets": 10820, "commit": "edcb8e8"}]</script>
+  </main>
+</body>
+</html>

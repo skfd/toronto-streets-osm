@@ -4,6 +4,8 @@ Subcommands:
   download         TCL GeoJSON download (HEAD-cache by Last-Modified date)
   refresh-osm      Geofabrik PBF + filter to highway=*
   compare          TCL vs OSM bucketing -> data/compare.json + docs/index.html
+                   (+ today's row in docs/history.jsonl -> docs/history.html)
+  backfill         Rebuild past history rows from the pages committed to git
   update           download + refresh-osm + compare + auto-push docs/
 """
 
@@ -17,7 +19,8 @@ from src import config
 from src.download import download
 from src import compare as _compare
 from src import geometry as _geometry
-from src.report import render as render_streets
+from src import history
+from src.report import render as render_streets, render_history
 
 
 def cmd_download(args):
@@ -41,11 +44,19 @@ def cmd_compare(args):
         print("No TCL GeoJSON in data/tcl/. Run 'download' first.")
         return
     result = _compare.regenerate()
+    history.record(result)
     t = result["totals"]
     print(f"missing={t['missing']} extra={t['extra']} matched={t['matched']} "
           f"(tcl_streets={t['tcl_streets']} osm_streets={t['osm_streets']})")
     _geometry.build_sidecar(result)
     render_streets(result)
+    render_history()
+
+
+def cmd_backfill(args):
+    added = history.backfill()
+    print(f"Added {added} row(s) to {config.HISTORY_PATH}")
+    render_history()
 
 
 def cmd_update(args):
@@ -106,6 +117,8 @@ def main():
     up = sub.add_parser("update", help="download + refresh-osm + compare + push docs")
     up.add_argument("--force", action="store_true")
 
+    sub.add_parser("backfill", help="Rebuild past history rows from committed pages")
+
     args = parser.parse_args()
     if args.command is None:
         parser.print_help()
@@ -116,6 +129,7 @@ def main():
         "refresh-osm": cmd_refresh_osm,
         "compare": cmd_compare,
         "update": cmd_update,
+        "backfill": cmd_backfill,
     }
     handlers[args.command](args)
 

@@ -19,7 +19,8 @@ A single page (`docs/index.html`) with three buckets:
 - **Extra in OSM** — OSM has the street, TCL does not.
 - **Matched** — both sides have it.
 
-There is no history. Each `update` run overwrites the page with today's snapshot.
+Each `update` run overwrites that page with today's snapshot. The counts are kept:
+a second page (`docs/history.html`) charts them over time — see [History](#history).
 
 ## Setup
 
@@ -39,9 +40,26 @@ python run.py download     # TCL GeoJSON  -> data/tcl/centreline-YYYY-MM-DD.geoj
 python run.py refresh-osm  # Geofabrik PBF + filter -> data/osm/toronto-streets.json
 python run.py compare      # join + bucket -> data/compare.json + docs/index.html
 python run.py update       # download + refresh-osm + compare + git push docs/
+python run.py backfill     # rebuild past history rows from pages committed to git
 ```
 
 `update` is the one-shot cron entry point.
+
+## History
+
+Every `compare` adds one row of totals to `docs/history.jsonl` (a second compare
+the same day replaces that day's row) and renders `docs/history.html`: a chart of
+local streets missing from OSM and OSM streets extra to TCL, plus a table of every
+field. The record lives in `docs/`, not `data/`, so the daily `data YYYY-MM-DD`
+commit carries it and GitHub Pages publishes it beside the chart.
+
+`python run.py backfill` fills in the time before the record from this repo's own
+git history: each commit that touched `docs/index.html` holds a rendered page with
+the totals. Rows are dated by the page's OSM extract, the last page for a date wins,
+and dates already on record are skipped, so re-running is harmless. Those rows are
+marked `git` and shaded on the chart as reconstructed; they count under the rules
+of their day, so early steps can be rule changes rather than mapping. Fields a page
+predates are left out, not zeroed.
 
 ## Layout
 
@@ -52,11 +70,15 @@ src/
   osm_refresh.py  # Geofabrik PBF -> filtered streets JSON
   normalize.py    # normalize_street (mirrors t2/conflate.py)
   compare.py      # TCL vs OSM bucketing
-  report.py       # Jinja2 -> docs/index.html
+  report.py       # Jinja2 -> docs/index.html, docs/history.html
+  history.py      # history record + git backfill
 templates/
-  streets.html    # the single page
+  streets.html    # the streets page
+  history.html    # the history page
+  history.js      # its chart, copied to docs/
 docs/
   index.html      # GitHub Pages serves this
+  history.*       # history page, chart script, and the record (history.jsonl)
 data/
   tcl/            # raw GeoJSON downloads (gitignored)
   osm/            # PBF + filtered JSON + meta.json (gitignored)

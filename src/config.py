@@ -13,6 +13,11 @@ DOCS_DIR = os.path.join(ROOT, "docs")
 REPORTS_DIR = os.path.join(DOCS_DIR, "reports")
 TEMPLATES_DIR = os.path.join(ROOT, "templates")
 
+# One row of totals per compare run. Lives in docs/ rather than data/ so the
+# daily "data YYYY-MM-DD" commit carries it: git is the backup, and Pages
+# publishes it beside the history chart.
+HISTORY_PATH = os.path.join(DOCS_DIR, "history.jsonl")
+
 # TCL package + WGS84 GeoJSON resource on Toronto Open Data CKAN.
 # Looked up via package_show?id=toronto-centreline-tcl.
 TCL_PACKAGE_ID = "1d079757-377b-4564-82df-eb5638583bfb"
