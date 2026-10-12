@@ -24,7 +24,11 @@ $action = New-ScheduledTaskAction `
 # a hand-built MSFT_TaskMonthlyTrigger ("The parameter is incorrect"), so
 # schtasks lays down the monthly trigger and Set-ScheduledTask fills in the
 # real action and the settings schtasks cannot express.
-$settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Hours 2) -StartWhenAvailable
+# Restart on failure: update exits 1 when any step fails (most likely the
+# extract fetch), so three tries an hour apart turn a bad moment at 13:45 into
+# a run that afternoon rather than a month with no point on the chart.
+$settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Hours 2) -StartWhenAvailable `
+    -RestartCount 3 -RestartInterval (New-TimeSpan -Hours 1)
 
 schtasks /Create /TN $taskName /SC MONTHLY /D 1 /ST 13:45 /TR "cmd.exe" /F | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "schtasks /Create failed ($LASTEXITCODE)" }

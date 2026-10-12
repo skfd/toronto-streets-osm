@@ -91,7 +91,10 @@ data/
 
 `update` runs once a month from Windows Task Scheduler, as the task
 `kk-TorontoStreetsOSM`: day 1 of each month at 13:45, with a 2-hour limit,
-catching up at the next chance if the machine was off. Output is appended to
+catching up at the next chance if the machine was off. If any step fails
+(the extract fetch, the TCL download, compare, the commit or push), `update`
+logs an `ERROR` line and exits 1, and the task retries up to 3 times an hour
+apart. Output is appended to
 `logs\scheduler.log`. No Administrator prompt is needed. The run asks
 `osm-extracts` for the current Ontario extract first, so it compares against
 whatever Geofabrik has published by then.
