@@ -207,10 +207,18 @@ def _read_latest() -> dict:
 
 
 def _extract_time(latest: dict) -> str:
-    """When Geofabrik published the extract, as an ISO stamp. Stored as
+    """When the extract's OSM data was taken, as an ISO stamp. Stored as
     meta's downloaded_at: compare shows it as the page's "OSM extract" stamp
     and history dates its row by it, so it must belong to the extract, not to
-    the day this repo happened to filter it."""
+    the day this repo happened to filter it.
+
+    The PBF's replication timestamp comes first: Geofabrik can publish a day
+    after the data it holds (ontario-2026-10-10 went up 2026-10-11 21:43 GMT),
+    and the store names the file by the data's day, not the upload's."""
+    if latest.get("replication_timestamp"):
+        return latest["replication_timestamp"]
+    if latest.get("data_date"):
+        return latest["data_date"]
     try:
         return parsedate_to_datetime(latest["source_last_modified"]).isoformat()
     except (KeyError, TypeError, ValueError):

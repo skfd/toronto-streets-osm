@@ -44,13 +44,14 @@ def cmd_compare(args):
         print("No TCL GeoJSON in data/tcl/. Run 'download' first.")
         return
     result = _compare.regenerate()
-    history.record(result)
+    row = history.record(result)
     t = result["totals"]
     print(f"missing={t['missing']} extra={t['extra']} matched={t['matched']} "
           f"(tcl_streets={t['tcl_streets']} osm_streets={t['osm_streets']})")
     _geometry.build_sidecar(result)
     render_streets(result)
     render_history()
+    return row["date"]
 
 
 def cmd_backfill(args):
@@ -72,21 +73,23 @@ def cmd_update(args):
         return
     print()
     print("=== Compare ===")
-    cmd_compare(args)
+    day = cmd_compare(args)
     print()
     print("=== Git Commit & Push ===")
-    _autopush_docs()
+    _autopush_docs(day)
 
 
-def _autopush_docs():
-    """Stage docs/, commit, push. Silent no-op when there's nothing to commit."""
+def _autopush_docs(day=None):
+    """Stage docs/, commit as "data <day>", push. Silent no-op when there's
+    nothing to commit. The day is the history row's -- the OSM extract's --
+    so the commit and the point it adds to the chart carry the same date."""
     import subprocess
     from datetime import date
 
-    today = date.today().isoformat()
+    day = day or date.today().isoformat()
     subprocess.run(["git", "add", "docs/"], check=False)
     result = subprocess.run(
-        ["git", "commit", "-m", f"data {today}"],
+        ["git", "commit", "-m", f"data {day}"],
         capture_output=True, text=True,
     )
     if result.returncode == 0:

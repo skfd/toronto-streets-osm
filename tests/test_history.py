@@ -131,3 +131,14 @@ def test_render_history_with_several_rows(tmp_docs):
     assert "reconstructed <code>ccc3333</code>" in html
     assert "<td class=\"num\">–</td>" in html  # the page had no Ramps tab
     assert "<td class=\"num\">10,246</td>" in html
+
+
+def test_a_row_is_dated_by_the_extracts_data_not_its_upload():
+    # ontario-2026-10-10 holds data replicated 10-10 but was published 10-11 GMT.
+    from src.osm_refresh import _extract_time
+    latest = {"source_last_modified": "Sun, 11 Oct 2026 21:43:54 GMT",
+              "replication_timestamp": "2026-10-10T20:21:21+00:00",
+              "data_date": "2026-10-10"}
+    assert history._local_date(_extract_time(latest)) == "2026-10-10"
+    del latest["replication_timestamp"]
+    assert history._local_date(_extract_time(latest)) == "2026-10-10"
