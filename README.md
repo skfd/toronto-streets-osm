@@ -19,7 +19,7 @@ A single page (`docs/index.html`) with three buckets:
 - **Extra in OSM** — OSM has the street, TCL does not.
 - **Matched** — both sides have it.
 
-Each `update` run overwrites that page with today's snapshot. The counts are kept:
+Each `update` run overwrites that page with the latest snapshot. The counts are kept:
 a second page (`docs/history.html`) charts them over time — see [History](#history).
 
 ## Setup
@@ -47,11 +47,12 @@ python run.py backfill     # rebuild past history rows from pages committed to g
 
 ## History
 
-Every `compare` adds one row of totals to `docs/history.jsonl` (a second compare
-the same day replaces that day's row) and renders `docs/history.html`: a chart of
-local streets missing from OSM and OSM streets extra to TCL, plus a table of every
-field. The record lives in `docs/`, not `data/`, so the daily `data YYYY-MM-DD`
-commit carries it and GitHub Pages publishes it beside the chart.
+Every `compare` adds one row of totals to `docs/history.jsonl`, dated by the day
+of the OSM extract's data (a second compare on the same extract replaces that
+row), and renders `docs/history.html`: a chart of local streets missing from OSM
+and OSM streets extra to TCL, plus a table of every field. The record lives in
+`docs/`, not `data/`, so the monthly `data YYYY-MM-DD` commit carries it and
+GitHub Pages publishes it beside the chart.
 
 `python run.py backfill` fills in the time before the record from this repo's own
 git history: each commit that touched `docs/index.html` holds a rendered page with
@@ -88,21 +89,23 @@ data/
 
 ## Scheduling (Windows)
 
-Two PowerShell scripts manage a Windows Task Scheduler entry. Run them as Administrator.
-
-**Add** — registers a daily task that runs `update` at 12:30 PM and appends output to `logs\scheduler.log`:
-
-```powershell
-.\schedule-add.ps1
-```
-
-**Remove**:
+`update` runs once a month from Windows Task Scheduler, as the task
+`kk-TorontoStreetsOSM`: day 1 of each month at 13:45, with a 2-hour limit,
+catching up at the next chance if the machine was off. Output is appended to
+`logs\scheduler.log`. No Administrator prompt is needed. The run asks
+`osm-extracts` for the current Ontario extract first, so it compares against
+whatever Geofabrik has published by then.
 
 ```powershell
-.\schedule-remove.ps1
+.\schedule-add.ps1      # registers (or re-registers) kk-TorontoStreetsOSM
+.\schedule-remove.ps1   # unregisters it
 ```
 
-The task is named `TorontoStreetsOSM` and can also be managed via the Task Scheduler GUI (`taskschd.msc`).
+Each run adds the month's statistics: one row of totals in `docs/history.jsonl`,
+dated by the OSM extract it compared (a rerun on the same extract replaces that
+row), committed as `data YYYY-MM-DD` and charted at
+[`/history.html`](https://skfd.github.io/toronto-streets-osm/history.html) — see
+[History](#history). The record is committed, so a fresh clone already has it.
 
 ## Data sources & attribution
 
