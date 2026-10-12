@@ -61,46 +61,60 @@ def cmd_backfill(args):
 
 
 def cmd_update(args):
-    print("=== Download ===")
-    cmd_download(args)
-    print()
-    print("=== OSM refresh ===")
+    """The scheduled entry point. Any step that fails ends the run with exit
+    code 1 and an ERROR line, so Task Scheduler sees the failure and retries
+    instead of logging a month with no comparison as a success."""
     from src import osm_refresh
-    try:
-        osm_refresh.run(force=False, dry_run=False, rebuild=False)
-    except Exception as e:
-        print(f"OSM refresh failed: {e}")
-        return
-    print()
-    print("=== Compare ===")
-    day = cmd_compare(args)
-    print()
+
+    steps = (
+        ("Download", lambda: cmd_download(args)),
+        ("OSM refresh", lambda: osm_refresh.run(force=False, dry_run=False, rebuild=False)),
+        ("Compare", lambda: cmd_compare(args)),
+    )
+    for name, step in steps:
+        print(f"=== {name} ===")
+        try:
+            day = step()  # the last step, compare, returns its row's date
+        except Exception as e:
+            _fail(f"{name} failed: {e!r}")
+        print()
+    if day is None:  # compare found no input and recorded nothing
+        _fail("Compare recorded no history row")
     print("=== Git Commit & Push ===")
     _autopush_docs(day)
 
 
+def _fail(msg):
+    from datetime import datetime
+    stamp = datetime.now().isoformat(timespec="seconds")
+    print(f"ERROR [{stamp}] update: {msg}", file=sys.stderr, flush=True)
+    sys.exit(1)
+
+
 def _autopush_docs(day=None):
-    """Stage docs/, commit as "data <day>", push. Silent no-op when there's
-    nothing to commit. The day is the history row's -- the OSM extract's --
-    so the commit and the point it adds to the chart carry the same date."""
+    """Stage docs/, commit as "data <day>", push. A no-op when there's nothing
+    to commit; a failed commit or push ends the run with exit code 1. The day
+    is the history row's -- the OSM extract's -- so the commit and the point
+    it adds to the chart carry the same date."""
     import subprocess
     from datetime import date
 
     day = day or date.today().isoformat()
     subprocess.run(["git", "add", "docs/"], check=False)
+    if subprocess.run(["git", "diff", "--cached", "--quiet", "--", "docs/"]).returncode == 0:
+        print("Nothing to commit.")
+        return
     result = subprocess.run(
         ["git", "commit", "-m", f"data {day}"],
         capture_output=True, text=True,
     )
-    if result.returncode == 0:
-        print(result.stdout.strip())
-        push = subprocess.run(["git", "push"], capture_output=True, text=True)
-        if push.returncode == 0:
-            print("Changes pushed.")
-        else:
-            print(f"Push failed: {push.stderr.strip()}")
-    else:
-        print("Nothing to commit.")
+    if result.returncode != 0:
+        _fail(f"git commit failed: {(result.stderr or result.stdout).strip()}")
+    print(result.stdout.strip())
+    push = subprocess.run(["git", "push"], capture_output=True, text=True)
+    if push.returncode != 0:
+        _fail(f"git push failed: {push.stderr.strip()}")
+    print("Changes pushed.")
 
 
 def main():
