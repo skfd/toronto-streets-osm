@@ -6,7 +6,6 @@ ROOT = os.path.dirname(os.path.dirname(__file__))
 DATA_DIR = os.path.join(ROOT, "data")
 TCL_DIR = os.path.join(DATA_DIR, "tcl")
 OSM_DIR = os.path.join(DATA_DIR, "osm")
-DB_PATH = os.path.join(DATA_DIR, "streets.db")
 COMPARE_JSON_PATH = os.path.join(DATA_DIR, "compare.json")
 
 DOCS_DIR = os.path.join(ROOT, "docs")
