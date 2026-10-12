@@ -12,3 +12,4 @@ __pycache__/
 .tmp.driveupload
 nul
 logs/
+data/streets.db
