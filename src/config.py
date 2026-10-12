@@ -28,9 +28,16 @@ TCL_DATASET_URL = (
     f"{TCL_PACKAGE_ID}/resource/{TCL_RESOURCE_ID}/download/{TCL_FILENAME}"
 )
 
-# Geofabrik Ontario extract, same source the address tooling uses.
-OSM_PBF_URL = "https://download.geofabrik.de/north-america/canada/ontario-latest.osm.pbf"
-OSM_PBF_PATH = os.path.join(OSM_DIR, "ontario-latest.osm.pbf")
+# Geofabrik Ontario extract, kept in the shared store that ~/Code/osm-extracts
+# owns: that tool downloads it, this repo only reads it. latest.json names the
+# current dated file (see the osm-extracts README, "Contract for consuming
+# projects").
+OSM_DATA_DIR = os.environ.get("OSM_DATA_DIR") or os.path.join(os.path.expanduser("~"), "Code", ".osm-data")
+OSM_EXTRACTS_TOOL = os.environ.get("OSM_EXTRACTS_TOOL") or os.path.join(
+    os.path.expanduser("~"), "Code", "osm-extracts", "osm_extracts.py")
+OSM_REGION = "ontario"
+OSM_REGION_DIR = os.path.join(OSM_DATA_DIR, OSM_REGION)
+OSM_LATEST_JSON = os.path.join(OSM_REGION_DIR, "latest.json")
 OSM_STREETS_JSON = os.path.join(OSM_DIR, "toronto-streets.json")
 OSM_META_PATH = os.path.join(OSM_DIR, "meta.json")
 OSM_LOCK_PATH = os.path.join(OSM_DIR, "refresh.lock")

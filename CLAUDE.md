@@ -67,7 +67,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ## Project notes
 
 - Source: Toronto Centreline (TCL) road segments via Toronto Open Data (CKAN). Daily snapshot, SCD2-stored in `data/streets.db`.
-- OSM extract: clones the Geofabrik Ontario PBF, filters to named highway ways inside the Toronto polygon, writes `data/osm/toronto-streets.json`.
+- OSM extract: reads the Geofabrik Ontario PBF from the shared store (`~/Code/.osm-data`, fetched by `~/Code/osm-extracts`; never downloaded here), filters to named highway ways inside the Toronto polygon, writes `data/osm/toronto-streets.json`.
 - **Filter rules are defined in `src/config.py`** (`OSM_HIGHWAY_TYPES` and `TCL_FEATURE_CODES` frozensets). That file is the single source of truth — the report's "Filter rules" popup is generated from it at render time (see `src/report.py::_rules_context`). When the filter changes, edit `config.py`; the popup, the comparison, and this doc's pointer all stay correct without further edits.
 - Comparison key: `normalize_street(name)` (matches the conflate logic in the sibling `toronto-2-address-import` project — e.g. "Yonge Street" and "Yonge St" both become "YONGE ST").
 - Output: dated static HTML reports under `docs/reports/`, served by GitHub Pages.

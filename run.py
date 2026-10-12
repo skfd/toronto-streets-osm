@@ -107,7 +107,7 @@ def main():
     dl = sub.add_parser("download", help="Download today's TCL GeoJSON")
     dl.add_argument("--force", action="store_true")
 
-    osm = sub.add_parser("refresh-osm", help="Download Geofabrik PBF + filter highway=*")
+    osm = sub.add_parser("refresh-osm", help="Fetch the shared Geofabrik PBF + filter highway=*")
     osm.add_argument("--force", action="store_true")
     osm.add_argument("--dry-run", action="store_true")
     osm.add_argument("--rebuild", action="store_true")

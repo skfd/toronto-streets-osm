@@ -81,7 +81,8 @@ docs/
   history.*       # history page, chart script, and the record (history.jsonl)
 data/
   tcl/            # raw GeoJSON downloads (gitignored)
-  osm/            # PBF + filtered JSON + meta.json (gitignored)
+  osm/            # filtered JSON + meta.json (gitignored); the PBF itself lives in
+                  #   the shared store ~/Code/.osm-data, fetched by ~/Code/osm-extracts
   compare.json    # latest comparison cache (gitignored)
 ```
 
